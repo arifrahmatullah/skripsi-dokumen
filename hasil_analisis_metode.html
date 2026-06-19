@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BAB IV – Hasil Analisis Metode</title>
+  <style>
+    body {
+      font-family: "Times New Roman", Times, serif;
+      font-size: 12pt;
+      line-height: 1.8;
+      margin: 2.5cm 3cm 2.5cm 4cm;
+      color: #000;
+      background: #fff;
+    }
+    h2 { font-size: 14pt; text-align: center; text-transform: uppercase; margin: 24px 0 8px; }
+    h3 { font-size: 12pt; font-weight: bold; margin: 20px 0 6px; }
+    h4 { font-size: 12pt; font-weight: bold; margin: 16px 0 4px; }
+    p  { text-align: justify; margin: 6px 0 10px; text-indent: 1.25cm; }
+    p.no-indent { text-indent: 0; }
+
+    /* Tables */
+    .tbl-wrap { margin: 12px 0 4px; }
+    .tbl-caption {
+      font-size: 11pt;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 11pt;
+      margin-bottom: 4px;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 5px 10px;
+      text-align: center;
+    }
+    th { background: #d9d9d9; font-weight: bold; }
+    td.left { text-align: left; }
+    .tbl-source { font-size: 10pt; text-align: center; margin-top: 2px; color: #333; }
+
+    /* Formula blocks */
+    .formula {
+      margin: 10px 0 10px 2.5cm;
+      font-style: italic;
+      font-size: 12pt;
+    }
+
+    /* Highlight box for conclusion */
+    .highlight-box {
+      border: 1px solid #000;
+      padding: 10px 16px;
+      margin: 16px 0;
+      background: #f9f9f9;
+    }
+
+    /* Print button – hidden when printing */
+    .btn-print {
+      position: fixed; top: 16px; right: 16px;
+      padding: 8px 18px; background: #1a56db; color: #fff;
+      border: none; border-radius: 6px; font-size: 11pt;
+      cursor: pointer; z-index: 999;
+    }
+    @media print { .btn-print { display: none; } }
+  </style>
+</head>
+<body>
+
+<button class="btn-print" onclick="window.print()">Cetak / Print</button>
+
+<h2>BAB IV<br>HASIL DAN PEMBAHASAN</h2>
+
+<!-- ========================================================= -->
+<h3>C. Hasil Analisis Metode</h3>
+
+<!-- 1. Persiapan Data -->
+<h4>1. Persiapan Data</h4>
+
+<p>Dataset yang digunakan dalam penelitian ini bersumber dari data historis pendaftaran mahasiswa baru Universitas Binaniaga Indonesia. Total keseluruhan data berjumlah <strong>1.285 record</strong> dengan lima atribut fitur dan satu atribut target (label kelas). Atribut yang digunakan sebagai fitur meliputi: kategori jarak asal, tingkat follow up internal, status test, kategori nilai test, dan kategori penghasilan orang tua. Atribut target adalah <em>status retensi final</em> yang terdiri dari dua kelas, yaitu <strong>MASUK</strong> dan <strong>TIDAK MASUK</strong>.</p>
+
+<p>Pembagian dataset dilakukan dengan rasio <strong>80:20</strong>, yaitu 80% data digunakan sebagai data training dan 20% digunakan sebagai data testing. Berdasarkan rasio tersebut diperoleh data training sebanyak 1.028 record dan data testing sebanyak 257 record.</p>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.1 – Distribusi Kelas pada Dataset</div>
+  <table>
+    <tr><th>Kelas</th><th>Jumlah</th><th>Persentase</th></tr>
+    <tr><td class="left">MASUK</td><td>301</td><td>23,4%</td></tr>
+    <tr><td class="left">TIDAK MASUK</td><td>984</td><td>76,6%</td></tr>
+    <tr><td class="left"><strong>Total</strong></td><td><strong>1.285</strong></td><td><strong>100%</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<p>Berdasarkan Tabel 4.1, distribusi kelas menunjukkan bahwa data bersifat <em>imbalanced</em>, di mana kelas TIDAK MASUK mendominasi sebesar 76,6% dari total data. Kondisi ini mencerminkan realitas lapangan di mana mayoritas calon mahasiswa yang mendaftar tidak melanjutkan hingga tahap konfirmasi pendaftaran. Ketidakseimbangan kelas ini menjadi pertimbangan dalam interpretasi hasil evaluasi model.</p>
+
+<!-- 2. Analisis Distribusi Fitur -->
+<h4>2. Analisis Distribusi Fitur</h4>
+
+<p>Sebelum membangun model klasifikasi, dilakukan analisis distribusi setiap atribut fitur untuk memahami karakteristik data yang digunakan. Distribusi tiap fitur disajikan pada tabel-tabel berikut.</p>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.2 – Distribusi Fitur Kategori Jarak Asal</div>
+  <table>
+    <tr><th>Nilai</th><th>Jumlah</th><th>Persentase</th></tr>
+    <tr><td class="left">Jauh</td><td>612</td><td>47,6%</td></tr>
+    <tr><td class="left">Dekat</td><td>563</td><td>43,8%</td></tr>
+    <tr><td class="left">Sedang</td><td>110</td><td>8,6%</td></tr>
+    <tr><td class="left"><strong>Total</strong></td><td><strong>1.285</strong></td><td><strong>100%</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.3 – Distribusi Fitur Tingkat Follow Up Internal</div>
+  <table>
+    <tr><th>Nilai</th><th>Jumlah</th><th>Persentase</th></tr>
+    <tr><td class="left">Belum Dihubungi</td><td>1.133</td><td>88,2%</td></tr>
+    <tr><td class="left">Follow Up Intensif</td><td>67</td><td>5,2%</td></tr>
+    <tr><td class="left">Kontak Awal</td><td>56</td><td>4,4%</td></tr>
+    <tr><td class="left">Follow Up</td><td>29</td><td>2,3%</td></tr>
+    <tr><td class="left"><strong>Total</strong></td><td><strong>1.285</strong></td><td><strong>100%</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.4 – Distribusi Fitur Status Test</div>
+  <table>
+    <tr><th>Nilai</th><th>Jumlah</th><th>Persentase</th></tr>
+    <tr><td class="left">Belum Tes</td><td>890</td><td>69,3%</td></tr>
+    <tr><td class="left">Sudah Tes</td><td>395</td><td>30,7%</td></tr>
+    <tr><td class="left"><strong>Total</strong></td><td><strong>1.285</strong></td><td><strong>100%</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.5 – Distribusi Fitur Kategori Nilai Test</div>
+  <table>
+    <tr><th>Nilai</th><th>Jumlah</th><th>Persentase</th></tr>
+    <tr><td class="left">Tidak Ada Nilai</td><td>894</td><td>69,6%</td></tr>
+    <tr><td class="left">Nilai Tinggi (&ge;80)</td><td>369</td><td>28,7%</td></tr>
+    <tr><td class="left">Nilai Sedang (60&ndash;79)</td><td>22</td><td>1,7%</td></tr>
+    <tr><td class="left"><strong>Total</strong></td><td><strong>1.285</strong></td><td><strong>100%</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.6 – Distribusi Fitur Kategori Penghasilan Orang Tua</div>
+  <table>
+    <tr><th>Nilai</th><th>Jumlah</th><th>Persentase</th></tr>
+    <tr><td class="left">Tidak Diketahui</td><td>1.056</td><td>82,2%</td></tr>
+    <tr><td class="left">Di atas Rp6.000.000</td><td>84</td><td>6,5%</td></tr>
+    <tr><td class="left">Rp2.000.001 &ndash; Rp4.000.000</td><td>55</td><td>4,3%</td></tr>
+    <tr><td class="left">Rp4.000.001 &ndash; Rp6.000.000</td><td>49</td><td>3,8%</td></tr>
+    <tr><td class="left">Rp1.000.000 &ndash; Rp2.000.000</td><td>24</td><td>1,9%</td></tr>
+    <tr><td class="left">Di bawah Rp1.000.000</td><td>17</td><td>1,3%</td></tr>
+    <tr><td class="left"><strong>Total</strong></td><td><strong>1.285</strong></td><td><strong>100%</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<!-- 3. Probabilitas Prior -->
+<h4>3. Perhitungan Probabilitas Prior</h4>
+
+<p>Probabilitas prior dihitung berdasarkan proporsi kemunculan masing-masing kelas pada data training yang berjumlah 1.028 record, dengan rincian 227 record berkelas MASUK dan 801 record berkelas TIDAK MASUK. Perhitungan probabilitas prior menggunakan rumus sebagai berikut.</p>
+
+<div class="formula">
+  P(C<sub>k</sub>) = n<sub>k</sub> / N
+</div>
+
+<p class="no-indent" style="text-indent:0; margin-left:2.5cm; font-size:11pt;">
+  Keterangan: n<sub>k</sub> = jumlah data kelas C<sub>k</sub> pada data training; N = total data training.
+</p>
+
+<p>Berdasarkan rumus tersebut, diperoleh nilai probabilitas prior untuk masing-masing kelas sebagai berikut.</p>
+
+<div class="formula">P(MASUK) = 227 / 1.028 = <strong>0,2208</strong></div>
+<div class="formula">P(TIDAK MASUK) = 801 / 1.028 = <strong>0,7792</strong></div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.7 – Probabilitas Prior Kelas</div>
+  <table>
+    <tr><th>Kelas</th><th>Jumlah (Training)</th><th>Probabilitas Prior</th></tr>
+    <tr><td class="left">MASUK</td><td>227</td><td>0,2208</td></tr>
+    <tr><td class="left">TIDAK MASUK</td><td>801</td><td>0,7792</td></tr>
+    <tr><td class="left"><strong>Total</strong></td><td><strong>1.028</strong></td><td><strong>1,0000</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<!-- 4. Probabilitas Kondisional -->
+<h4>4. Perhitungan Probabilitas Kondisional</h4>
+
+<p>Probabilitas kondisional dihitung menggunakan <em>Laplace Smoothing</em> guna menghindari nilai probabilitas nol yang dapat terjadi apabila suatu nilai atribut tidak muncul pada kelas tertentu di data training. Rumus yang digunakan adalah sebagai berikut.</p>
+
+<div class="formula">
+  P(x<sub>i</sub> | C<sub>k</sub>) = (n<sub>ik</sub> + 1) / (n<sub>k</sub> + K)
+</div>
+
+<p class="no-indent" style="text-indent:0; margin-left:2.5cm; font-size:11pt;">
+  Keterangan: n<sub>ik</sub> = jumlah kemunculan nilai x<sub>i</sub> pada kelas C<sub>k</sub>; n<sub>k</sub> = total data kelas C<sub>k</sub>; K = jumlah nilai unik pada fitur tersebut.
+</p>
+
+<p>Hasil perhitungan probabilitas kondisional untuk setiap fitur disajikan pada tabel-tabel berikut.</p>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.8 – Probabilitas Kondisional Fitur Status Test</div>
+  <table>
+    <tr><th>Nilai</th><th>P(nilai | MASUK)</th><th>P(nilai | TIDAK MASUK)</th></tr>
+    <tr><td class="left">Sudah Tes</td><td>0,9956</td><td>0,0984</td></tr>
+    <tr><td class="left">Belum Tes</td><td>0,0044</td><td>0,9016</td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.9 – Probabilitas Kondisional Fitur Kategori Nilai Test</div>
+  <table>
+    <tr><th>Nilai</th><th>P(nilai | MASUK)</th><th>P(nilai | TIDAK MASUK)</th></tr>
+    <tr><td class="left">Nilai Tinggi (&ge;80)</td><td>0,9435</td><td>0,0846</td></tr>
+    <tr><td class="left">Nilai Sedang (60&ndash;79)</td><td>0,0522</td><td>0,0100</td></tr>
+    <tr><td class="left">Tidak Ada Nilai</td><td>0,0043</td><td>0,9055</td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.10 – Probabilitas Kondisional Fitur Kategori Jarak Asal</div>
+  <table>
+    <tr><th>Nilai</th><th>P(nilai | MASUK)</th><th>P(nilai | TIDAK MASUK)</th></tr>
+    <tr><td class="left">Dekat</td><td>0,5348</td><td>0,4104</td></tr>
+    <tr><td class="left">Jauh</td><td>0,4087</td><td>0,4913</td></tr>
+    <tr><td class="left">Sedang</td><td>0,0565</td><td>0,0983</td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.11 – Probabilitas Kondisional Fitur Tingkat Follow Up Internal</div>
+  <table>
+    <tr><th>Nilai</th><th>P(nilai | MASUK)</th><th>P(nilai | TIDAK MASUK)</th></tr>
+    <tr><td class="left">Belum Dihubungi</td><td>0,8528</td><td>0,8720</td></tr>
+    <tr><td class="left">Kontak Awal</td><td>0,0606</td><td>0,0460</td></tr>
+    <tr><td class="left">Follow Up</td><td>0,0390</td><td>0,0211</td></tr>
+    <tr><td class="left">Follow Up Intensif</td><td>0,0476</td><td>0,0609</td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.12 – Probabilitas Kondisional Fitur Kategori Penghasilan Orang Tua</div>
+  <table>
+    <tr><th>Nilai</th><th>P(nilai | MASUK)</th><th>P(nilai | TIDAK MASUK)</th></tr>
+    <tr><td class="left">Di atas Rp6.000.000</td><td>0,2790</td><td>0,0087</td></tr>
+    <tr><td class="left">Rp4.000.001 &ndash; Rp6.000.000</td><td>0,1288</td><td>0,0050</td></tr>
+    <tr><td class="left">Rp2.000.001 &ndash; Rp4.000.000</td><td>0,1845</td><td>0,0012</td></tr>
+    <tr><td class="left">Rp1.000.000 &ndash; Rp2.000.000</td><td>0,0687</td><td>0,0012</td></tr>
+    <tr><td class="left">Di bawah Rp1.000.000</td><td>0,0601</td><td>0,0025</td></tr>
+    <tr><td class="left">Tidak Diketahui</td><td>0,2790</td><td>0,9814</td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<!-- 5. Contoh Perhitungan Manual -->
+<h4>5. Contoh Perhitungan Manual Klasifikasi</h4>
+
+<p>Sebagai ilustrasi penerapan algoritma Naive Bayes, berikut disajikan contoh perhitungan klasifikasi untuk satu data calon mahasiswa dengan karakteristik sebagai berikut.</p>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.13 – Data Calon Mahasiswa untuk Contoh Klasifikasi</div>
+  <table>
+    <tr><th>Atribut</th><th>Nilai</th></tr>
+    <tr><td class="left">Kategori Jarak Asal</td><td class="left">Dekat</td></tr>
+    <tr><td class="left">Tingkat Follow Up Internal</td><td class="left">Belum Dihubungi</td></tr>
+    <tr><td class="left">Status Test</td><td class="left">Sudah Tes</td></tr>
+    <tr><td class="left">Kategori Nilai Test</td><td class="left">Nilai Tinggi</td></tr>
+    <tr><td class="left">Kategori Penghasilan Orang Tua</td><td class="left">Tidak Diketahui</td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Data Internal Pendaftaran Universitas Binaniaga Indonesia</div>
+</div>
+
+<p><strong>Langkah 1 – Menghitung Probabilitas Prior</strong></p>
+<p>Probabilitas prior masing-masing kelas dihitung dari data training (1.028 record).</p>
+<div class="formula">P(MASUK) = 227 / 1.028 = <strong>0,2208</strong></div>
+<div class="formula">P(TIDAK MASUK) = 801 / 1.028 = <strong>0,7792</strong></div>
+
+<p><strong>Langkah 2 – Menghitung Probabilitas Kondisional untuk Kelas MASUK</strong></p>
+<p>Setiap probabilitas kondisional dihitung menggunakan Laplace Smoothing: P(x<sub>i</sub>&nbsp;|&nbsp;C<sub>k</sub>) = (n<sub>ik</sub> + 1) / (n<sub>k</sub> + K).</p>
+
+<div class="formula">P(Jarak = Dekat &nbsp;| MASUK) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (122 + 1) / (227 + 3) = 123 / 230 = <strong>0,5348</strong></div>
+<div class="formula">P(Follow Up = Belum Dihubungi | MASUK) = (196 + 1) / (227 + 4) = 197 / 231 = <strong>0,8528</strong></div>
+<div class="formula">P(Status Test = Sudah Tes &nbsp;&nbsp;&nbsp;&nbsp;| MASUK) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (227 + 1) / (227 + 2) = 228 / 229 = <strong>0,9956</strong></div>
+<div class="formula">P(Nilai = Nilai Tinggi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| MASUK) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (216 + 1) / (227 + 3) = 217 / 230 = <strong>0,9435</strong></div>
+<div class="formula">P(Penghasilan = Tidak Diketahui | MASUK) = &nbsp;(64 + 1) / (227 + 6) = &nbsp;65 / 233 = <strong>0,2790</strong></div>
+
+<p>Nilai skor MASUK diperoleh dari perkalian probabilitas prior dengan seluruh probabilitas kondisional:</p>
+<div class="formula">
+  P(MASUK | X) = P(MASUK) &times; P(Dekat|M) &times; P(Belum Dihubungi|M) &times; P(Sudah Tes|M) &times; P(Nilai Tinggi|M) &times; P(Tidak Diketahui|M)
+</div>
+<div class="formula">= 0,2208 &times; 0,5348 &times; 0,8528 &times; 0,9956 &times; 0,9435 &times; 0,2790</div>
+<div class="formula">= <strong>0,026415</strong></div>
+
+<p><strong>Langkah 3 – Menghitung Probabilitas Kondisional untuk Kelas TIDAK MASUK</strong></p>
+
+<div class="formula">P(Jarak = Dekat &nbsp;| TIDAK MASUK) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (329 + 1) / (801 + 3) = 330 / 804 = <strong>0,4104</strong></div>
+<div class="formula">P(Follow Up = Belum Dihubungi | TIDAK MASUK) = (701 + 1) / (801 + 4) = 702 / 805 = <strong>0,8720</strong></div>
+<div class="formula">P(Status Test = Sudah Tes &nbsp;&nbsp;&nbsp;&nbsp;| TIDAK MASUK) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= &nbsp;(78 + 1) / (801 + 2) = &nbsp;79 / 803 = <strong>0,0984</strong></div>
+<div class="formula">P(Nilai = Nilai Tinggi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| TIDAK MASUK) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= &nbsp;(67 + 1) / (801 + 3) = &nbsp;68 / 804 = <strong>0,0846</strong></div>
+<div class="formula">P(Penghasilan = Tidak Diketahui | TIDAK MASUK) = (791 + 1) / (801 + 6) = 792 / 807 = <strong>0,9814</strong></div>
+
+<p>Nilai skor TIDAK MASUK diperoleh dari:</p>
+<div class="formula">
+  P(TM | X) = P(TM) &times; P(Dekat|TM) &times; P(Belum Dihubungi|TM) &times; P(Sudah Tes|TM) &times; P(Nilai Tinggi|TM) &times; P(Tidak Diketahui|TM)
+</div>
+<div class="formula">= 0,7792 &times; 0,4104 &times; 0,8720 &times; 0,0984 &times; 0,0846 &times; 0,9814</div>
+<div class="formula">= <strong>0,002277</strong></div>
+
+<p><strong>Langkah 4 – Penentuan Kelas</strong></p>
+<p>Kelas dipilih berdasarkan nilai skor yang paling tinggi di antara kedua kelas.</p>
+<div class="formula">P(MASUK | X) &nbsp;= 0,026415</div>
+<div class="formula">P(TM | X) &nbsp;&nbsp;&nbsp;&nbsp;= 0,002277</div>
+<div class="formula" style="margin-top:8px;"><strong>0,026415 &gt; 0,002277 &rarr; Kelas Prediksi: MASUK</strong></div>
+
+<div class="highlight-box">
+  <p class="no-indent" style="margin:0; text-indent:0;">
+    <strong>Kesimpulan:</strong> Karena nilai P(MASUK) lebih besar dari P(TIDAK MASUK), maka calon mahasiswa dengan karakteristik tersebut diklasifikasikan ke dalam kelas <strong>MASUK</strong>.
+  </p>
+</div>
+
+<!-- 6. Evaluasi Model -->
+<h4>6. Evaluasi Model</h4>
+
+<p>Model Naive Bayes yang telah dibangun selanjutnya dievaluasi menggunakan data testing sebanyak 257 record. Evaluasi dilakukan menggunakan <em>confusion matrix</em> untuk mengukur performa model secara menyeluruh.</p>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.14 – Confusion Matrix Hasil Klasifikasi Naive Bayes</div>
+  <table>
+    <tr>
+      <th rowspan="2" style="vertical-align:middle;">Aktual</th>
+      <th colspan="2">Prediksi</th>
+    </tr>
+    <tr>
+      <th>MASUK</th>
+      <th>TIDAK MASUK</th>
+    </tr>
+    <tr>
+      <td class="left"><strong>MASUK</strong></td>
+      <td><strong>74</strong> (TP)</td>
+      <td>0 (FN)</td>
+    </tr>
+    <tr>
+      <td class="left"><strong>TIDAK MASUK</strong></td>
+      <td>16 (FP)</td>
+      <td><strong>167</strong> (TN)</td>
+    </tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<p>Berdasarkan confusion matrix pada Tabel 4.14, diperoleh nilai True Positive (TP) sebesar 74, True Negative (TN) sebesar 167, False Positive (FP) sebesar 16, dan False Negative (FN) sebesar 0. Berdasarkan nilai-nilai tersebut, dihitung metrik evaluasi sebagai berikut.</p>
+
+<p><strong>a. Akurasi</strong></p>
+<div class="formula">
+  Akurasi = (TP + TN) / Total = (74 + 167) / 257 = 241 / 257 = <strong>93,77%</strong>
+</div>
+
+<p><strong>b. Presisi</strong></p>
+<div class="formula">
+  Presisi = TP / (TP + FP) = 74 / (74 + 16) = 74 / 90 = <strong>82,22%</strong>
+</div>
+
+<p><strong>c. Recall</strong></p>
+<div class="formula">
+  Recall = TP / (TP + FN) = 74 / (74 + 0) = 74 / 74 = <strong>100,00%</strong>
+</div>
+
+<p><strong>d. F1-Score</strong></p>
+<div class="formula">
+  F1-Score = (2 &times; Presisi &times; Recall) / (Presisi + Recall) = (2 &times; 82,22 &times; 100) / (82,22 + 100) = <strong>90,24%</strong>
+</div>
+
+<div class="tbl-wrap">
+  <div class="tbl-caption">Tabel 4.15 – Rekapitulasi Metrik Evaluasi Model Naive Bayes</div>
+  <table>
+    <tr><th>Metrik</th><th>Rumus</th><th>Nilai</th></tr>
+    <tr><td class="left">Akurasi</td><td class="left">(TP + TN) / Total</td><td><strong>93,77%</strong></td></tr>
+    <tr><td class="left">Presisi</td><td class="left">TP / (TP + FP)</td><td><strong>82,22%</strong></td></tr>
+    <tr><td class="left">Recall</td><td class="left">TP / (TP + FN)</td><td><strong>100,00%</strong></td></tr>
+    <tr><td class="left">F1-Score</td><td class="left">2 &times; Presisi &times; Recall / (Presisi + Recall)</td><td><strong>90,24%</strong></td></tr>
+  </table>
+  <div class="tbl-source">Sumber: Hasil Pengolahan Data (2025)</div>
+</div>
+
+<p>Berdasarkan hasil evaluasi pada Tabel 4.15, model Naive Bayes menghasilkan <strong>akurasi sebesar 93,77%</strong>, yang berarti dari 257 data uji, sebanyak 241 data berhasil diklasifikasikan dengan benar. Nilai <strong>Recall sebesar 100%</strong> menunjukkan bahwa seluruh calon mahasiswa yang sesungguhnya akan MASUK berhasil diidentifikasi oleh model tanpa ada yang terlewat (nilai FN = 0). Hal ini sangat penting dalam konteks rekomendasi tindak lanjut, karena memastikan tidak ada calon mahasiswa potensial yang tidak terdeteksi.</p>
+
+<p>Nilai <strong>Presisi sebesar 82,22%</strong> menunjukkan bahwa dari seluruh calon mahasiswa yang diprediksi MASUK, sebesar 82,22% di antaranya memang benar-benar melakukan konfirmasi pendaftaran. Sementara itu, nilai <strong>F1-Score sebesar 90,24%</strong> mencerminkan keseimbangan yang baik antara presisi dan recall, yang mengindikasikan bahwa model mampu bekerja secara efektif pada kedua aspek tersebut.</p>
+
+<p>Secara keseluruhan, hasil evaluasi ini menunjukkan bahwa algoritma Naive Bayes mampu mengidentifikasi pola kecenderungan konfirmasi pendaftaran mahasiswa baru secara efektif berdasarkan atribut-atribut yang tersedia dalam data historis. Dengan tingkat akurasi yang tinggi dan recall yang sempurna, model ini layak digunakan sebagai dasar dalam membangun sistem rekomendasi tindak lanjut konfirmasi pendaftaran.</p>
+
+</body>
+</html>
