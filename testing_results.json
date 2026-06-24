@@ -1,0 +1,463 @@
+{
+  "results": [
+    {
+      "nama": "IBNUH AKHYAR ABDILLAH SHAHIB",
+      "aktual": "MASUK",
+      "pred": "TIDAK MASUK",
+      "vals": [
+        "Jauh",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Sedang",
+        "Rp.4.000.001 - Rp.6.000.000"
+      ],
+      "pm": [
+        0.5,
+        0.5455,
+        0.8889,
+        0.1,
+        0.0833
+      ],
+      "pt": [
+        0.5455,
+        0.5833,
+        0.4,
+        0.1818,
+        0.0769
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.000942,
+      "post_t": 0.000949
+    },
+    {
+      "nama": "afiif ismail rafi",
+      "aktual": "MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Jauh",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Tinggi",
+        "Diatas Rp.6.000.000"
+      ],
+      "pm": [
+        0.5,
+        0.5455,
+        0.8889,
+        0.8,
+        0.25
+      ],
+      "pt": [
+        0.5455,
+        0.5833,
+        0.4,
+        0.2727,
+        0.0769
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.022628,
+      "post_t": 0.001423
+    },
+    {
+      "nama": "Aditya Sri Rejeki",
+      "aktual": "MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Dekat",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Tinggi",
+        "Rp.2.000.001 - Rp.4.000.000"
+      ],
+      "pm": [
+        0.3,
+        0.5455,
+        0.8889,
+        0.8,
+        0.25
+      ],
+      "pt": [
+        0.1818,
+        0.5833,
+        0.4,
+        0.2727,
+        0.0769
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.013577,
+      "post_t": 0.000474
+    },
+    {
+      "nama": "Syahira Maulidia Azmi",
+      "aktual": "MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Jauh",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Tinggi",
+        "Rp.4.000.001 - Rp.6.000.000"
+      ],
+      "pm": [
+        0.5,
+        0.5455,
+        0.8889,
+        0.8,
+        0.0833
+      ],
+      "pt": [
+        0.5455,
+        0.5833,
+        0.4,
+        0.2727,
+        0.0769
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.00754,
+      "post_t": 0.001423
+    },
+    {
+      "nama": "Kaisa Qomaru Zayyan",
+      "aktual": "MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Dekat",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Tinggi",
+        "Rp.4.000.001 - Rp.6.000.000"
+      ],
+      "pm": [
+        0.3,
+        0.5455,
+        0.8889,
+        0.8,
+        0.0833
+      ],
+      "pt": [
+        0.1818,
+        0.5833,
+        0.4,
+        0.2727,
+        0.0769
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.004524,
+      "post_t": 0.000474
+    },
+    {
+      "nama": "ahmad qatada madani",
+      "aktual": "MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Dekat",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Sedang",
+        "Diatas Rp.6.000.000"
+      ],
+      "pm": [
+        0.3,
+        0.5455,
+        0.8889,
+        0.1,
+        0.25
+      ],
+      "pt": [
+        0.1818,
+        0.5833,
+        0.4,
+        0.1818,
+        0.0769
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.001697,
+      "post_t": 0.000316
+    },
+    {
+      "nama": "Syamsul falah pasaribu",
+      "aktual": "MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Jauh",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Tinggi",
+        "Rp.2.000.001 - Rp.4.000.000"
+      ],
+      "pm": [
+        0.5,
+        0.5455,
+        0.8889,
+        0.8,
+        0.25
+      ],
+      "pt": [
+        0.5455,
+        0.5833,
+        0.4,
+        0.2727,
+        0.0769
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.022628,
+      "post_t": 0.001423
+    },
+    {
+      "nama": "Sandy Akbar Hanafi",
+      "aktual": "TIDAK MASUK",
+      "pred": "TIDAK MASUK",
+      "vals": [
+        "Dekat",
+        "Belum Dihubungi",
+        "Belum_Tes",
+        "Tidak_Ada_Nilai",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.3,
+        0.5455,
+        0.1111,
+        0.1,
+        0.25
+      ],
+      "pt": [
+        0.1818,
+        0.5833,
+        0.6,
+        0.5455,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.000212,
+      "post_t": 0.012815
+    },
+    {
+      "nama": "Amaliyah Muthmainnah",
+      "aktual": "TIDAK MASUK",
+      "pred": "TIDAK MASUK",
+      "vals": [
+        "Sedang",
+        "Belum Dihubungi",
+        "Belum_Tes",
+        "Tidak_Ada_Nilai",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.2,
+        0.5455,
+        0.1111,
+        0.1,
+        0.25
+      ],
+      "pt": [
+        0.2727,
+        0.5833,
+        0.6,
+        0.5455,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.000141,
+      "post_t": 0.019223
+    },
+    {
+      "nama": "Muhammad Dizki Alfaizal Mukt",
+      "aktual": "TIDAK MASUK",
+      "pred": "TIDAK MASUK",
+      "vals": [
+        "Jauh",
+        "Belum Dihubungi",
+        "Belum_Tes",
+        "Tidak_Ada_Nilai",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.5,
+        0.5455,
+        0.1111,
+        0.1,
+        0.25
+      ],
+      "pt": [
+        0.5455,
+        0.5833,
+        0.6,
+        0.5455,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.000354,
+      "post_t": 0.038453
+    },
+    {
+      "nama": "Widia wati",
+      "aktual": "TIDAK MASUK",
+      "pred": "TIDAK MASUK",
+      "vals": [
+        "Dekat",
+        "Follow Up Intensif",
+        "Belum_Tes",
+        "Tidak_Ada_Nilai",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.3,
+        0.0909,
+        0.1111,
+        0.1,
+        0.25
+      ],
+      "pt": [
+        0.1818,
+        0.1667,
+        0.6,
+        0.5455,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 3.5e-05,
+      "post_t": 0.003662
+    },
+    {
+      "nama": "Ilham Maulana",
+      "aktual": "TIDAK MASUK",
+      "pred": "TIDAK MASUK",
+      "vals": [
+        "Jauh",
+        "Follow Up Intensif",
+        "Belum_Tes",
+        "Tidak_Ada_Nilai",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.5,
+        0.0909,
+        0.1111,
+        0.1,
+        0.25
+      ],
+      "pt": [
+        0.5455,
+        0.1667,
+        0.6,
+        0.5455,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 5.9e-05,
+      "post_t": 0.010989
+    },
+    {
+      "nama": "Muhamad Helmi",
+      "aktual": "TIDAK MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Jauh",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Tinggi",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.5,
+        0.5455,
+        0.8889,
+        0.8,
+        0.25
+      ],
+      "pt": [
+        0.5455,
+        0.5833,
+        0.4,
+        0.2727,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.022628,
+      "post_t": 0.012815
+    },
+    {
+      "nama": "NAJUA HAMIDAH",
+      "aktual": "TIDAK MASUK",
+      "pred": "MASUK",
+      "vals": [
+        "Dekat",
+        "Belum Dihubungi",
+        "Sudah_Tes",
+        "Nilai_Tinggi",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.3,
+        0.5455,
+        0.8889,
+        0.8,
+        0.25
+      ],
+      "pt": [
+        0.1818,
+        0.5833,
+        0.4,
+        0.2727,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.013577,
+      "post_t": 0.004271
+    },
+    {
+      "nama": "Alief rasya arrafi",
+      "aktual": "TIDAK MASUK",
+      "pred": "TIDAK MASUK",
+      "vals": [
+        "Jauh",
+        "Kontak Awal",
+        "Belum_Tes",
+        "Tidak_Ada_Nilai",
+        "Tidak Diketahui"
+      ],
+      "pm": [
+        0.5,
+        0.1818,
+        0.1111,
+        0.1,
+        0.25
+      ],
+      "pt": [
+        0.5455,
+        0.0833,
+        0.6,
+        0.5455,
+        0.6923
+      ],
+      "prior_m": 0.4667,
+      "prior_t": 0.5333,
+      "post_m": 0.000118,
+      "post_t": 0.005491
+    }
+  ],
+  "tp": 6,
+  "tn": 6,
+  "fp": 2,
+  "fn": 1,
+  "acc": 80.0,
+  "prec": 75.0,
+  "rec": 85.71,
+  "f1": 80.0,
+  "n": 15
+}
