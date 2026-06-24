@@ -555,6 +555,100 @@ cur = p(f'Berdasarkan hasil evaluasi pada Tabel 4.14, model Naive Bayes menghasi
         after=cur)
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# STEP 4: INSERT d. ANALISIS KEBUTUHAN SISTEM (Use Case Diagram)
+# ═══════════════════════════════════════════════════════════════════════════════
+aks_cur = None
+for para in doc.paragraphs:
+    if para.text.strip() == 'Analisis Kebutuhan Sistem':
+        aks_cur = para._element
+        print("Found: 'Analisis Kebutuhan Sistem'")
+        break
+
+if aks_cur is not None:
+    # Intro
+    aks_cur = p('Pemodelan objek pada aplikasi yang akan dikembangkan dijelaskan dalam bentuk '
+                'diagram use case berdasarkan pada proses rekomendasi tindak lanjut konfirmasi '
+                'pendaftaran mahasiswa baru, untuk memodelkan serta mengorganisasi pada aplikasi '
+                'sehingga mendapatkan keluaran aplikasi sesuai dengan yang diharapkan dan '
+                'dibutuhkan oleh pengguna. Berikut diagram use case pada aplikasi yang akan '
+                'dikembangkan dapat dilihat pada Gambar 4.3.', after=aks_cur)
+
+    # Gambar Use Case Diagram
+    img_p_elem = OxmlElement('w:p')
+    img_pPr = OxmlElement('w:pPr')
+    img_jc = OxmlElement('w:jc'); img_jc.set(qn('w:val'), 'center'); img_pPr.append(img_jc)
+    img_sp = OxmlElement('w:spacing')
+    img_sp.set(qn('w:before'),'0'); img_sp.set(qn('w:after'),'0')
+    img_sp.set(qn('w:line'),'360'); img_sp.set(qn('w:lineRule'),'auto')
+    img_pPr.append(img_sp); img_p_elem.append(img_pPr)
+    aks_cur.addnext(img_p_elem)
+
+    from docx.oxml import OxmlElement as OE
+    from docx.shared import Cm as DCm
+    # Find the paragraph object to add picture
+    for para in doc.paragraphs:
+        if para._element is img_p_elem:
+            run = para.add_run()
+            run.add_picture('Use Case Diagram.png', width=DCm(13))
+            para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            break
+
+    aks_cur = img_p_elem
+
+    # Caption
+    cap_p = OxmlElement('w:p')
+    cap_pPr = OxmlElement('w:pPr')
+    cap_jc = OxmlElement('w:jc'); cap_jc.set(qn('w:val'), 'center'); cap_pPr.append(cap_jc)
+    cap_sp = OxmlElement('w:spacing')
+    cap_sp.set(qn('w:before'),'0'); cap_sp.set(qn('w:after'),'0')
+    cap_sp.set(qn('w:line'),'360'); cap_sp.set(qn('w:lineRule'),'auto')
+    cap_pPr.append(cap_sp); cap_p.append(cap_pPr)
+    cap_r = OxmlElement('w:r')
+    cap_rPr = OxmlElement('w:rPr')
+    cap_rf = OxmlElement('w:rFonts'); cap_rf.set(qn('w:ascii'),'Arial'); cap_rf.set(qn('w:hAnsi'),'Arial'); cap_rPr.append(cap_rf)
+    cap_rPr.append(OxmlElement('w:b'))
+    cap_sz = OxmlElement('w:sz'); cap_sz.set(qn('w:val'),'20'); cap_rPr.append(cap_sz)
+    cap_szc = OxmlElement('w:szCs'); cap_szc.set(qn('w:val'),'20'); cap_rPr.append(cap_szc)
+    cap_r.append(cap_rPr)
+    cap_t = OxmlElement('w:t'); cap_t.text = 'Gambar 4.3 Diagram Use Case'; cap_r.append(cap_t)
+    cap_p.append(cap_r)
+    aks_cur.addnext(cap_p)
+    aks_cur = cap_p
+
+    aks_cur = p('Sumber: Hasil Perancangan (2025)', italic=True, center=True, after=aks_cur)
+
+    # Penjelasan
+    aks_cur = p('Pada Gambar 4.3 dijelaskan bahwa terdapat 1 (satu) aktor dalam aplikasi '
+                'rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru yaitu Tim Marketing. '
+                'Tim Marketing diharuskan untuk login terlebih dahulu agar dapat mengakses aplikasi '
+                'tersebut. Adapun use case yang dapat dilakukan oleh Tim Marketing adalah sebagai '
+                'berikut:', after=aks_cur)
+
+    aks_cur = p('a.  Login: Tim Marketing melakukan autentikasi untuk masuk ke dalam sistem.',
+                after=aks_cur, ind=2520)
+    aks_cur = p('b.  Logout: Tim Marketing keluar dari sistem setelah selesai menggunakan aplikasi.',
+                after=aks_cur, ind=2520)
+    aks_cur = p('c.  Kelola Data Pendaftar: Tim Marketing dapat mengelola data calon mahasiswa '
+                'baru yang terdaftar dalam sistem, termasuk melihat dan memperbarui data.',
+                after=aks_cur, ind=2520)
+    aks_cur = p('d.  Lihat Hasil Klasifikasi Naive Bayes: Tim Marketing dapat melihat hasil '
+                'klasifikasi algoritma Naive Bayes terhadap seluruh data calon mahasiswa.',
+                after=aks_cur, ind=2520)
+    aks_cur = p('e.  Lihat Rekomendasi Tindak Lanjut: Tim Marketing dapat melihat rekomendasi '
+                'tindak lanjut yang dihasilkan sistem untuk setiap calon mahasiswa berdasarkan '
+                'hasil prediksi Naive Bayes.',
+                after=aks_cur, ind=2520)
+    aks_cur = p('f.  Lihat Detail Hasil Prediksi: Tim Marketing dapat melihat detail '
+                'perhitungan probabilitas prediksi untuk setiap data calon mahasiswa.',
+                after=aks_cur, ind=2520)
+    aks_cur = p('g.  Cetak / Export Laporan: Tim Marketing dapat mencetak atau mengekspor '
+                'laporan hasil rekomendasi tindak lanjut konfirmasi pendaftaran.',
+                after=aks_cur, ind=2520)
+    print("d. Analisis Kebutuhan Sistem inserted.")
+else:
+    print("WARNING: 'Analisis Kebutuhan Sistem' paragraph not found.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # C. PEMBAHASAN — insert after placeholder "Pembahasan" di akhir dokumen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Cari placeholder "Pembahasan" (bukan "C.  Pembahasan" yang kita buat)
