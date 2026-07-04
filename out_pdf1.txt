@@ -1,0 +1,243 @@
+--- page 34 ---
+ 
+78 | Skripsi Universitas Binaniaga Indonesia 2025 
+ 
+c. Data Model 
+Pada Gambar 4.25 Data Model , menunjukkan pada aplikasi kelayakan kredit 
+nasabah terdapat 7 (tujuh) buah tabel yakni tabel user, nasabah, perhitungan, 
+detail_perhitungan, atribut, atribut_detail, dan tabel training. 
+ 
+ 
+Gambar 4.25 Data Model 
+ 
+3. Membangun Prototype 
+Rancangan prototype meliputi perancangan menu dan tampilan pada pengguna. 
+Rancangan antar muka yang terdapat pada aplikasi rekomendasi kelayakan kredit 
+nasabah menggunakan algoritma naive bayes ini, yaitu sebagai berikut: 
+ 
+ 
+ 
+
+--- page 35 ---
+ 
+79 
+ 
+a. Halaman Login Admin 
+ 
+Gambar 4.26 Halaman Login Admin 
+ 
+b. Halaman Utama Admin 
+ 
+Gambar 4.27 Halaman Utama Admin 
+
+--- page 36 ---
+ 
+80 | Skripsi Universitas Binaniaga Indonesia 2025 
+ 
+c. Halaman Data Atribut 
+ 
+Gambar 4.28 Halaman Data Atribut 
+ 
+d. Halaman Data Nasabah 
+ 
+Gambar 4.29 Halaman Data Nasabah 
+ 
+ 
+ 
+
+--- page 42 ---
+ 
+86 | Skripsi Universitas Binaniaga Indonesia 2025 
+ 
+No Pertanyaan 
+Responden 
+R1 R2 
+13 Informasi yang disediakan aplikasi ini mudah dimengerti 6 6 
+14 Informasi yang disajikan efektif dapat membantu 
+menyelesaikan tugas-tugas dan scenario 6 6 
+15 Informasi yang ditampilkan pada layar, disajikan dengan 
+jelas 6 6 
+Interface Quality 
+16 Antarmuka yang disajikan menyenangkan. 6 6 
+17 Saya suka menggunakan antarmuka pada sistem ini 6 6 
+18 Sistem ini mempunyai fungsi dan kemampuan yang saya 
+harapkan 6 6 
+19 Secara keseluruhan, saya puas menggunakan sistem ini. 7 7 
+Nilai Observasi 123 125 
+Nilai yang Diharapkan 133 133 
+ 
+Hasil kuesioner uji pengguna tersebut dilakukan perhitungan menggunakan 
+rumus persentase kelayakan sebagai berikut: 
+Persentase Kelayakan (%) = Skor yang diobservasi
+Skor yang diharapkan x 100% 
+ 
+Persentase Kelayakan (%) = 123 + 125
+133 + 133 x 100% 
+ 
+Persentase Kelayakan (%) = 248
+266 x 100% 
+ 
+Persentase Kelayakan (%) = 93,2% 
+ 
+Berdasarkan hasil dari perhitungan persentase kelayakan di atas diperoleh nilai 
+93,2%, maka dapat disimpulkan bahwa sistem Sangat Layak digunakan. 
+Adapun skor hasil kuesioner uji pengguna b erdasarkan pengelompokannya 
+dapat dilihat pada tabel di bawah ini. 
+ 
+--- page 43 ---
+ 
+87 
+ 
+Tabel 4.23 Hasil Kuesioner Uji Pengguna Berdasarkan Pengelompokannya 
+Responden Nama Skor 
+Overall Sysuse Infoqual Interqual 
+R1 7 53 38 25 
+R2 7 55 38 25 
+Nilai Observasi 14 108 76 50 
+Nilai yang Diharapkan 14 112 84 56 
+ 
+Berikut adalah hasil perhitungan kelayakan yang dikelompokkan menjadi empat 
+tanggapan PSSUQ berdasarkan pada tabel di atas, yaitu sebagai berikut: 
+1) Overall 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 7 + 7
+7 + 7 𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 14
+14 𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 100% 
+ 
+Dalam persentase kategori kepuasan secara keseluruhan pada sistem, 
+hasil penilaian semua respo nden berdasarkan skala kelayakan dinyatakan 
+“Sangat Layak”. 
+2) System Usefulness 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 53 + 55
+56 + 56 𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 108
+112 𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 96,4% 
+ 
+Dalam persentase kategori kegunaan sistem, hasil penilaian semua 
+responden berdasarkan skala kelayakan dinyatakan “Sangat Layak”. 
+3) Information Quality 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 38 + 38
+42 + 42 𝑥 100% 
+--- page 44 ---
+ 
+88 | Skripsi Universitas Binaniaga Indonesia 2025 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 76
+84 𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 90,5% 
+ 
+Dalam persentase kategori kualitas informasi, hasil penilaian semua 
+responden berdasarkan skala kelayakan dinyatakan “Sangat Layak”. 
+4) Interface Quality 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑆𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 25 + 25
+28 + 28 𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 50
+56 𝑥 100% 
+ 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝑘𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 89,3% 
+ 
+Dalam persentase kategori kualitas antarmuka, hasil penilaian semua 
+responden berdasarkan skala kelayakan dinyatakan “Sangat Layak”. 
+ 
+6. Uji Hasil 
+Tahapan ini dilakukan untuk mengevaluasi kinerja model menggunakan Confusion 
+Matrix yang merupakan alat evaluasi kinerja model klasifikasi data dengan cara 
+membandingkan data hasil prediksi dengan klasifikasi data sesuai dengan  data 
+aktual yang ada di data kelayakan kredit nasabah yang dapat dilihat pada Tabel 1.1. 
+Hasil perbandingan data tersebut dapat dilihat pada Tabel 4.24 di bawah ini. 
+ 
+Tabel 4.24 Hasil Perbandingan Data 
+No. Nama Nasabah 
+Status Kredit 
+Klasifikasi Prediksi 
+1 Delita Lancar Lancar 
+2 Rosmini Macet Macet 
+3 Dwi Novitasari Lancar Lancar 
+4 Nia Herlina Lancar Lancar 
+5 Cucun Lancar Lancar 
+6 Masita Macet Macet 
+--- page 45 ---
+ 
+89 
+ 
+No. Nama Nasabah 
+Status Kredit 
+Klasifikasi Prediksi 
+7 Nurhassanah Lancar Lancar 
+8 Narwah Lancar Lancar 
+9 Yunita Sari Macet Macet 
+10 Ernawati Macet Macet 
+11 Paradilah Lancar Lancar 
+12 Endang Susilowati Macet Macet 
+13 Asnah Macet Macet 
+14 Nurhayati Macet Macet 
+15 Ami Macet Macet 
+16 Devi Marsela Lancar Lancar 
+17 Supriyanti Lancar Lancar 
+18 Nurian Cahyati Lancar Lancar 
+19 Mayasari Lancar Lancar 
+20 Siti Alfiyah Lancar Lancar 
+21 Aliyah Lancar Lancar 
+22 Inah Lancar Lancar 
+23 Sadiyah Lancar Macet 
+24 Poningsih Lancar Macet 
+25 Tan Yani Lancar Lancar 
+ 
+Berdasarkan hasil perbandingan yang ada pada Tabel 4. 24, maka selanjutnya 
+dibuatkan tabel confusion matrix agar mempermudah dalam melakukan perhitungan 
+uji hasil evaluasi model. Berikut adalah tabel confusion matrix yang terdapat di Tabel 
+4.25 di bawah ini. 
+ 
+ 
+ 
+ 
+--- page 46 ---
+ 
+90 | Skripsi Universitas Binaniaga Indonesia 2025 
+ 
+Tabel 4.25 Confusion Matrix 
+Klasifikasi 
+Prediksi 
+Lancar Macet 
+Lancar 15 2 
+Macet 0 8 
+ 
+Berdasarkan Tabel 4. 25 maka berikut adalah hasil evaluasi model yang dapat 
+dihitung menggunakan rumus di bawah ini. 
+ 
+𝐴𝑘𝑢𝑟𝑎𝑠𝑖 =  𝑇𝑃 + 𝑇𝑁
+𝑇𝑃 + 𝐹𝑃 + 𝑇𝑁 + 𝐹𝑁  
+=  15 + 8
+15 + 2 + 8 + 0  = 23
+25 × 100% = 92% 
+ 
+Keterangan: 
+TP = jika hasil prediksi positif dan data sebenarnya positif 
+FP = jika hasil prediksi negatif dan data sebenarnya positif 
+FN = jika hasil prediksi positif dan data sebenarnya negatif 
+TN = jika hasil prediksi negatif dan data sebenarnya negatif 
+ 
+Berdasarkan perhitungan di atas, diketahui nilai akurasi sebesar 92%. Jadi, dapat 
+disimpulkan bahwa tingkat keakuratan dalam memberikan rekomendasi kelayakan 
+kredit nasabah dengan pendekatan algoritma naive bayes, adalah sangat akurat. 
+ 

@@ -1,0 +1,18 @@
+=== SECTIONS & MARGINS ===
+Section 0: top=2.54cm bottom=2.54cm left=2.54cm right=2.54cm gutter=0.00cm start_type=NEW_PAGE (2)
+Section 1: top=2.54cm bottom=2.54cm left=2.54cm right=2.54cm gutter=0.00cm start_type=NEW_PAGE (2)
+Section 2: top=2.54cm bottom=2.54cm left=2.54cm right=2.54cm gutter=0.00cm start_type=NEW_PAGE (2)
+
+=== FONTS USED (sample) ===
+font=Arial size=12.0 bold=True | sample: 'PENERAPAN ALGORITMA NAIVE BAYES UNTUK REKOMENDASI '
+font=None size=None bold=None | sample: 'LEMBAR PENGESAHAN PROPOSAL SKRIPSI'
+font=Arial size=10.0 bold=None | sample: '\tPuji dan syukur penulis panjatkan ke hadirat Tuha'
+font=Arial size=10.0 bold=True | sample: '\tPuji dan syukur penulis panjatkan ke hadirat Tuha'
+font=Cambria Math size=10.0 bold=None | sample: 'P(\u200b∣X)\t: Probabilitas posterior dari kelas  jika d'
+font=Arial size=None bold=True | sample: 'Tahap 1: Menghitung Probabilitas Prior P()'
+font=Arial size=None bold=None | sample: 'Tahap 1: Menghitung Probabilitas Prior P()'
+font=Cambria Math size=10.0 bold=True | sample: 'Tahap 2: Menghitung Probabilitas Kondisional Atrib'
+
+=== PARAGRAPH SPACING sample ===
+line_spacing=1.5 rule=ONE_POINT_FIVE (1) | sample: 'PENERAPAN ALGORITMA NAIVE BAYES UNTUK REKOMENDASI '
+line_spacing=None rule=None | sample: 'LEMBAR PENGESAHAN PROPOSAL SKRIPSI'

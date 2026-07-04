@@ -1,0 +1,397 @@
+--- page 17 ---
+ 
+67  
+c. Diagram Komponen 
+Dalam pengembangan aplikasi rekomendasi pemilihan peserta pekan ilmiah 
+mahasiswa nasional, terdapat beberapa komponen yang mendukung jalannya 
+aplikasi. Berdasarkan gambar 4.16 dapat dijelaskan bahwa XAMPP adalah 
+perangkat lunak yang digunakan untuk menampilkan aplikasi yang telah dibuat 
+tanpa harus terkoneksi dengan internet. MySql digunakan sebagai media 
+penyimpanan data (database). Bahasa pemrograman ya ng dipakai adalah PHP. 
+Web Browser digunakan untuk melihat atau menampilkan aplikasi. Bootstrap 
+digunakan agar tampilan dari aplikasi menarik. Tabel digunakan untuk menampilkan 
+data agar mudah untuk diakses dalam jumlah banyak. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 16 Diagram Komponen 
+ 
+
+--- page 18 ---
+ 
+68 Skripsi – Universitas Binaniaga Indonesia 2023  
+d. Diagram Deployment 
+Diagram deployment menampilkan software dan relasi yang digunakan pada 
+hardware untuk menerapkan sebuah sistem. Diagram deployment dari aplikasi 
+rekomendasi pemilihan peserta pekan ilmiah mahasiswa nasional dapat 
+digambarkan seperti pada gambar 4.17. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 17 Diagram Deployment 
+3. Perancangan Design Antarmuka 
+Desain antarmuka aplikasi adalah membuat interface sebagai rancangan awal aplikasi yang 
+akan dikembangkan sesuai dengan kebutuhan pengguna. Desain antarmuka aplikasi dibuat 
+sesuai dengan interface apa saja yang terdapat pada aplikasi. Berikut adalah desain 
+antarmuka pada aplikasi Rekomendasi pemilihan peserta pekan ilmiah mahasiwa nasional. 
+ 
+ 
+ 
+                   
+ 
+ 
+   
+ 
+ 
+ 
+ 
+Gambar 4. 18 Interface Login 
+ 
+ 
+
+--- page 19 ---
+ 
+69  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 19  Interface Menu Utama 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 20 Interface Input Data Lama Peserta  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 21  Interface View Data Lama Peserta 
+ 
+ 
+
+--- page 20 ---
+ 
+70 Skripsi – Universitas Binaniaga Indonesia 2023  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 22  Interface Mengubah Data Lama Peserta 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 23 Interface Data Rekomendasi Peserta 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 24  Interface Input Data Calon Peserta 
+ 
+ 
+
+--- page 33 ---
+ 
+83  
+Berdasarkan tablel 4.6 diperoleh skor yang telah diobservasi berjumlah 30, maka 
+dapat dihitung presentase kelayakan sistem sebagai berikut : 
+𝑃𝑟𝑒𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖 𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖 ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛 𝑥 100% 
+Presentase Kelayakan (%) =  30
+30 𝑥 100% 
+𝑃𝑟𝑒𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) = 100% 
+ 
+Presentase kelayakan yang di peroleh sebesar 100%, maka dapat dikategorikan 
+“Sangat Layak” seperti yang ditunjukan pada tabel 4.6. Kuesioner ini disertai 
+pertanyaan pendukung yang terdiri dari kritik dan saran sebagai masukan dari 
+responden. Kritik dan saran tersebut dijadikan bahan evaluasi untuk sistem yang 
+dikembangkan 
+b. Hasil Kuesioner Kelayakan Sistem Untuk Pengguna 
+Pengguna pada penelitian ini berjumlah 3  orang yaitu satu orang kepala direktorat 
+kemahasiswaan dan dua orang kepala program kreaktivitas mahasiswa kemudian 
+wakil ,penyebaran kuesioner berfungsi agar mengetahui pendapat dari masing -
+masing pengguna terhadap aplikasi rekomendasi pemilihan peserta pekan ilmiah 
+mahasiswa nasional. Adapun pertanyaan yang diajukan sebagai berikut :  
+(1) Secara keseluruhan, saya puas dengan kemudahan penggunaan aplikasi ini (P1) 
+(2) Aplikasi mudah digunakan (P2) 
+(3) Saya secara efektif dapat menyelesaikan tugas-tugas dan skenario menggunakan 
+aplikasi ini (P3) 
+(4) Saya bisa menyelesaikan tugas-tugas dan scenario menggunakan aplikasi ini (P4) 
+(5) Saya dengan efisien dapat menyelesaikan tugas -tugas dan scenario 
+menggunakan aplikasi ini (P5) 
+(6) Saya merasa nyaman menggunakan aplikasi ini (P6) 
+(7) Mudah untuk belajar menggunakan aplikasi ini (P7) 
+(8) Saya percaya saya bisa menjadi produktif dengan cepat menggunakan aplikasi ini 
+(P8) 
+(9) Aplikasi ini memberikan pesan kesalahan yang jelas memberitahu saya 
+bagaimana untuk memperbaiki masalah (P9) 
+(10)   Setiap kali saya melakukan kesalahan dengan menggunakan aplikasi, saya bisa 
+pulih dengan mudah dan cepat (P10) 
+(11)   Informasi (seperti online pesan bantuan pada layer, dan dokumentasi lainnya) 
+disediakan dengan jelas oleh aplikasi ini (P11) 
+(12)   Mudah untuk menemukan informasi yang saya butuhkan (P12) 
+(13)   Informasi yang disediakan aplikasi ini mudah dimengerti (P13) 
+(14)   Informasi efektif dalam membantu menyelesaikan tugas -tugas dan scenario 
+(P14) 
+(15)   Organisasi informasi pada layer aplikasi jelas (P15) 
+--- page 34 ---
+ 
+84 Skripsi – Universitas Binaniaga Indonesia 2023  
+(16)   Antarmuka aplikasi ini menyenangkan (P16) 
+(17)   Saya suka menggunakan antarmuka aplikasi ini (P17) 
+(18)   Aplikasi ini memiliki semua fungsi dan kemampuan yang saya harapkan (P18) 
+(19)   Secara keseluruhan saya puas dengan aplikasi ini (P19) 
+Berikut merupakan hasil kuesioner untuk uji pengguna yang dapat dilihat pada tabel 
+4.7. 
+Tabel 4. 7  Hasil Kuesioner Untuk Uji Pengguna 
+Pertanyaan 
+Responden 
+R1 R2 R3 
+P1 6 6 6 
+P2 6 6 6 
+P3 6 6 7 
+P4 6 6 6 
+P5 6 6 6 
+P6 6 6 7 
+P7 6 6 6 
+P8 6 6 6 
+P9 6 6 6 
+P10 6 6 6 
+P11 6 6 7 
+P12 6 6 6 
+P13 6 6 7 
+P14 6 6 6 
+P15 6 6 6 
+P16 6 6 6 
+P17 6 6 6 
+P18 6 6 6 
+P19 6 6 6 
+Total 114 114 118 
+ 
+Skala penilaian ditentukan dengan menggunakan 7 poin penilaian 
+skala likert, yaitu : 
+Sangat Setuju = 7 
+Setuju = 6 
+Agak Setuju = 5 
+Netral = 4 
+Agak Tidak Setuju = 3 
+Tidak Setuju = 2 
+Sangat Tidak Setuju = 1 
+ 
+--- page 35 ---
+ 
+85  
+Tabel 4. 8 Hasil Perhitungan Aturan Nielsen Model Berdasarkan Kategori 
+Responden 
+ Nama Katagori 
+Learna
+bility 
+Efficien
+cy 
+Memora
+bility 
+User’s 
+Satisfacti
+on 
+R1 114 54 30 24 
+R2 114 54 30 24 
+R3 118 56 32 28 
+ 
+Dari 19 item kuesioner dapat dikelompokan menjadi empat kategori Nielsen Model 
+yaitu Skor kepuasan secara keseluruhan(Learnability), kegunaan sistem (Efficiency), 
+seberapa cepat kualitas informasi (Memorability) seberapa banyak kesalahan(Few 
+Error detections)  dan kualitas antarmuka (User’s Satisfaction).Berikut adalah 
+persentase kelayakan pada setiap kategori : 
+(1) Keseluruhan (Learnability) 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  114 + 114 + 116
+133 + 133 + 133  𝑥 100% 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  86% 
+Dalam persentase kategori kepuasan secara keseluruhan, has il penilaian yang 
+didapatkan dari semua responden berdasarkan skala Arikunto maka 
+dinyatakan“Sangat Layak”. 
+(2) Kegunaan Sistem (Efficiency) 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  54 + 54 + 56
+56 + 56 + 56  𝑥 100% 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  97% 
+Dalam persentase kategori kegunaan sistem, hasil penilaian yang didapatkan dari 
+semua responden berdasarkan skala Arikunto maka dinyatakan “Sangat Layak”. 
+(3) Kualitas Informasi (Memorability) 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  30 + 30 + 32
+32 + 32 + 32  𝑥 100% 
+  𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  95%    
+ 
+--- page 36 ---
+ 
+86 Skripsi – Universitas Binaniaga Indonesia 2023  
+Dalam persentase kategori kualitas informasi, hasil penilaian yang didapatkan dari 
+semua responden berdasarkan skala Arikunto maka dinyatakan “Sangat Layak 
+(4) Kualitas antarmuka(User’s Satisfaction) 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖𝑜𝑏𝑠𝑒𝑟𝑣𝑎𝑠𝑖
+𝑠𝑘𝑜𝑟 𝑦𝑎𝑛𝑔 𝑑𝑖ℎ𝑎𝑟𝑎𝑝𝑘𝑎𝑛  𝑥 100% 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  24 + 24 + 24
+28 + 28 + 28  𝑥 100% 
+𝑃𝑒𝑟𝑠𝑒𝑛𝑡𝑎𝑠𝑒 𝐾𝑒𝑙𝑎𝑦𝑎𝑘𝑎𝑛 (%) =  85%  
+ 
+Dalam persentase kategori kualitas antarmuka, hasil penilaian yang didapatkan dari 
+semua responden berdasarkan skala Arikunto maka dinyatakan  “Sangat Layak”. 
+Hasil perhitungan rata -rata dari seluruh kategori yaitu “88%” dinyatakan “Sa ngat 
+Layak” sebagai aplikasi rekomendasi pemilihan peserta pekan ilmiah mahasiswa 
+nasional dengan menerapkan metode naive bayes. Kuesioner yang disebarkan 
+menjadi bahan evaluasi untuk membangun aplikasi yang lebih baik kedepannya. 
+7. Revisi Produk 
+Berdasarkan hasil evaluasi yang telah dilakukan, didapatkan pendapat dan saran oleh ahli 
+sistem dan penguji yaitu menambahkan fungsi, hapus dengan notif yang jelas, pada list data 
+lama peserta, serta menampilkan data peserta pada menu rekapitulasi calon pe serta 
+berstatus rekomendasi “ya” dan menampilkan chart pada dashboard, Berikut merupakan 
+tampilan sebelum dan setelah produk dievaluasi : 
+Gambar 4. 45  Tampilan Data Lama Peserta Sebelum Di Evaluasi 
+ 
+ 
+ 
+ 
+
+--- page 37 ---
+ 
+87  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gambar 4. 46 Tampilan Data Lama Peserta Setelah Di Evaluasi 
+Gambar 4. 47 Tampilan Menu Sebelum  Di Evaluasi 
+ 
+Gambar 4. 48 Tampilan Menu Setelah Di Evaluasi 
+ 
+
+--- page 38 ---
+ 
+88 Skripsi – Universitas Binaniaga Indonesia 2023  
+8. Produk Akhir 
+Hasil akhir atau produk akhir dari pengembangan ini berupa aplikasi rekomendasi 
+pemilihan peserta pekan ilmiah mahasiswa nasional yang dapat membantu kepala 
+program kreaktivitas mahasiswa atau ketua direktorat kemahasiswaan untuk 
+mengetahui mahasiswa yang memiliki peluang untuk menjadi peserta pekan ilmiah 
+mahasiswa nasional. Proses pengembangan aplikasi ini harus melakukan analisis 
+kebutuhan, desain, pembangunan prototype, dan evaluasi produk. Aplikasi 
+rekomendasi pemilihan peserta pekan ilmiah mahasiswa nasional ini menggunakan 
+platform berbasis web yang memiliki beberapa menu, terdiri dari menu data lama 
+peserta dimana user dapat menginput data lama peserta mengubah data lama 
+peserta menghapus data lama peserta dan menginput prediksi data lama peserta 
+kemudian terdapat menu data rekomendasi peserta dimana user dapat menginput 
+data calon peserta view data rekomendasi peserta view perhitungan berdasarkan 
+algoritma naive bayes, serta terdapat menu rekapitulasi calon peserta pekan ilmiah 
+mahasiswa nasional. Menurut hasil  evaluasi yang telah dilaksanakan, maka 
+kesimpulan pada aplikasi yang dikembangkan di kategorikan “Sangat Layak” 
+karena diperoleh presentase kelayakan 100% berdasarkan pengujian pada ahli 
+sistem dan ahli materi. Sedangkan berdasarkan hasil pengujian kepada pengguna 
+memperoleh hasil 89,5% dan termasuk kedalam kategori “ Sangat Layak”. 
+C. Pembahasan 
+1. Perhitungan Naïve Bayes 
+Metode yang digunakan untuk menyelesaikan masalah dala m pemilihan peserta pekan 
+ilmiah mahasiswa nasional , peneliti menggunakan metode Naive Bayes. Penerapan 
+metode Naive Bayes yaitu akan memperkirakan kejadian di masa depan yang mengacu 
+pada pengalaman di masa lampau, artinya pemilihan peserta pekan ilmiah mahasiswa 
+nasional pada periode berikutnya akan meng acu pada data lama peserta pekan ilmiah 
+mahasiswa nasional  dimana data lama tersebut hanya menggunakan dua angkatan. 
+Kemudian metode Naive Bayes akan menghitung nilai probabilitas dari setiap kelas 
+berdasarkan data lama peserta, sampai dengan menghitung nilai probabilitas akhir. Untuk 
+mendapatkan kesimpulan yang diperoleh berdasarkan nilai probabilitas akhir yaitu dengan 
+cara membandingkan nilai tersebut dimana nilai probabilitas akhir tertinggi maka itu adalah 
+hasil akhir yang didapatkan. Berikut adalah la ngkah-langkah Naive Bayes terdapat pada  
+gambar 4.49 
+ 
+ 
+ 
+ 
+ 
+ 

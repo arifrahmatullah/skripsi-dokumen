@@ -459,12 +459,12 @@ for i, r in enumerate(results[:15], 1):
     tbl_post.append([
         str(i), {'t': r['nama'][:22], 'l': True}, 'P(MASUK|X)',
         pm_vals[0], pm_vals[1], pm_vals[2], pm_vals[3], pm_vals[4],
-        str(r['prior_m']), str(r['post_m'])
+        str(r['prior_m']), f"{r['post_m']:.8f}"
     ])
     tbl_post.append([
         '', '', 'P(TDK MSK|X)',
         pt_vals[0], pt_vals[1], pt_vals[2], pt_vals[3], pt_vals[4],
-        str(r['prior_t']), str(r['post_t'])
+        str(r['prior_t']), f"{r['post_t']:.8f}"
     ])
 tbl_post.append([{'t': f'... (dan seterusnya, total {n_test} data testing)', 'b': True, 'l': True},
                  '','','','','','','','',''])
@@ -484,7 +484,7 @@ tbl_pred = [['No','Nama','Nilai Posterior Terbesar','Status Aktual','Prediksi']]
 for i, r in enumerate(results[:30], 1):
     tbl_pred.append([
         str(i), {'t': r['nama'][:22], 'l': True},
-        str(max(r['post_m'], r['post_t'])),
+        f"{max(r['post_m'], r['post_t']):.8f}",
         r['aktual'], r['pred']
     ])
 tbl_pred.append([{'t': f'... (dan seterusnya, total {n_test} data testing)', 'b': True, 'l': True},
@@ -533,7 +533,7 @@ if aks_cur is not None:
     for para in doc.paragraphs:
         if para._element is img_p_elem:
             run = para.add_run()
-            run.add_picture('Use Case Diagram.png', width=DCm(13))
+            run.add_picture('Use Case Diagram.png', width=DCm(15))
             para.alignment = WD_ALIGN_PARAGRAPH.CENTER
             break
 
@@ -595,7 +595,7 @@ else:
 # ═══════════════════════════════════════════════════════════════════════════════
 # STEP 5: DESIGN PRODUK — Activity Diagrams
 # ═══════════════════════════════════════════════════════════════════════════════
-def ins_img_para(after_el, img_path, caption_text, width_cm=13):
+def ins_img_para(after_el, img_path, caption_text, width_cm=13, source='Sumber: Hasil Perancangan (2025)'):
     """Insert centered image paragraph + caption + source after after_el. Returns last element."""
     # Image paragraph
     img_p = OxmlElement('w:p')
@@ -618,7 +618,7 @@ def ins_img_para(after_el, img_path, caption_text, width_cm=13):
     # Caption
     cap = p(caption_text, bold=True, center=True, after=img_p)
     # Source
-    src = p('Sumber: Hasil Perancangan (2025)', italic=True, center=True, after=cap)
+    src = p(source, italic=True, center=True, after=cap)
     return src
 
 dp_cur = None
@@ -706,7 +706,7 @@ if dp_cur is not None:
 
     for (img_file, num_heading, caption, explanation) in act_diagrams:
         dp_cur = p(num_heading, bold=True, after=dp_cur, ind=2520)
-        dp_cur = ins_img_para(dp_cur, img_file, caption, width_cm=12)
+        dp_cur = ins_img_para(dp_cur, img_file, caption, width_cm=15)
         dp_cur = p(explanation, after=dp_cur)
 
     print("Design Produk - Activity Diagrams inserted.")
@@ -788,12 +788,260 @@ if dp_cur is not None:
 
     for (img_file, num_heading, caption, explanation) in seq_diagrams:
         dp_cur = p(num_heading, bold=True, after=dp_cur, ind=2520)
-        dp_cur = ins_img_para(dp_cur, img_file, caption, width_cm=13)
+        dp_cur = ins_img_para(dp_cur, img_file, caption, width_cm=15)
         dp_cur = p(explanation, after=dp_cur)
 
     print("Design Produk - Sequence Diagrams inserted.")
 else:
     print("WARNING: 'Design Produk' paragraph not found.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STEP 5b: PERANCANGAN DESAIN ANTARMUKA (wireframe mockups)
+# ═══════════════════════════════════════════════════════════════════════════════
+pda_cur = None
+for para in doc.paragraphs:
+    if para.text.strip() == 'Perancang Design Antar Muka':
+        if para.runs:
+            para.runs[0].text = 'Perancangan Desain Antarmuka'
+            for r in para.runs[1:]:
+                r.text = ''
+        else:
+            para.add_run('Perancangan Desain Antarmuka')
+        pda_cur = para._element
+        break
+
+if pda_cur is not None:
+    pda_cur = p('Berdasarkan hasil analisis kebutuhan sistem dan design produk yang telah '
+                'dijelaskan sebelumnya, tahap selanjutnya adalah merancang desain antarmuka '
+                '(interface) aplikasi sebagai gambaran awal tampilan sistem sebelum masuk ke '
+                'tahap pengkodean. Rancangan antarmuka ini dibuat agar Tim Marketing sebagai '
+                'pengguna dapat memahami alur dan tata letak fitur pada sistem rekomendasi '
+                'tindak lanjut konfirmasi pendaftaran mahasiswa baru. Berikut adalah rancangan '
+                'desain antarmuka yang dibuat:', after=pda_cur)
+
+    ui_pages = [
+        ('Interface Login.png',
+         '1)  Rancangan Halaman Login',
+         'Gambar 4.18 Rancangan Antarmuka Halaman Login',
+         'Gambar 4.18 menunjukkan rancangan halaman login yang menjadi titik masuk (entry point) '
+         'aplikasi. Tim Marketing diharuskan memasukkan username dan password yang valid sebelum '
+         'dapat mengakses fitur-fitur pada sistem.'),
+
+        ('Interface Menu Utama.png',
+         '2)  Rancangan Halaman Dashboard',
+         'Gambar 4.19 Rancangan Antarmuka Halaman Dashboard',
+         'Gambar 4.19 menunjukkan rancangan halaman dashboard yang tampil setelah Tim Marketing '
+         'berhasil login. Halaman ini menampilkan ringkasan jumlah pendaftar, hasil prediksi '
+         'MASUK/TIDAK MASUK, akurasi model, serta daftar prediksi terbaru.'),
+
+        ('Interface Data Pendaftar.png',
+         '3)  Rancangan Halaman Data Pendaftar',
+         'Gambar 4.20 Rancangan Antarmuka Halaman Data Pendaftar',
+         'Gambar 4.20 menunjukkan rancangan halaman data pendaftar yang menampilkan daftar seluruh '
+         'calon mahasiswa beserta atribut yang digunakan dalam perhitungan Naive Bayes. Pada halaman '
+         'ini Tim Marketing dapat mencari, menambah, mengubah, dan menghapus data pendaftar.'),
+
+        ('Interface Tambah Edit Data Pendaftar.png',
+         '4)  Rancangan Halaman Tambah/Ubah Data Pendaftar',
+         'Gambar 4.21 Rancangan Antarmuka Halaman Tambah/Ubah Data Pendaftar',
+         'Gambar 4.21 menunjukkan rancangan form input yang digunakan untuk menambah atau mengubah '
+         'data pendaftar, meliputi kategori jarak asal, tingkat follow up internal, status test, '
+         'kategori nilai test, dan kategori penghasilan.'),
+
+        ('Interface Hasil Klasifikasi.png',
+         '5)  Rancangan Halaman Hasil Klasifikasi Naive Bayes',
+         'Gambar 4.22 Rancangan Antarmuka Halaman Hasil Klasifikasi Naive Bayes',
+         'Gambar 4.22 menunjukkan rancangan halaman hasil klasifikasi yang menampilkan nilai '
+         'probabilitas P(MASUK|X) dan P(TIDAK MASUK|X) untuk setiap pendaftar beserta status '
+         'prediksi akhir dan ringkasan metrik evaluasi model.'),
+
+        ('Interface Rekomendasi.png',
+         '6)  Rancangan Halaman Rekomendasi Tindak Lanjut',
+         'Gambar 4.23 Rancangan Antarmuka Halaman Rekomendasi Tindak Lanjut',
+         'Gambar 4.23 menunjukkan rancangan halaman rekomendasi tindak lanjut yang menampilkan '
+         'prioritas follow up bagi setiap calon mahasiswa berdasarkan hasil klasifikasi, sehingga '
+         'Tim Marketing dapat menentukan calon mahasiswa mana yang perlu dihubungi terlebih dahulu.'),
+
+        ('Interface Detail Prediksi.png',
+         '7)  Rancangan Halaman Detail Prediksi',
+         'Gambar 4.24 Rancangan Antarmuka Halaman Detail Prediksi',
+         'Gambar 4.24 menunjukkan rancangan halaman detail prediksi yang menampilkan rincian '
+         'perhitungan probabilitas (prior, conditional, dan posterior) untuk satu calon mahasiswa '
+         'secara lebih rinci beserta hasil prediksi akhirnya.'),
+
+        ('Interface Cetak Export Laporan.png',
+         '8)  Rancangan Halaman Cetak/Export Laporan',
+         'Gambar 4.25 Rancangan Antarmuka Halaman Cetak/Export Laporan',
+         'Gambar 4.25 menunjukkan rancangan halaman laporan yang memungkinkan Tim Marketing '
+         'memfilter data berdasarkan rentang tanggal dan status prediksi, kemudian mengekspor '
+         'laporan dalam format PDF atau Excel.'),
+    ]
+
+    for (img_file, num_heading, caption, explanation) in ui_pages:
+        pda_cur = p(num_heading, bold=True, after=pda_cur, ind=1800)
+        pda_cur = ins_img_para(pda_cur, img_file, caption, width_cm=15)
+        pda_cur = p(explanation, after=pda_cur)
+
+    print("Perancangan Desain Antarmuka inserted.")
+else:
+    print("WARNING: 'Perancang Design Antar Muka' paragraph not found.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STEP 5b2: PENGKODEAN (screenshot kode program yang penting)
+# ═══════════════════════════════════════════════════════════════════════════════
+kode_cur = None
+for para in doc.paragraphs:
+    if para.text.strip() == 'Pengkodean':
+        kode_cur = para._element
+        break
+
+if kode_cur is not None:
+    kode_cur = p('Tahap pengkodean merupakan tahap penerjemahan rancangan sistem dan algoritma '
+                 'Naive Bayes ke dalam bahasa pemrograman PHP dengan framework Laravel. Berikut '
+                 'adalah beberapa bagian kode program yang menjadi inti dari sistem rekomendasi '
+                 'tindak lanjut konfirmasi pendaftaran mahasiswa baru:', after=kode_cur)
+
+    code_snippets = [
+        ('Kode - NaiveBayesService train.png', 15,
+         '1)  Kelas NaiveBayesService — Fungsi train()',
+         'Gambar 4.26 Kode Program Perhitungan Prior dan Conditional Probability',
+         'Gambar 4.26 menunjukkan kode program fungsi train() yang menghitung prior '
+         'probability dan conditional probability dengan Laplace Smoothing dari data '
+         'training.'),
+
+        ('Kode - NaiveBayesService predict.png', 15,
+         '2)  Kelas NaiveBayesService — Fungsi predict()',
+         'Gambar 4.27 Kode Program Perhitungan Posterior Probability dan Klasifikasi',
+         'Gambar 4.27 menunjukkan kode program fungsi predict() yang menghitung posterior '
+         'probability P(Y|X) untuk menentukan kelas prediksi (MASUK atau TIDAK MASUK) pada '
+         'satu data pendaftar.'),
+
+        ('Kode - NaiveBayesService classifyAll.png', 15,
+         '3)  Kelas NaiveBayesService — Fungsi classifyAll()',
+         'Gambar 4.28 Kode Program Klasifikasi Massal',
+         'Gambar 4.28 menunjukkan kode program fungsi classifyAll() yang melatih model dari '
+         'seluruh data historis berlabel kemudian menerapkan prediksi ke seluruh data '
+         'pendaftar (historis maupun baru).'),
+
+        ('Kode - NaiveBayesService evaluate 1.png', 15,
+         '4)  Kelas NaiveBayesService — Fungsi evaluate() bagian 1',
+         'Gambar 4.29 Kode Program Split Data Training dan Testing',
+         'Gambar 4.29 menunjukkan bagian awal fungsi evaluate() yang melakukan split data '
+         '80:20 secara stratified dengan seed tetap, kemudian melatih model dari data '
+         'training.'),
+
+        ('Kode - NaiveBayesService evaluate 2.png', 15,
+         '5)  Kelas NaiveBayesService — Fungsi evaluate() bagian 2',
+         'Gambar 4.30 Kode Program Confusion Matrix dan Metrik Evaluasi',
+         'Gambar 4.30 menunjukkan bagian akhir fungsi evaluate() yang menguji model ke data '
+         'testing, menghitung confusion matrix (TP, TN, FP, FN), serta metrik akurasi, '
+         'presisi, recall, dan F1-Score.'),
+
+        ('Kode - Migration Pendaftars.png', 15,
+         '6)  Migration Tabel Pendaftars',
+         'Gambar 4.31 Kode Program Struktur Tabel Basis Data Pendaftar',
+         'Gambar 4.31 menunjukkan struktur tabel pendaftars pada basis data MySQL yang '
+         'menyimpan seluruh atribut data calon mahasiswa beserta kolom hasil prediksi '
+         '(prob_masuk, prob_tidak_masuk, prediksi).'),
+
+        ('Kode - PendaftarController.png', 15,
+         '7)  Kelas PendaftarController',
+         'Gambar 4.32 Kode Program Pengelolaan Data Pendaftar',
+         'Gambar 4.32 menunjukkan kode program controller yang menangani proses tambah dan '
+         'ubah data pendaftar. Setiap kali data ditambah atau diubah, fungsi reklasifikasi() '
+         'otomatis dipanggil untuk melatih ulang model dan memperbarui hasil prediksi '
+         'pendaftar tersebut.'),
+    ]
+
+    for (img_file, width_cm, num_heading, caption, explanation) in code_snippets:
+        kode_cur = p(num_heading, bold=True, after=kode_cur, ind=1800)
+        kode_cur = ins_img_para(kode_cur, img_file, caption, width_cm=width_cm,
+                                 source='Sumber: Hasil Implementasi (2026)')
+        kode_cur = p(explanation, after=kode_cur)
+
+    print("Pengkodean inserted.")
+else:
+    print("WARNING: 'Pengkodean' paragraph not found.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# STEP 5c: PROTOTYPE APLIKASI (screenshot aplikasi Laravel yang sudah dibangun)
+# ═══════════════════════════════════════════════════════════════════════════════
+proto_cur = None
+for para in doc.paragraphs:
+    if para.text.strip() == 'Prototype Aplikasi':
+        proto_cur = para._element
+        break
+
+if proto_cur is not None:
+    proto_cur = p('Berdasarkan rancangan desain antarmuka pada sub bab sebelumnya, prototype '
+                  'aplikasi kemudian dibangun menggunakan bahasa pemrograman PHP dengan framework '
+                  'Laravel dan basis data MySQL. Berikut adalah tampilan hasil implementasi '
+                  'prototype sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru:',
+                  after=proto_cur)
+
+    app_screenshots = [
+        ('App - Login.png',
+         '1)  Halaman Login',
+         'Gambar 4.33 Tampilan Halaman Login',
+         'Gambar 4.33 menunjukkan tampilan halaman login pada prototype yang telah dibangun. '
+         'Tim Marketing memasukkan email dan password untuk dapat mengakses sistem.'),
+
+        ('App - Dashboard.png',
+         '2)  Halaman Dashboard',
+         'Gambar 4.34 Tampilan Halaman Dashboard',
+         'Gambar 4.34 menunjukkan tampilan halaman dashboard yang menampilkan ringkasan total '
+         'pendaftar, jumlah prediksi MASUK dan TIDAK MASUK, akurasi model, serta daftar prediksi '
+         'terbaru.'),
+
+        ('App - Data Pendaftar.png',
+         '3)  Halaman Data Pendaftar',
+         'Gambar 4.35 Tampilan Halaman Data Pendaftar',
+         'Gambar 4.35 menunjukkan tampilan halaman data pendaftar yang menampilkan daftar seluruh '
+         'calon mahasiswa beserta fitur pencarian, tambah, ubah, dan hapus data.'),
+
+        ('App - Tambah Data Pendaftar.png',
+         '4)  Halaman Tambah Data Pendaftar',
+         'Gambar 4.36 Tampilan Halaman Tambah Data Pendaftar',
+         'Gambar 4.36 menunjukkan tampilan form input untuk menambah data pendaftar baru sesuai '
+         'atribut yang digunakan dalam perhitungan Naive Bayes.'),
+
+        ('App - Hasil Klasifikasi.png',
+         '5)  Halaman Hasil Klasifikasi Naive Bayes',
+         'Gambar 4.37 Tampilan Halaman Hasil Klasifikasi Naive Bayes',
+         'Gambar 4.37 menunjukkan tampilan halaman hasil klasifikasi yang menampilkan nilai '
+         'probabilitas P(MASUK|X) dan P(TIDAK MASUK|X) beserta prediksi akhir dan metrik evaluasi '
+         'model (akurasi, presisi, recall, F1-Score) yang dihitung secara langsung oleh sistem.'),
+
+        ('App - Detail Prediksi.png',
+         '6)  Halaman Detail Prediksi',
+         'Gambar 4.38 Tampilan Halaman Detail Prediksi',
+         'Gambar 4.38 menunjukkan tampilan halaman detail prediksi yang menampilkan rincian '
+         'perhitungan prior probability, conditional probability tiap atribut, dan posterior '
+         'probability untuk satu calon mahasiswa secara transparan.'),
+
+        ('App - Rekomendasi.png',
+         '7)  Halaman Rekomendasi Tindak Lanjut',
+         'Gambar 4.39 Tampilan Halaman Rekomendasi Tindak Lanjut',
+         'Gambar 4.39 menunjukkan tampilan halaman rekomendasi tindak lanjut yang menyusun '
+         'prioritas follow up bagi setiap calon mahasiswa berdasarkan hasil klasifikasi.'),
+
+        ('App - Laporan.png',
+         '8)  Halaman Cetak / Export Laporan',
+         'Gambar 4.40 Tampilan Halaman Cetak / Export Laporan',
+         'Gambar 4.40 menunjukkan tampilan halaman laporan yang memungkinkan Tim Marketing '
+         'memfilter data berdasarkan rentang tanggal dan status prediksi, kemudian mengekspor '
+         'laporan dalam format PDF atau Excel.'),
+    ]
+
+    for (img_file, num_heading, caption, explanation) in app_screenshots:
+        proto_cur = p(num_heading, bold=True, after=proto_cur, ind=1800)
+        proto_cur = ins_img_para(proto_cur, img_file, caption, width_cm=15,
+                                  source='Sumber: Hasil Implementasi (2026)')
+        proto_cur = p(explanation, after=proto_cur)
+
+    print("Prototype Aplikasi inserted.")
+else:
+    print("WARNING: 'Prototype Aplikasi' paragraph not found.")
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # C. PEMBAHASAN — insert after placeholder "Pembahasan" di akhir dokumen
