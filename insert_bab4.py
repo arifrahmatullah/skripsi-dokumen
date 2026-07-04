@@ -152,14 +152,19 @@ def fmt(val):
     if 'Rp.4.000.001' in v: return 'Rp4-6jt'
     if 'Rp.2.000.001' in v: return 'Rp2-4jt'
     if 'Diatas Rp.6' in v or '> Rp6' in v: return '>Rp6jt'
-    if 'Rp.1.000.001' in v: return 'Rp1-2jt'
+    if 'Rp.1.000.001' in v or ('Rp.1.000.000' in v and 'Rp.2.000.000' in v): return 'Rp1-2jt'
     if 'Dibawah' in v: return '<Rp1jt'
     return v
 
 # ─── Load data ────────────────────────────────────────────────────────────────
 with open('testing_results.json', encoding='utf-8') as f:
     jd = json.load(f)
-results = jd['results']
+results     = jd['results']
+train_rows  = jd['train_rows']
+n_train     = jd['n_train']
+n_test      = jd['n_test']
+prior_data  = jd['prior']
+cond_tables = jd['cond_tables']
 tp, tn, fp, fn = jd['tp'], jd['tn'], jd['fp'], jd['fn']
 acc, prec, rec, f1 = jd['acc'], jd['prec'], jd['rec'], jd['f1']
 
@@ -210,11 +215,11 @@ img_count = 0
 for para in doc.paragraphs:
     stripped = para.text.strip()
     if stripped == 'Gmabar' and img_count == 0:
-        replace_with_image(para, 'Proses Bisnis Lama.jpg', 'Gambar 4.1 BPEL Proses Bisnis Lama')
+        replace_with_image(para, 'Proses Bisnis Lama.png', 'Gambar 4.1 BPMN Proses Bisnis Lama')
         img_count += 1
         print("Image 1 inserted: Proses Bisnis Lama")
     elif stripped == 'Gambar' and img_count == 1:
-        replace_with_image(para, 'Proses Bisnis Baru.jpg', 'Gambar 4.2 BPEL Proses Bisnis Baru')
+        replace_with_image(para, 'Proses Bisnis Baru.png', 'Gambar 4.2 BPMN Proses Bisnis Baru')
         img_count += 1
         print("Image 2 inserted: Proses Bisnis Baru")
     if img_count >= 2:
@@ -251,54 +256,56 @@ cur = p('Metode yang diterapkan dalam proses penelitian ini menggunakan algoritm
         'mahasiswa baru secara efektif dan akurat. Berikut adalah beberapa langkah dengan pendekatan '
         'algoritma Naive Bayes:', after=cur)
 
-# ── a. Menyiapkan Dataset ─────────────────────────────────────────────────────
-cur = p('a.  Menyiapkan Dataset', bold=True, after=cur)
-cur = p('Pada langkah ini dilakukan pengumpulan data historis pendaftaran mahasiswa baru Universitas Tazkia. '
-        'Data sampel yang digunakan berjumlah 30 record yang selanjutnya dibagi menjadi dua dataset, '
-        'terdiri dari 50% untuk data training yaitu sebanyak 15 data, serta 50% untuk data testing '
-        'yaitu sebanyak 15 data. Berikut adalah dataset untuk data training dan testing yang dapat '
-        'dilihat pada Tabel 4.1 dan Tabel 4.2 di bawah ini.', after=cur)
+# ── 1) Menyiapkan Dataset ────────────────────────────────────────────────────
+cur = p('1)  Menyiapkan Dataset', bold=True, after=cur, ind=1800)
+cur = p(f'Pada langkah ini dilakukan pengumpulan data historis pendaftaran mahasiswa baru Universitas Tazkia. '
+        f'Data yang digunakan berjumlah 1.285 record yang selanjutnya dibagi menjadi dua dataset, '
+        f'terdiri dari 80% untuk data training yaitu sebanyak {n_train} data, serta 20% untuk data testing '
+        f'yaitu sebanyak {n_test} data. Berikut adalah sebagian dataset untuk data training dan testing yang dapat '
+        f'dilihat pada Tabel 4.1 dan Tabel 4.2 di bawah ini.', after=cur)
 
-tbl_tr = [
-    ['No','Nama','Kat. Jarak','Follow Up','Status Test','Nilai Test','Penghasilan','Kelas'],
-    ['1', {'t':'Jihad Muhammad Akbar','l':True},'Dekat','Belum Dihubungi','Sudah Tes','Nilai Tinggi',{'t':'Rp2-4jt','l':True},'MASUK'],
-    ['2', {'t':'Ghaitsa Witanya G.','l':True},'Dekat','Belum Dihubungi','Sudah Tes','Nilai Tinggi',{'t':'>Rp6jt','l':True},'MASUK'],
-    ['3', {'t':'ULIL AMRI SIDDIK','l':True},'Jauh','Belum Dihubungi','Sudah Tes','Nilai Tinggi',{'t':'Rp2-4jt','l':True},'MASUK'],
-    ['4', {'t':'Akmal Syawqi Albar','l':True},'Sedang','Belum Dihubungi','Sudah Tes','Nilai Tinggi',{'t':'Tdk Diketahui','l':True},'MASUK'],
-    ['5', {'t':"Naysella Robi'atul A.",'l':True},'Jauh','Belum Dihubungi','Sudah Tes','Nilai Sedang',{'t':'>Rp6jt','l':True},'MASUK'],
-    ['6', {'t':'Ayu Nabila','l':True},'Jauh','Belum Dihubungi','Sudah Tes','Nilai Tinggi',{'t':'Tdk Diketahui','l':True},'MASUK'],
-    ['7', {'t':'Alya Adibah','l':True},'Jauh','Kontak Awal','Sudah Tes','Nilai Tinggi',{'t':'>Rp6jt','l':True},'MASUK'],
-    ['8', {'t':'Test Rudie','l':True},'Jauh','Belum Dihubungi','Belum Tes','Tdk Ada Nilai',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-    ['9', {'t':'Sayidatus Sajil H.','l':True},'Sedang','Belum Dihubungi','Sudah Tes','Nilai Tinggi',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-    ['10',{'t':'Khalid AlMarzuq','l':True},'Jauh','Belum Dihubungi','Sudah Tes','Nilai Sedang',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-    ['11',{'t':'Rizal Trenggoni','l':True},'Dekat','Belum Dihubungi','Belum Tes','Tdk Ada Nilai',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-    ['12',{'t':'Siti Khofifah','l':True},'Sedang','Follow Up Intensif','Belum Tes','Tdk Ada Nilai',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-    ['13',{'t':'MOHAMMAD SYAHRONI','l':True},'Jauh','Follow Up','Belum Tes','Tdk Ada Nilai',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-    ['14',{'t':'Muhamad Najhan A.F.','l':True},'Sedang','Follow Up','Belum Tes','Tdk Ada Nilai',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-    ['15',{'t':'Susilo Wardoyo','l':True},'Jauh','Belum Dihubungi','Sudah Tes','Nilai Tinggi',{'t':'Tdk Diketahui','l':True},'TDK MASUK'],
-]
+HDR_TR = ['No','Nama','Kat. Jarak','Follow Up','Status Test','Nilai Test','Penghasilan','Kelas']
+tbl_tr = [HDR_TR]
+for r in train_rows[:30]:
+    tbl_tr.append([
+        str(r['no']),
+        {'t': r['nama'][:22], 'l': True},
+        fmt(r['vals'][0]), fmt(r['vals'][1]), fmt(r['vals'][2]),
+        fmt(r['vals'][3]),
+        {'t': fmt(r['vals'][4]), 'l': True},
+        r['kelas'],
+    ])
+tbl_tr.append([{'t': '...', 'l': True}, {'t': '...', 'l': True},
+               '...','...','...','...','...','...'])
+tbl_tr.append([{'t': f'(dan seterusnya - total {n_train} data training)', 'b': True, 'l': True},
+               '','','','','','',''])
 cur = ins_tbl(cur, tbl_tr, 'Tabel 4.1 Dataset Untuk Data Training',
               'Data Internal Pendaftaran Universitas Tazkia')
 
-tbl_te_rows = [['No','Nama','Kat. Jarak','Follow Up','Status Test','Nilai Test','Penghasilan','Prediksi']]
-for i, r in enumerate(results, 1):
+HDR_TE = ['No','Nama','Kat. Jarak','Follow Up','Status Test','Nilai Test','Penghasilan','Prediksi']
+tbl_te_rows = [HDR_TE]
+for i, r in enumerate(results[:30], 1):
     tbl_te_rows.append([
-        str(i), {'t': r['nama'], 'l': True},
+        str(i), {'t': r['nama'][:22], 'l': True},
         fmt(r['vals'][0]), fmt(r['vals'][1]), fmt(r['vals'][2]),
         fmt(r['vals'][3]), {'t': fmt(r['vals'][4]), 'l': True}, '?'
     ])
+tbl_te_rows.append([{'t': '...', 'l': True}, {'t': '...', 'l': True},
+                    '...','...','...','...','...','...'])
+tbl_te_rows.append([{'t': f'(dan seterusnya - total {n_test} data testing)', 'b': True, 'l': True},
+                    '','','','','','',''])
 cur = ins_tbl(cur, tbl_te_rows, 'Tabel 4.2 Dataset Untuk Data Testing',
               'Data Internal Pendaftaran Universitas Tazkia')
 
-# ── b. Pre-processing ─────────────────────────────────────────────────────────
-cur = p('b.  Pre-processing Data', bold=True, after=cur)
+# ── 2) Pre-processing ─────────────────────────────────────────────────────────
+cur = p('2)  Pre-processing Data', bold=True, after=cur, ind=1800)
 cur = p('Pada langkah ini dilakukan pre-processing atau mempersiapkan data sebelum digunakan '
         'dalam algoritma Naive Bayes melalui pembersihan data dan seleksi fitur.', after=cur)
-cur = p('1)  Pembersihan Data', bold=True, after=cur)
+cur = p('a.  Pembersihan Data', bold=True, after=cur, ind=2520)
 cur = p('Dilakukan pemeriksaan terhadap data yang memiliki nilai kosong (missing value) atau '
         'tidak relevan (noise). Berdasarkan hasil pemeriksaan, data pada Tabel 4.1 dan Tabel 4.2 '
         'tidak ditemukan nilai kosong sehingga seluruh data dapat langsung digunakan.', after=cur)
-cur = p('2)  Seleksi Fitur', bold=True, after=cur)
+cur = p('b.  Seleksi Fitur', bold=True, after=cur, ind=2520)
 cur = p('Seleksi fitur dilakukan untuk memilih atribut yang akan digunakan dalam proses '
         'klasifikasi. Hasil seleksi fitur dapat dilihat pada Tabel 4.3 berikut.', after=cur)
 
@@ -316,8 +323,8 @@ tbl_f = [
 ]
 cur = ins_tbl(cur, tbl_f, 'Tabel 4.3 Hasil Seleksi Fitur')
 
-# ── c. Variabel ───────────────────────────────────────────────────────────────
-cur = p('c.  Menentukan Variabel Penelitian', bold=True, after=cur)
+# ── 3) Variabel ───────────────────────────────────────────────────────────────
+cur = p('3)  Menentukan Variabel Penelitian', bold=True, after=cur, ind=1800)
 cur = p('Berdasarkan hasil seleksi fitur, variabel yang digunakan dalam proses klasifikasi '
         'Naive Bayes dapat dilihat pada Tabel 4.4 berikut.', after=cur)
 
@@ -332,11 +339,11 @@ tbl_v = [
 ]
 cur = ins_tbl(cur, tbl_v, 'Tabel 4.4 Variabel Penelitian')
 
-# ── d. Prior Probability ──────────────────────────────────────────────────────
-cur = p('d.  Menghitung Prior Probability', bold=True, after=cur)
-cur = p('Pada tahap ini dilakukan perhitungan probabilitas prior atau peluang kemunculan setiap '
-        'kelas target (Y) yaitu MASUK dan TIDAK MASUK, dihitung berdasarkan data training pada '
-        'Tabel 4.1 yang berjumlah 15 data. Rumus prior probability adalah sebagai berikut:', after=cur)
+# ── 4) Prior Probability ──────────────────────────────────────────────────────
+cur = p('4)  Menghitung Prior Probability', bold=True, after=cur, ind=1800)
+cur = p(f'Pada tahap ini dilakukan perhitungan probabilitas prior atau peluang kemunculan setiap '
+        f'kelas target (Y) yaitu MASUK dan TIDAK MASUK, dihitung berdasarkan data training pada '
+        f'Tabel 4.1 yang berjumlah {n_train} data. Rumus prior probability adalah sebagai berikut:', after=cur)
 
 # Rumus Prior: P(Yi) = ni/n
 cur = eq_ins([
@@ -346,18 +353,21 @@ cur = eq_ins([
 
 cur = p('Sehingga diperoleh nilai prior probability untuk masing-masing kelas sebagai berikut:', after=cur)
 
-# P(Y=MASUK) = 7/15
+n_m = prior_data['MASUK']['n']
+n_t = prior_data['TIDAK MASUK']['n']
+p_m = prior_data['MASUK']['prob']
+p_t = prior_data['TIDAK MASUK']['prob']
+
 cur = eq_ins([
-    mt('P(Y = MASUK) = '),
-    mfrac([mt('7')], [mt('15')]),
-    mt(' = 0,4667')
+    mt(f'P(Y = MASUK) = '),
+    mfrac([mt(str(n_m))], [mt(str(n_train))]),
+    mt(f' = {str(p_m).replace(".", ",")}')
 ], after_el=cur)
 
-# P(Y=TIDAK MASUK) = 8/15
 cur = eq_ins([
-    mt('P(Y = TIDAK MASUK) = '),
-    mfrac([mt('8')], [mt('15')]),
-    mt(' = 0,5333')
+    mt(f'P(Y = TIDAK MASUK) = '),
+    mfrac([mt(str(n_t))], [mt(str(n_train))]),
+    mt(f' = {str(p_t).replace(".", ",")}')
 ], after_el=cur)
 
 cur = p('Berdasarkan hasil perhitungan di atas, maka hasil perhitungan prior probability dapat '
@@ -365,14 +375,14 @@ cur = p('Berdasarkan hasil perhitungan di atas, maka hasil perhitungan prior pro
 
 tbl_pr = [
     ['Kelas (Y)','Jumlah Kemunculan (ni)','P(Y)','Hasil'],
-    [{'t':'MASUK','l':True},        '7','7 / 15','0,4667'],
-    [{'t':'TIDAK MASUK','l':True},  '8','8 / 15','0,5333'],
-    [{'t':'Total Data (n)','b':True,'l':True},'15','',''],
+    [{'t':'MASUK','l':True},       str(n_m), f'{n_m} / {n_train}', str(p_m).replace('.',',')],
+    [{'t':'TIDAK MASUK','l':True}, str(n_t), f'{n_t} / {n_train}', str(p_t).replace('.',',')],
+    [{'t':f'Total Data (n)','b':True,'l':True}, str(n_train),'',''],
 ]
 cur = ins_tbl(cur, tbl_pr, 'Tabel 4.5 Hasil Perhitungan Prior Probability')
 
-# ── e. Likelihood ─────────────────────────────────────────────────────────────
-cur = p('e.  Menghitung Likelihood (Conditional Probability)', bold=True, after=cur)
+# ── 5) Likelihood ─────────────────────────────────────────────────────────────
+cur = p('5)  Menghitung Likelihood (Conditional Probability)', bold=True, after=cur, ind=1800)
 cur = p('Pada tahap ini dilakukan perhitungan likelihood atau conditional probability, yaitu '
         'probabilitas kemunculan setiap nilai atribut pada masing-masing kelas berdasarkan '
         'data training. Rumus yang digunakan dengan Laplace Smoothing:', after=cur)
@@ -391,51 +401,43 @@ cur = p('Keterangan: ni = jumlah data bernilai Xi pada kelas H; n = total data k
         'Penambahan nilai 1 pada pembilang dan K pada penyebut merupakan teknik Laplace Smoothing '
         'untuk menghindari nilai probabilitas nol.', after=cur)
 
-d, c = tbl_cond([
-    ('Dekat','2','1','(2+1)/(7+3)','(1+1)/(8+3)','0,3000','0,1818'),
-    ('Sedang','1','3','(1+1)/(7+3)','(3+1)/(8+3)','0,2000','0,3636'),
-    ('Jauh',  '4','4','(4+1)/(7+3)','(4+1)/(8+3)','0,5000','0,4545'),
-    ('Total', '7','8','','','',''),
-], 'Tabel 4.6 Hasil Perhitungan Conditional Probability Kategori Jarak Asal')
+def build_cond_rows(fname):
+    ft = cond_tables[fname]
+    rows = []
+    total_m, total_t = 0, 0
+    for v in ft['vals']:
+        m = ft['MASUK'][v]
+        t = ft['TIDAK MASUK'][v]
+        total_m += m['ni']; total_t += t['ni']
+        rows.append((fmt(v), str(m['ni']), str(t['ni']),
+                     m['frac'], t['frac'],
+                     str(m['prob']).replace('.',','),
+                     str(t['prob']).replace('.',',')))
+    rows.append(('Total', str(total_m), str(total_t), '', '', '', ''))
+    return rows
+
+d, c = tbl_cond(build_cond_rows('kategori_jarak_asal'),
+                'Tabel 4.6 Hasil Perhitungan Conditional Probability Kategori Jarak Asal')
 cur = ins_tbl(cur, d, c)
 
-d, c = tbl_cond([
-    ('Belum Dihubungi',   '6','5','(6+1)/(7+4)','(5+1)/(8+4)','0,6364','0,5000'),
-    ('Kontak Awal',       '1','0','(1+1)/(7+4)','(0+1)/(8+4)','0,1818','0,0833'),
-    ('Follow Up',         '0','2','(0+1)/(7+4)','(2+1)/(8+4)','0,0909','0,2500'),
-    ('Follow Up Intensif','0','1','(0+1)/(7+4)','(1+1)/(8+4)','0,0909','0,1667'),
-    ('Total',             '7','8','','','',''),
-], 'Tabel 4.7 Hasil Perhitungan Conditional Probability Tingkat Follow Up Internal')
+d, c = tbl_cond(build_cond_rows('tingkat_follow_up_internal'),
+                'Tabel 4.7 Hasil Perhitungan Conditional Probability Tingkat Follow Up Internal')
 cur = ins_tbl(cur, d, c)
 
-d, c = tbl_cond([
-    ('Sudah Tes','7','3','(7+1)/(7+2)','(3+1)/(8+2)','0,8889','0,4000'),
-    ('Belum Tes','0','5','(0+1)/(7+2)','(5+1)/(8+2)','0,1111','0,6000'),
-    ('Total',    '7','8','','','',''),
-], 'Tabel 4.8 Hasil Perhitungan Conditional Probability Status Test')
+d, c = tbl_cond(build_cond_rows('status_test'),
+                'Tabel 4.8 Hasil Perhitungan Conditional Probability Status Test')
 cur = ins_tbl(cur, d, c)
 
-d, c = tbl_cond([
-    ('Nilai Tinggi',   '6','2','(6+1)/(7+3)','(2+1)/(8+3)','0,7000','0,2727'),
-    ('Nilai Sedang',   '1','1','(1+1)/(7+3)','(1+1)/(8+3)','0,2000','0,1818'),
-    ('Tidak Ada Nilai','0','5','(0+1)/(7+3)','(5+1)/(8+3)','0,1000','0,5455'),
-    ('Total',          '7','8','','','',''),
-], 'Tabel 4.9 Hasil Perhitungan Conditional Probability Kategori Nilai Test')
+d, c = tbl_cond(build_cond_rows('kategori_nilai_test'),
+                'Tabel 4.9 Hasil Perhitungan Conditional Probability Kategori Nilai Test')
 cur = ins_tbl(cur, d, c)
 
-d, c = tbl_cond([
-    ('>Rp6jt',         '3','0','(3+1)/(7+6)','(0+1)/(8+6)','0,3077','0,0714'),
-    ('Rp4-6jt',        '0','0','(0+1)/(7+6)','(0+1)/(8+6)','0,0769','0,0714'),
-    ('Rp2-4jt',        '2','0','(2+1)/(7+6)','(0+1)/(8+6)','0,2308','0,0714'),
-    ('Rp1-2jt',        '0','0','(0+1)/(7+6)','(0+1)/(8+6)','0,0769','0,0714'),
-    ('<Rp1jt',         '0','0','(0+1)/(7+6)','(0+1)/(8+6)','0,0769','0,0714'),
-    ('Tidak Diketahui','2','8','(2+1)/(7+6)','(8+1)/(8+6)','0,2308','0,6429'),
-    ('Total',          '7','8','','','',''),
-], 'Tabel 4.10 Hasil Perhitungan Conditional Probability Kategori Penghasilan')
+d, c = tbl_cond(build_cond_rows('kategori_penghasilan'),
+                'Tabel 4.10 Hasil Perhitungan Conditional Probability Kategori Penghasilan')
 cur = ins_tbl(cur, d, c)
 
-# ── f. Posterior Probability ──────────────────────────────────────────────────
-cur = p('f.  Menghitung Posterior Probability', bold=True, after=cur)
+# ── 6) Posterior Probability ──────────────────────────────────────────────────
+cur = p('6)  Menghitung Posterior Probability', bold=True, after=cur, ind=1800)
 cur = p('Pada tahapan ini dilakukan perhitungan posterior probability untuk memprediksi kelas Y '
         '(MASUK dan TIDAK MASUK) berdasarkan seluruh data testing pada Tabel 4.2. '
         'Rumus yang digunakan:', after=cur)
@@ -445,12 +447,13 @@ cur = eq_ins([
     mt('P('), msub('Y','i'), mt('|X) = P('), msub('X','i'), mt('|'), msub('Y','i'), mt(') × P('), msub('Y','i'), mt(')')
 ], after_el=cur)
 
-cur = p('Nilai dari prior probability dan conditional probability yang digunakan pada perhitungan '
-        'ini diambil dari Tabel 4.5 sampai dengan Tabel 4.10. Hasil perhitungan posterior '
-        'probability untuk seluruh data testing dapat dilihat pada Tabel 4.11 berikut.', after=cur)
+cur = p(f'Nilai dari prior probability dan conditional probability yang digunakan pada perhitungan '
+        f'ini diambil dari Tabel 4.5 sampai dengan Tabel 4.10. Hasil perhitungan posterior '
+        f'probability untuk {n_test} data testing dapat dilihat pada Tabel 4.11 berikut '
+        f'(ditampilkan 15 data sebagai sampel).', after=cur)
 
 tbl_post = [['No','Nama','P(Y|X)','Kat. Jarak','Follow Up','Status Test','Nilai Test','Penghasilan','Prior','Posterior']]
-for i, r in enumerate(results, 1):
+for i, r in enumerate(results[:15], 1):
     pm_vals = [str(v) for v in r['pm']]
     pt_vals = [str(v) for v in r['pt']]
     tbl_post.append([
@@ -463,96 +466,37 @@ for i, r in enumerate(results, 1):
         pt_vals[0], pt_vals[1], pt_vals[2], pt_vals[3], pt_vals[4],
         str(r['prior_t']), str(r['post_t'])
     ])
+tbl_post.append([{'t': f'... (dan seterusnya, total {n_test} data testing)', 'b': True, 'l': True},
+                 '','','','','','','','',''])
 cur = ins_tbl(cur, tbl_post, 'Tabel 4.11 Hasil Perhitungan Posterior Probability')
 
-# ── g. Klasifikasi ────────────────────────────────────────────────────────────
-cur = p('g.  Melakukan Klasifikasi (Prediksi)', bold=True, after=cur)
+# ── 7) Klasifikasi ────────────────────────────────────────────────────────────
+cur = p('7)  Melakukan Klasifikasi (Prediksi)', bold=True, after=cur, ind=1800)
 cur = p('Berdasarkan hasil perhitungan posterior probability pada Tabel 4.11, selanjutnya '
         'masing-masing nilai posterior dibandingkan untuk menentukan kelas prediksi, '
         'dengan ketentuan sebagai berikut:', after=cur)
 cur = p('a.  P(MASUK|X)  >  P(TIDAK MASUK|X)  →  Prediksi = MASUK', after=cur, ind=2520)
 cur = p('b.  P(MASUK|X)  <  P(TIDAK MASUK|X)  →  Prediksi = TIDAK MASUK', after=cur, ind=2520)
-cur = p('Adapun hasil prediksi untuk seluruh data testing dapat dilihat pada Tabel 4.12 berikut.', after=cur)
+cur = p(f'Adapun hasil prediksi untuk seluruh {n_test} data testing dapat dilihat pada Tabel 4.12 berikut '
+        f'(ditampilkan 30 data sebagai sampel).', after=cur)
 
 tbl_pred = [['No','Nama','Nilai Posterior Terbesar','Status Aktual','Prediksi']]
-for i, r in enumerate(results, 1):
+for i, r in enumerate(results[:30], 1):
     tbl_pred.append([
-        str(i), {'t': r['nama'], 'l': True},
+        str(i), {'t': r['nama'][:22], 'l': True},
         str(max(r['post_m'], r['post_t'])),
         r['aktual'], r['pred']
     ])
+tbl_pred.append([{'t': f'... (dan seterusnya, total {n_test} data testing)', 'b': True, 'l': True},
+                 '','','',''])
 cur = ins_tbl(cur, tbl_pred, 'Tabel 4.12 Hasil Prediksi Status Konfirmasi Pendaftaran')
 
-# ── 6. Uji Hasil ──────────────────────────────────────────────────────────────
-cur = p('6.  Uji Hasil', bold=True, after=cur)
-cur = p('Tahapan ini dilakukan untuk mengevaluasi kinerja model menggunakan Confusion Matrix. '
-        'Evaluasi dilakukan dengan membandingkan hasil prediksi algoritma Naive Bayes terhadap '
-        'status aktual pada 15 data testing. '
-        'Hasil perbandingan tersebut dapat dilihat pada Tabel 4.13 berikut.', after=cur)
-
-tbl_cm = [
-    ['','','Prediksi MASUK','Prediksi TIDAK MASUK'],
-    ['Aktual','MASUK',       f'{tp} (TP)', f'{fn} (FN)'],
-    ['',      'TIDAK MASUK', f'{fp} (FP)', f'{tn} (TN)'],
-]
-cur = ins_tbl(cur, tbl_cm, 'Tabel 4.13 Confusion Matrix')
-
-cur = p('Berdasarkan Tabel 4.13, maka berikut adalah hasil evaluasi model yang dihitung '
-        'menggunakan rumus di bawah ini.', after=cur)
-
-total = tp + tn + fp + fn
-
-# Akurasi equation
-cur = eq_ins([
-    mt('Akurasi = '),
-    mfrac([mt('TP + TN')], [mt('TP + FP + TN + FN')]),
-    mt(f' = '),
-    mfrac([mt(f'{tp+tn}')], [mt(f'{total}')]),
-    mt(f' × 100% = {acc}%')
-], after_el=cur)
-
-# Presisi equation
-cur = eq_ins([
-    mt('Presisi = '),
-    mfrac([mt('TP')], [mt('TP + FP')]),
-    mt(f' = '),
-    mfrac([mt(f'{tp}')], [mt(f'{tp+fp}')]),
-    mt(f' × 100% = {prec}%')
-], after_el=cur)
-
-# Recall equation
-cur = eq_ins([
-    mt('Recall = '),
-    mfrac([mt('TP')], [mt('TP + FN')]),
-    mt(f' = '),
-    mfrac([mt(f'{tp}')], [mt(f'{tp+fn}')]),
-    mt(f' × 100% = {rec}%')
-], after_el=cur)
-
-# F1-Score equation
-cur = eq_ins([
-    mt('F1-Score = '),
-    mfrac(
-        [mt(f'2 × {prec} × {rec}')],
-        [mt(f'{prec} + {rec}')]
-    ),
-    mt(f' = {f1}%')
-], after_el=cur)
-
-tbl_ev = [
-    ['Metrik','Rumus','Hasil'],
-    [{'t':'Akurasi','l':True},  {'t':'(TP+TN) / (TP+FP+TN+FN)','l':True},       f'{acc}%'],
-    [{'t':'Presisi','l':True},  {'t':'TP / (TP+FP)','l':True},                   f'{prec}%'],
-    [{'t':'Recall','l':True},   {'t':'TP / (TP+FN)','l':True},                   f'{rec}%'],
-    [{'t':'F1-Score','l':True}, {'t':'2 x Presisi x Recall / (Presisi+Recall)','l':True}, f'{f1}%'],
-]
-cur = ins_tbl(cur, tbl_ev, 'Tabel 4.14 Hasil Evaluasi Model Naive Bayes')
-
-cur = p(f'Berdasarkan hasil evaluasi pada Tabel 4.14, model Naive Bayes menghasilkan '
-        f'akurasi sebesar {acc}% dengan nilai presisi {prec}%, recall {rec}%, dan F1-Score {f1}%. '
-        f'Jadi, dapat disimpulkan bahwa tingkat keakuratan dalam memberikan rekomendasi tindak lanjut '
-        f'konfirmasi pendaftaran mahasiswa baru dengan pendekatan algoritma Naive Bayes adalah akurat.',
-        after=cur)
+# ── 8) Uji Hasil ──────────────────────────────────────────────────────────────
+cur = p('8)  Uji Hasil', bold=True, after=cur, ind=1800)
+cur = p(f'Tahapan ini dilakukan untuk mengevaluasi kinerja model menggunakan Confusion Matrix. '
+        f'Evaluasi dilakukan dengan membandingkan hasil prediksi algoritma Naive Bayes terhadap '
+        f'status aktual pada seluruh {n_test} data testing. '
+        f'Hasil evaluasi model secara lengkap dibahas pada bagian C. Pembahasan.', after=cur)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # STEP 4: INSERT d. ANALISIS KEBUTUHAN SISTEM (Use Case Diagram)
@@ -649,6 +593,209 @@ else:
     print("WARNING: 'Analisis Kebutuhan Sistem' paragraph not found.")
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# STEP 5: DESIGN PRODUK — Activity Diagrams
+# ═══════════════════════════════════════════════════════════════════════════════
+def ins_img_para(after_el, img_path, caption_text, width_cm=13):
+    """Insert centered image paragraph + caption + source after after_el. Returns last element."""
+    # Image paragraph
+    img_p = OxmlElement('w:p')
+    img_pPr = OxmlElement('w:pPr')
+    img_jc = OxmlElement('w:jc'); img_jc.set(qn('w:val'), 'center'); img_pPr.append(img_jc)
+    img_sp = OxmlElement('w:spacing')
+    img_sp.set(qn('w:before'),'0'); img_sp.set(qn('w:after'),'0')
+    img_sp.set(qn('w:line'),'360'); img_sp.set(qn('w:lineRule'),'auto')
+    img_pPr.append(img_sp); img_p.append(img_pPr)
+    after_el.addnext(img_p)
+
+    # Add picture via temporary paragraph
+    tmp = doc.add_paragraph()
+    run = tmp.add_run()
+    run.add_picture(img_path, width=Cm(width_cm))
+    for r in list(tmp._element.findall(qn('w:r'))):
+        img_p.append(r)
+    tmp._element.getparent().remove(tmp._element)
+
+    # Caption
+    cap = p(caption_text, bold=True, center=True, after=img_p)
+    # Source
+    src = p('Sumber: Hasil Perancangan (2025)', italic=True, center=True, after=cap)
+    return src
+
+dp_cur = None
+for para in doc.paragraphs:
+    if para.text.strip() == 'Design Produk':
+        dp_cur = para._element
+        break
+
+if dp_cur is not None:
+    dp_cur = p('Berikut ini desain produk yang dikembangkan dalam sistem rekomendasi '
+               'tindak lanjut konfirmasi pendaftaran mahasiswa baru menggunakan algoritma '
+               'Naive Bayes, yaitu sebagai berikut:', after=dp_cur)
+
+    dp_cur = p('a.  Activity Diagram', bold=True, after=dp_cur, ind=1800)
+    dp_cur = p('Pada activity diagram ini dijelaskan alur aktivitas yang dilakukan oleh '
+               'Tim Marketing dan alur yang dihasilkan oleh sistem, mulai dari proses awal '
+               'membuka aplikasi hingga mendapatkan hasil rekomendasi tindak lanjut konfirmasi '
+               'pendaftaran mahasiswa baru. Berikut adalah activity diagram yang dibuat dalam '
+               'sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru:', after=dp_cur)
+
+    act_diagrams = [
+        ('Activity Diagram Login.png',
+         '1)  Activity Diagram Login',
+         'Gambar 4.4 Activity Diagram Login',
+         'Pada Gambar 4.4 terdapat activity diagram login yang diawali dengan Tim Marketing '
+         'membuka aplikasi, kemudian sistem menampilkan halaman login. Selanjutnya Tim Marketing '
+         'memasukkan username dan password lalu mengklik tombol login. Sistem memvalidasi '
+         'kredensial tersebut. Apabila valid maka sistem menampilkan halaman utama, apabila '
+         'tidak valid maka sistem menampilkan pesan error dan Tim Marketing diminta '
+         'memasukkan kembali username dan password.'),
+
+        ('Activity Diagram Logout.png',
+         '2)  Activity Diagram Logout',
+         'Gambar 4.5 Activity Diagram Logout',
+         'Pada Gambar 4.5 terdapat activity diagram logout yang diawali dengan Tim Marketing '
+         'mengklik tombol logout. Sistem kemudian menghapus sesi pengguna dan menampilkan '
+         'kembali halaman login. Selanjutnya Tim Marketing diarahkan ke halaman login sebagai '
+         'tanda bahwa proses logout telah berhasil dilakukan.'),
+
+        ('Activity Diagram Kelola Data Pendaftar.png',
+         '3)  Activity Diagram Kelola Data Pendaftar',
+         'Gambar 4.6 Activity Diagram Kelola Data Pendaftar',
+         'Pada Gambar 4.6 terdapat activity diagram kelola data pendaftar yang diawali dengan '
+         'Tim Marketing membuka halaman data pendaftar dan sistem menampilkan daftar data yang '
+         'ada. Tim Marketing mengklik tambah data, sistem menampilkan form, lalu Tim Marketing '
+         'mengisi dan menyimpan data. Sistem memvalidasi data tersebut; jika valid maka data '
+         'disimpan dan notifikasi ditampilkan, jika tidak valid maka sistem menampilkan pesan '
+         'error dan Tim Marketing diminta mengisi ulang form.'),
+
+        ('Activity Diagram Lihat Hasil Klasifikasi.png',
+         '4)  Activity Diagram Lihat Hasil Klasifikasi Naive Bayes',
+         'Gambar 4.7 Activity Diagram Lihat Hasil Klasifikasi Naive Bayes',
+         'Pada Gambar 4.7 terdapat activity diagram lihat hasil klasifikasi Naive Bayes yang '
+         'diawali dengan Tim Marketing membuka menu hasil klasifikasi. Sistem kemudian '
+         'memproses klasifikasi menggunakan algoritma Naive Bayes dan menampilkan hasilnya. '
+         'Selanjutnya Tim Marketing dapat melihat hasil klasifikasi yang telah diproses.'),
+
+        ('Activity Diagram Lihat Rekomendasi.png',
+         '5)  Activity Diagram Lihat Rekomendasi Tindak Lanjut',
+         'Gambar 4.8 Activity Diagram Lihat Rekomendasi Tindak Lanjut',
+         'Pada Gambar 4.8 terdapat activity diagram lihat rekomendasi tindak lanjut yang '
+         'diawali dengan Tim Marketing membuka menu rekomendasi. Sistem melakukan proses '
+         'generate rekomendasi tindak lanjut berdasarkan hasil klasifikasi Naive Bayes '
+         'dan menampilkan hasilnya. Selanjutnya Tim Marketing dapat melihat rekomendasi '
+         'tindak lanjut untuk setiap calon mahasiswa.'),
+
+        ('Activity Diagram Lihat Detail Prediksi.png',
+         '6)  Activity Diagram Lihat Detail Hasil Prediksi',
+         'Gambar 4.9 Activity Diagram Lihat Detail Hasil Prediksi',
+         'Pada Gambar 4.9 terdapat activity diagram lihat detail hasil prediksi yang '
+         'diawali dengan Tim Marketing memilih data pendaftar yang ingin dilihat detailnya. '
+         'Sistem mengambil detail hasil prediksi dan menampilkannya. Selanjutnya Tim Marketing '
+         'dapat melihat detail perhitungan probabilitas Naive Bayes untuk calon mahasiswa '
+         'yang dipilih.'),
+
+        ('Activity Diagram Cetak Export Laporan.png',
+         '7)  Activity Diagram Cetak / Export Laporan',
+         'Gambar 4.10 Activity Diagram Cetak / Export Laporan',
+         'Pada Gambar 4.10 terdapat activity diagram cetak atau export laporan yang diawali '
+         'dengan Tim Marketing membuka menu laporan dan sistem menampilkan halaman laporan. '
+         'Tim Marketing memilih rentang data lalu mengklik cetak atau export laporan. '
+         'Sistem melakukan generate file laporan dalam format PDF atau Excel dan '
+         'menyediakan file tersebut untuk diunduh oleh Tim Marketing.'),
+    ]
+
+    for (img_file, num_heading, caption, explanation) in act_diagrams:
+        dp_cur = p(num_heading, bold=True, after=dp_cur, ind=2520)
+        dp_cur = ins_img_para(dp_cur, img_file, caption, width_cm=12)
+        dp_cur = p(explanation, after=dp_cur)
+
+    print("Design Produk - Activity Diagrams inserted.")
+
+    # ── b. Sequence Diagram ───────────────────────────────────────────────────
+    dp_cur = p('b.  Sequence Diagram', bold=True, after=dp_cur, ind=1800)
+    dp_cur = p('Pada sequence diagram ini dijelaskan alur interaksi antara Tim Marketing '
+               'dengan komponen sistem secara berurutan sesuai garis waktunya, meliputi '
+               'Form/Halaman antarmuka, Controller, dan Database. Berikut adalah sequence '
+               'diagram yang dibuat dalam sistem rekomendasi tindak lanjut konfirmasi '
+               'pendaftaran mahasiswa baru:', after=dp_cur)
+
+    seq_diagrams = [
+        ('Sequence Diagram Login.png',
+         '1)  Sequence Diagram Login',
+         'Gambar 4.11 Sequence Diagram Login',
+         'Pada Gambar 4.11 terdapat sequence diagram login yang menggambarkan interaksi '
+         'Tim Marketing dengan Form Login, Controller Login, Database, dan Halaman Utama. '
+         'Tim Marketing membuka form login dan memasukkan username serta password. Form Login '
+         'meneruskan proses ke Controller Login yang melakukan pengecekan kredensial ke Database. '
+         'Apabila kredensial tidak valid, sistem menampilkan notifikasi gagal. Apabila valid, '
+         'sistem menampilkan notifikasi berhasil dan mengarahkan Tim Marketing ke Halaman Utama.'),
+
+        ('Sequence Diagram Logout.png',
+         '2)  Sequence Diagram Logout',
+         'Gambar 4.12 Sequence Diagram Logout',
+         'Pada Gambar 4.12 terdapat sequence diagram logout yang menggambarkan interaksi '
+         'Tim Marketing saat melakukan logout dari sistem. Tim Marketing mengklik tombol '
+         'logout di Halaman Utama, kemudian Controller Logout memproses penghapusan sesi '
+         'dan dikonfirmasi oleh Database. Setelah sesi berhasil dihapus, sistem '
+         'mengarahkan Tim Marketing kembali ke Form Login.'),
+
+        ('Sequence Diagram Kelola Data Pendaftar.png',
+         '3)  Sequence Diagram Kelola Data Pendaftar',
+         'Gambar 4.13 Sequence Diagram Kelola Data Pendaftar',
+         'Pada Gambar 4.13 terdapat sequence diagram kelola data pendaftar yang menggambarkan '
+         'interaksi Tim Marketing dalam mengelola data calon mahasiswa. Tim Marketing membuka '
+         'halaman data pendaftar dan sistem mengambil data dari Database untuk ditampilkan. '
+         'Tim Marketing dapat melakukan tambah, edit, atau hapus data yang kemudian diproses '
+         'oleh Controller dan disimpan ke Database. Sistem menampilkan notifikasi sukses '
+         'setelah operasi berhasil dilakukan.'),
+
+        ('Sequence Diagram Lihat Hasil Klasifikasi.png',
+         '4)  Sequence Diagram Lihat Hasil Klasifikasi',
+         'Gambar 4.14 Sequence Diagram Lihat Hasil Klasifikasi',
+         'Pada Gambar 4.14 terdapat sequence diagram lihat hasil klasifikasi yang menggambarkan '
+         'proses melihat hasil klasifikasi Naive Bayes. Tim Marketing memilih data pendaftar '
+         'dan sistem mengambil data tersebut dari Database. Controller kemudian menjalankan '
+         'proses klasifikasi Naive Bayes secara internal, menyimpan hasilnya ke Database, '
+         'dan menampilkan hasil klasifikasi kepada Tim Marketing.'),
+
+        ('Sequence Diagram Lihat Rekomendasi.png',
+         '5)  Sequence Diagram Lihat Rekomendasi',
+         'Gambar 4.15 Sequence Diagram Lihat Rekomendasi',
+         'Pada Gambar 4.15 terdapat sequence diagram lihat rekomendasi yang menggambarkan '
+         'proses melihat rekomendasi tindak lanjut. Tim Marketing membuka halaman rekomendasi '
+         'dan sistem mengambil data serta hasil klasifikasi dari Database. Controller '
+         'melakukan proses generate rekomendasi secara internal dan menampilkan hasil '
+         'rekomendasi tindak lanjut kepada Tim Marketing.'),
+
+        ('Sequence Diagram Lihat Detail Prediksi.png',
+         '6)  Sequence Diagram Lihat Detail Prediksi',
+         'Gambar 4.16 Sequence Diagram Lihat Detail Prediksi',
+         'Pada Gambar 4.16 terdapat sequence diagram lihat detail prediksi yang menggambarkan '
+         'proses melihat detail prediksi untuk setiap pendaftar. Tim Marketing memilih data '
+         'pendaftar yang ingin dilihat detailnya. Sistem mengambil detail data dan nilai '
+         'probabilitas dari Database, kemudian menampilkan informasi detail prediksi '
+         'Naive Bayes kepada Tim Marketing.'),
+
+        ('Sequence Diagram Cetak Export Laporan.png',
+         '7)  Sequence Diagram Cetak / Export Laporan',
+         'Gambar 4.17 Sequence Diagram Cetak / Export Laporan',
+         'Pada Gambar 4.17 terdapat sequence diagram cetak atau export laporan yang menggambarkan '
+         'proses cetak atau export laporan. Tim Marketing memilih format laporan yang diinginkan '
+         '(PDF atau Excel). Controller mengambil data dari Database, melakukan proses generate '
+         'dokumen laporan secara internal, dan menyediakan file yang dapat diunduh atau '
+         'dicetak oleh Tim Marketing.'),
+    ]
+
+    for (img_file, num_heading, caption, explanation) in seq_diagrams:
+        dp_cur = p(num_heading, bold=True, after=dp_cur, ind=2520)
+        dp_cur = ins_img_para(dp_cur, img_file, caption, width_cm=13)
+        dp_cur = p(explanation, after=dp_cur)
+
+    print("Design Produk - Sequence Diagrams inserted.")
+else:
+    print("WARNING: 'Design Produk' paragraph not found.")
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # C. PEMBAHASAN — insert after placeholder "Pembahasan" di akhir dokumen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Cari placeholder "Pembahasan" (bukan "C.  Pembahasan" yang kita buat)
@@ -703,61 +850,109 @@ cur = p('Proses klasifikasi dilakukan menggunakan 5 atribut yang telah diseleksi
         'Status Uang Pendaftaran tidak diikutsertakan karena tidak memiliki pengaruh signifikan '
         'terhadap penentuan kelas target dalam konteks penelitian ini.', after=cur)
 
-cur = p('Berdasarkan hasil perhitungan prior probability pada Tabel 4.5, diketahui bahwa '
-        'proporsi kelas MASUK adalah 0,4667 (7 dari 15 data training) dan kelas TIDAK MASUK '
-        'adalah 0,5333 (8 dari 15 data training). Komposisi ini menunjukkan bahwa data training '
-        'yang digunakan relatif seimbang antara kedua kelas, sehingga model tidak mengalami '
-        'bias kelas yang signifikan dalam proses pembelajaran.', after=cur)
+cur = p(f'Berdasarkan hasil perhitungan prior probability pada Tabel 4.5, diketahui bahwa '
+        f'proporsi kelas MASUK adalah {str(p_m).replace(".",",")} ({n_m} dari {n_train} data training) dan kelas TIDAK MASUK '
+        f'adalah {str(p_t).replace(".",",")} ({n_t} dari {n_train} data training). Komposisi ini menunjukkan bahwa terdapat '
+        f'ketidakseimbangan kelas (class imbalance) dimana kelas TIDAK MASUK lebih dominan, '
+        f'namun teknik Laplace Smoothing yang diterapkan membantu menjaga konsistensi model.', after=cur)
 
-cur = p('Teknik Laplace Smoothing diterapkan pada perhitungan conditional probability untuk '
-        'menghindari nilai probabilitas nol pada nilai atribut yang tidak muncul di data training. '
-        'Penerapan teknik ini terbukti efektif dalam menjaga konsistensi perhitungan posterior '
-        'probability pada seluruh 15 data testing, sehingga setiap data testing dapat '
-        'diklasifikasikan dengan hasil yang valid.', after=cur)
+cur = p(f'Teknik Laplace Smoothing diterapkan pada perhitungan conditional probability untuk '
+        f'menghindari nilai probabilitas nol pada nilai atribut yang tidak muncul di data training. '
+        f'Penerapan teknik ini terbukti efektif dalam menjaga konsistensi perhitungan posterior '
+        f'probability pada seluruh {n_test} data testing, sehingga setiap data testing dapat '
+        f'diklasifikasikan dengan hasil yang valid.', after=cur)
 
 # 2. Pembahasan Uji Hasil
 cur = p('2.  Pembahasan Uji Hasil', bold=True, after=cur)
-cur = p(f'Berdasarkan hasil pengujian menggunakan confusion matrix pada Tabel 4.13, dari '
-        f'15 data testing yang diuji, model Naive Bayes berhasil mengklasifikasikan 12 data '
-        f'dengan benar dan 3 data secara keliru. Rinciannya adalah sebagai berikut: '
+cur = p(f'Pada tahap ini dilakukan evaluasi kinerja model menggunakan Confusion Matrix. '
+        f'Evaluasi dilakukan dengan membandingkan hasil prediksi algoritma Naive Bayes terhadap '
+        f'status aktual pada {n_test} data testing. '
+        f'Hasil perbandingan tersebut dapat dilihat pada Tabel 4.13 berikut.', after=cur)
+
+tbl_cm = [
+    ['','','Prediksi MASUK','Prediksi TIDAK MASUK'],
+    ['Aktual','MASUK',       f'{tp} (TP)', f'{fn} (FN)'],
+    ['',      'TIDAK MASUK', f'{fp} (FP)', f'{tn} (TN)'],
+]
+cur = ins_tbl(cur, tbl_cm, 'Tabel 4.13 Confusion Matrix')
+
+cur = p('Berdasarkan Tabel 4.13, maka berikut adalah hasil evaluasi model yang dihitung '
+        'menggunakan rumus di bawah ini.', after=cur)
+
+total = tp + tn + fp + fn
+
+cur = eq_ins([
+    mt('Akurasi = '),
+    mfrac([mt('TP + TN')], [mt('TP + FP + TN + FN')]),
+    mt(' = '),
+    mfrac([mt(f'{tp+tn}')], [mt(f'{total}')]),
+    mt(f' × 100% = {acc}%')
+], after_el=cur)
+
+cur = eq_ins([
+    mt('Presisi = '),
+    mfrac([mt('TP')], [mt('TP + FP')]),
+    mt(' = '),
+    mfrac([mt(f'{tp}')], [mt(f'{tp+fp}')]),
+    mt(f' × 100% = {prec}%')
+], after_el=cur)
+
+cur = eq_ins([
+    mt('Recall = '),
+    mfrac([mt('TP')], [mt('TP + FN')]),
+    mt(' = '),
+    mfrac([mt(f'{tp}')], [mt(f'{tp+fn}')]),
+    mt(f' × 100% = {rec}%')
+], after_el=cur)
+
+cur = eq_ins([
+    mt('F1-Score = '),
+    mfrac(
+        [mt(f'2 × {prec} × {rec}')],
+        [mt(f'{prec} + {rec}')]
+    ),
+    mt(f' = {f1}%')
+], after_el=cur)
+
+tbl_ev = [
+    ['Metrik','Rumus','Hasil'],
+    [{'t':'Akurasi','l':True},  {'t':'(TP+TN) / (TP+FP+TN+FN)','l':True},              f'{acc}%'],
+    [{'t':'Presisi','l':True},  {'t':'TP / (TP+FP)','l':True},                          f'{prec}%'],
+    [{'t':'Recall','l':True},   {'t':'TP / (TP+FN)','l':True},                          f'{rec}%'],
+    [{'t':'F1-Score','l':True}, {'t':'2 x Presisi x Recall / (Presisi+Recall)','l':True}, f'{f1}%'],
+]
+cur = ins_tbl(cur, tbl_ev, 'Tabel 4.14 Hasil Evaluasi Model Naive Bayes')
+
+benar = tp + tn
+salah = fp + fn
+cur = p(f'Berdasarkan Tabel 4.13 dan Tabel 4.14, dari {n_test} data testing yang diuji, '
+        f'model Naive Bayes berhasil mengklasifikasikan {benar} data dengan benar dan '
+        f'{salah} data secara keliru. Rinciannya adalah sebagai berikut: '
         f'{tp} data aktual MASUK diprediksi benar sebagai MASUK (True Positive), '
         f'{tn} data aktual TIDAK MASUK diprediksi benar sebagai TIDAK MASUK (True Negative), '
         f'{fp} data aktual TIDAK MASUK diprediksi keliru sebagai MASUK (False Positive), dan '
         f'{fn} data aktual MASUK diprediksi keliru sebagai TIDAK MASUK (False Negative).', after=cur)
 
-cur = p('Dari 3 data yang salah diklasifikasikan, terdapat 2 kasus False Positive yaitu '
-        'Muhamad Helmi dan NAJUA HAMIDAH. Kedua data tersebut memiliki pola atribut yang '
-        'serupa, yaitu sudah mengikuti tes dan mendapatkan nilai tinggi, namun pada kenyataannya '
-        'tidak mendaftar. Hal ini menunjukkan bahwa atribut Status Test dan Kategori Nilai Test '
-        'memiliki bobot probabilitas yang tinggi untuk kelas MASUK, sehingga model kesulitan '
-        'membedakan calon mahasiswa yang memiliki nilai tinggi namun tidak melanjutkan '
-        'pendaftarannya, khususnya ketika atribut penghasilan tercatat sebagai Tidak Diketahui.', after=cur)
-
-cur = p('Adapun 1 kasus False Negative terjadi pada data IBNUH AKHYAR ABDILLAH SHAHIB, '
-        'yang aktualnya MASUK namun diprediksi sebagai TIDAK MASUK. Kombinasi atribut '
-        'Kategori Jarak Jauh dan penghasilan Rp.4.000.001 - Rp.6.000.000 jarang muncul '
-        'pada kelas MASUK dalam data training, sehingga nilai posterior probability kelas '
-        'TIDAK MASUK lebih tinggi meskipun selisihnya sangat kecil.', after=cur)
-
-cur = p(f'Nilai recall sebesar {rec}% lebih tinggi dibandingkan nilai presisi sebesar {prec}%, '
-        f'yang menunjukkan bahwa model lebih sensitif dalam mendeteksi calon mahasiswa yang '
-        f'berpotensi MASUK. Dalam konteks sistem rekomendasi tindak lanjut ini, nilai recall '
-        f'yang tinggi lebih diutamakan, karena konsekuensi melewatkan calon mahasiswa yang '
-        f'berpotensi mendaftar (False Negative) lebih besar dampaknya dibandingkan dengan '
+cur = p(f'Nilai recall sebesar {rec}% menunjukkan bahwa model sangat sensitif dalam mendeteksi '
+        f'calon mahasiswa yang berpotensi MASUK. Dalam konteks sistem rekomendasi tindak lanjut ini, '
+        f'nilai recall yang tinggi sangat diutamakan karena konsekuensi melewatkan calon mahasiswa '
+        f'yang berpotensi mendaftar (False Negative) lebih besar dampaknya dibandingkan dengan '
         f'memfollow up calon mahasiswa yang ternyata tidak mendaftar (False Positive).', after=cur)
 
-cur = p(f'Nilai recall sebesar {rec}% yang lebih tinggi dibandingkan presisi {prec}% '
-        f'menunjukkan bahwa model lebih baik dalam menangkap calon mahasiswa yang benar-benar '
-        f'MASUK. Dalam konteks sistem rekomendasi tindak lanjut, hal ini sangat menguntungkan '
-        f'karena tim marketing tidak akan melewatkan calon mahasiswa yang berpotensi mendaftar. '
-        f'Adapun kasus False Positive yang terjadi (2 data) masih dapat ditoleransi karena '
-        f'dampaknya hanya berupa effort follow up tambahan, bukan kehilangan calon mahasiswa.', after=cur)
+cur = p(f'Nilai presisi sebesar {prec}% menunjukkan bahwa dari seluruh prediksi MASUK yang dihasilkan '
+        f'model, sebagian besar benar-benar berstatus MASUK. Terdapat {fp} kasus False Positive '
+        f'yaitu calon mahasiswa yang aktualnya TIDAK MASUK namun diprediksi sebagai MASUK. '
+        f'Kasus ini umumnya terjadi pada calon mahasiswa dengan pola atribut yang menyerupai '
+        f'kelas MASUK, namun faktor lain di luar atribut penelitian menjadi penentu akhirnya. '
+        f'Adapun kasus False Positive ini masih dapat ditoleransi karena dampaknya hanya berupa '
+        f'effort follow up tambahan.', after=cur)
 
 cur = p(f'Secara keseluruhan, nilai akurasi model sebesar {acc}% dengan F1-Score {f1}% '
         f'menunjukkan bahwa algoritma Naive Bayes dapat diterapkan dengan baik dalam '
         f'memberikan rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru '
-        f'Universitas Tazkia. Hasil ini juga sejalan dengan karakteristik algoritma Naive Bayes '
-        f'yang efektif dan efisien untuk klasifikasi dengan atribut-atribut bertipe kategoris '
+        f'Universitas Tazkia menggunakan dataset sebanyak 1.285 record. '
+        f'Hasil ini juga sejalan dengan karakteristik algoritma Naive Bayes yang efektif '
+        f'dan efisien untuk klasifikasi dengan atribut-atribut bertipe kategoris '
         f'seperti yang digunakan dalam penelitian ini.', after=cur)
 
 # 3. Analisis Kontribusi Atribut
@@ -766,18 +961,24 @@ cur = p('Berdasarkan hasil perhitungan conditional probability pada Tabel 4.6 hi
         'dapat dianalisis kontribusi masing-masing atribut dalam membedakan kelas MASUK dan '
         'TIDAK MASUK sebagai berikut:', after=cur)
 
-cur = p('a)  Atribut Status Test (X3) merupakan atribut yang paling diskriminatif. Calon '
-        'mahasiswa dengan status Sudah Tes memiliki probabilitas MASUK sebesar 0,8889 '
-        'dibandingkan hanya 0,4000 untuk kelas TIDAK MASUK. Sebaliknya, calon mahasiswa '
-        'yang Belum Tes memiliki probabilitas TIDAK MASUK sebesar 0,6000 dibandingkan 0,1111 '
-        'untuk kelas MASUK. Atribut ini menjadi pembeda terkuat karena mengikuti tes '
-        'merupakan langkah konkret yang mencerminkan keseriusan calon mahasiswa.', after=cur, ind=2520)
+pm_sudah = cond_tables['status_test']['MASUK'].get('Sudah Tes', {}).get('prob', 0)
+pt_sudah = cond_tables['status_test']['TIDAK MASUK'].get('Sudah Tes', {}).get('prob', 0)
+pm_belum = cond_tables['status_test']['MASUK'].get('Belum Tes', {}).get('prob', 0)
+pt_belum = cond_tables['status_test']['TIDAK MASUK'].get('Belum Tes', {}).get('prob', 0)
+cur = p(f'a)  Atribut Status Test (X3) merupakan atribut yang paling diskriminatif. Calon '
+        f'mahasiswa dengan status Sudah Tes memiliki probabilitas MASUK sebesar {str(pm_sudah).replace(".",",")} '
+        f'dibandingkan hanya {str(pt_sudah).replace(".",",")} untuk kelas TIDAK MASUK. Sebaliknya, calon mahasiswa '
+        f'yang Belum Tes memiliki probabilitas TIDAK MASUK sebesar {str(pt_belum).replace(".",",")} dibandingkan {str(pm_belum).replace(".",",")} '
+        f'untuk kelas MASUK. Atribut ini menjadi pembeda terkuat karena mengikuti tes '
+        f'merupakan langkah konkret yang mencerminkan keseriusan calon mahasiswa.', after=cur, ind=2520)
 
-cur = p('b)  Atribut Kategori Nilai Test (X4) turut memberikan kontribusi signifikan. '
-        'Nilai Tinggi memberikan probabilitas MASUK sebesar 0,7000 berbanding 0,2727 untuk '
-        'TIDAK MASUK. Namun atribut ini juga menjadi penyebab 2 kasus False Positive, karena '
-        'beberapa calon mahasiswa dengan nilai tinggi ternyata tidak melanjutkan pendaftaran '
-        'karena faktor lain yang tidak tercakup dalam atribut penelitian ini.', after=cur, ind=2520)
+pm_nt = cond_tables['kategori_nilai_test']['MASUK'].get('Nilai Tinggi', {}).get('prob', 0)
+pt_nt = cond_tables['kategori_nilai_test']['TIDAK MASUK'].get('Nilai Tinggi', {}).get('prob', 0)
+cur = p(f'b)  Atribut Kategori Nilai Test (X4) turut memberikan kontribusi signifikan. '
+        f'Nilai Tinggi memberikan probabilitas MASUK sebesar {str(pm_nt).replace(".",",")} berbanding {str(pt_nt).replace(".",",")} untuk '
+        f'TIDAK MASUK. Namun atribut ini juga berpotensi menyebabkan False Positive, karena '
+        f'beberapa calon mahasiswa dengan nilai tinggi ternyata tidak melanjutkan pendaftaran '
+        f'karena faktor lain yang tidak tercakup dalam atribut penelitian ini.', after=cur, ind=2520)
 
 cur = p('c)  Atribut Tingkat Follow Up Internal (X2) menunjukkan bahwa sebagian besar calon '
         'mahasiswa yang masuk kategori MASUK berstatus Belum Dihubungi (P=0,6364), '
@@ -815,12 +1016,12 @@ cur = p('Selain itu, pola yang ditemukan dari kasus False Positive memberikan in
 
 # 5. Keterbatasan dan Saran
 cur = p('5.  Keterbatasan dan Saran Pengembangan', bold=True, after=cur)
-cur = p('Penelitian ini memiliki beberapa keterbatasan yang perlu diperhatikan dalam '
-        'pengembangan ke depan. Pertama, jumlah sampel data yang digunakan dalam proses '
-        'manual (30 data: 15 training dan 15 testing) merupakan sampel kecil yang digunakan '
-        'untuk keperluan ilustrasi perhitungan. Penggunaan seluruh dataset yang berjumlah '
-        '1.285 record pada implementasi sistem dapat menghasilkan model dengan akurasi '
-        'yang lebih tinggi dan lebih representatif.', after=cur)
+cur = p(f'Penelitian ini memiliki beberapa keterbatasan yang perlu diperhatikan dalam '
+        f'pengembangan ke depan. Pertama, meskipun dataset yang digunakan berjumlah 1.285 record '
+        f'dengan pembagian {n_train} data training dan {n_test} data testing, terdapat '
+        f'ketidakseimbangan kelas (class imbalance) dimana kelas TIDAK MASUK ({n_t} data) '
+        f'jauh lebih banyak dibandingkan kelas MASUK ({n_m} data). Kondisi ini dapat '
+        f'memengaruhi kemampuan model dalam memprediksi kelas minoritas secara optimal.', after=cur)
 
 cur = p('Kedua, asumsi independensi antar atribut yang merupakan dasar dari algoritma '
         'Naive Bayes tidak selalu terpenuhi dalam kondisi nyata. Misalnya, atribut '
