@@ -1,0 +1,294 @@
+[477] BAB IV
+HASIL DAN PEMBAHASAN
+[478] Deskripsi Objek Penelitian
+[479] Objek penelitian dalam penelitian ini adalah proses Penerimaan Mahasiswa Baru (PMB) pada Universitas Tazkia, khususnya pada tahap konfirmasi pendaftaran mahasiswa baru. Universitas Tazkia merupakan perguruan tinggi berbasis Islam yang berlokasi di Sentul City, Kabupaten Bogor, Jawa Barat. Universitas ini didirikan dengan visi mengintegrasikan ilmu pengetahuan modern dengan nilai-nilai Islam sehingga mampu menghasilkan lulusan yang tidak hanya unggul secara akademik, tetapi juga memiliki integritas, profesionalisme, dan karakter Islami. Dalam penyelenggaraan pendidikannya, Universitas Tazkia memiliki berbagai program studi di bidang ekonomi, bisnis, keuangan syariah, serta sistem informasi yang berorientasi pada pengembangan sumber daya manusia yang kompeten dan berdaya saing.
+[480] Sebagai institusi pendidikan tinggi, Universitas Tazkia secara rutin menyelenggarakan proses penerimaan mahasiswa baru setiap tahun akademik. Proses penerimaan mahasiswa baru merupakan salah satu aktivitas strategis yang berperan penting dalam menjaga keberlangsungan dan pengembangan institusi. Kegiatan tersebut meliputi beberapa tahapan, mulai dari pendaftaran calon mahasiswa, proses seleksi, pelaksanaan tes, hingga tahap konfirmasi pendaftaran atau daftar ulang sebagai syarat calon mahasiswa untuk resmi menjadi mahasiswa aktif Universitas Tazkia.
+[481] Tahap konfirmasi pendaftaran menjadi salah satu indikator penting dalam menentukan jumlah mahasiswa baru yang benar-benar melanjutkan pendidikan di Universitas Tazkia. Meskipun jumlah pendaftar dapat diketahui sejak awal proses penerimaan mahasiswa baru, jumlah calon mahasiswa yang melakukan konfirmasi pendaftaran sering kali berbeda dengan jumlah pendaftar yang tercatat. Perbedaan tersebut menyebabkan adanya ketidakpastian dalam perencanaan akademik, penyusunan kapasitas kelas, pengelolaan sumber daya, serta perencanaan kegiatan pemasaran pada periode penerimaan mahasiswa baru berikutnya.
+[482] Berdasarkan data internal yang diperoleh dari Unit Penerimaan Mahasiswa Baru (PMB) Universitas Tazkia, terdapat fluktuasi yang cukup signifikan antara jumlah calon mahasiswa yang melakukan pendaftaran dengan jumlah calon mahasiswa yang akhirnya melakukan konfirmasi pendaftaran. Kondisi ini menunjukkan bahwa tidak seluruh calon mahasiswa yang telah mendaftar memiliki kecenderungan yang sama untuk melanjutkan hingga tahap daftar ulang. Oleh karena itu, diperlukan suatu pendekatan analitis yang mampu membantu pihak PMB dalam memahami pola dan karakteristik calon mahasiswa berdasarkan data historis yang dimiliki.
+[483] Data yang digunakan dalam penelitian ini merupakan data historis pendaftaran mahasiswa baru Universitas Tazkia yang memuat berbagai atribut calon mahasiswa, antara lain kategori jarak domisili, status tes, kategori nilai tes, kategori penghasilan orang tua, tingkat tindak lanjut (follow up), serta status akhir calon mahasiswa. Atribut-atribut tersebut dipilih karena memiliki potensi untuk memengaruhi keputusan calon mahasiswa dalam melakukan konfirmasi pendaftaran.
+[484] Selama ini, proses tindak lanjut terhadap calon mahasiswa umumnya dilakukan berdasarkan pengalaman dan pertimbangan subjektif petugas PMB. Padahal, data historis yang telah tersimpan selama proses penerimaan mahasiswa baru memiliki potensi untuk dimanfaatkan sebagai sumber informasi dalam mendukung pengambilan keputusan yang lebih objektif dan berbasis data. Dengan memanfaatkan teknik data mining menggunakan algoritma Naive Bayes, pola-pola yang terdapat pada data historis dapat dianalisis untuk menghasilkan rekomendasi tindak lanjut yang sesuai dengan karakteristik masing-masing calon mahasiswa.
+[485] Melalui penelitian ini, data historis penerimaan mahasiswa baru Universitas Tazkia digunakan sebagai objek penelitian untuk membangun model klasifikasi yang mampu memprediksi kecenderungan calon mahasiswa dalam melakukan konfirmasi pendaftaran. Hasil dari model tersebut diharapkan dapat membantu pihak PMB Universitas Tazkia dalam menentukan strategi tindak lanjut yang lebih efektif, meningkatkan tingkat konfirmasi pendaftaran, serta mendukung proses pengambilan keputusan yang lebih akurat dan terukur.
+[486] Hasil Penelitian dan Pengembangan
+[487] Hasil penelitian dan pengembangan pada penelitian ini disajikan berdasarkan tahapan dalam prosedur pengembangan yang telah dilakukan. Adapun tahapan-tahapan tersebut adalah sebagai berikut:
+[488] Analisis Kebutuhan dan Hasil Analisis Kebutuhan
+[489] Analisis Kebutuhan
+[490] Tahap analisis kebutuhan dilakukan untuk mengumpulkan informasi yang diperlukan sebagai dasar dalam pengembangan sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru di Universitas Tazkia. Analisis kebutuhan dilakukan melalui dua cara, yaitu pengumpulan dokumen dan wawancara.
+[491] Pengumpulan Dokumen
+[492] Pengumpulan dokumen dilakukan untuk mengidentifikasi permasalahan dan kebutuhan data yang nantinya akan digunakan dalam pengembangan sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru. Adapun dokumen yang dikumpulkan adalah data historis pendaftaran mahasiswa baru Universitas Tazkia periode tahun akademik sebelumnya yang diperoleh langsung dari sistem Penerimaan Mahasiswa Baru (PMB) Universitas Tazkia.
+[493] Data yang dikumpulkan berjumlah 1.285 data calon mahasiswa yang memuat berbagai atribut, meliputi kategori jarak domisili calon mahasiswa, status tes, kategori nilai tes, kategori penghasilan orang tua, tingkat tindak lanjut follow up yang telah diterima, serta status akhir calon mahasiswa yaitu masuk atau tidak masuk. Data tersebut kemudian digunakan sebagai data training dalam proses perhitungan algoritma Naive Bayes untuk menghasilkan model klasifikasi yang dapat memberikan rekomendasi tindak lanjut konfirmasi pendaftaran.
+[494] Wawancara
+[495] Wawancara dilakukan dalam rangka mengetahui proses tindak lanjut konfirmasi pendaftaran mahasiswa baru yang selama ini berlangsung di Universitas Tazkia. Wawancara dilakukan kepada Kepala Tim Follow Up Universitas Tazkia sebagai pihak yang bertanggung jawab langsung dalam proses tindak lanjut kepada calon mahasiswa baru.
+[496] Berdasarkan hasil wawancara yang dilakukan, diperoleh informasi bahwa proses tindak lanjut atau follow up kepada calon mahasiswa baru selama ini masih dilakukan secara manual dan belum berbasis data analisis yang terstruktur. Tim follow up menghubungi calon mahasiswa secara merata tanpa memiliki dasar yang jelas mengenai calon mahasiswa mana yang memiliki potensi lebih tinggi untuk melakukan konfirmasi pendaftaran.
+[497] Adapun permasalahan utama yang disampaikan oleh narasumber dalam wawancara tersebut adalah sebagai berikut:
+[498] Pertama, tim follow up mengalami kesulitan dalam mengidentifikasi calon mahasiswa yang memiliki kecenderungan untuk melakukan atau tidak melakukan konfirmasi pendaftaran. Hal ini disebabkan karena belum adanya metode analisis yang mampu membantu tim dalam memetakan potensi masing-masing calon mahasiswa berdasarkan karakteristik data yang dimilikinya.
+[499] Kedua, proses tindak lanjut yang dilakukan belum efisien dari segi waktu. Volume data calon mahasiswa yang besar yakni mencapai ribuan data setiap periodenya belum didukung oleh metode analisis berbasis data yang memadai, sehingga tim follow up harus menghubungi seluruh calon mahasiswa satu per satu tanpa prioritas yang jelas. Kondisi ini menyebabkan waktu dan sumber daya tim tidak digunakan secara optimal dan berpotensi menurunkan tingkat konversi pendaftar menjadi mahasiswa aktif.
+[500] Berdasarkan hasil wawancara tersebut, dapat disimpulkan bahwa dibutuhkan sebuah sistem yang mampu menganalisis data historis pendaftaran secara otomatis dan menghasilkan rekomendasi tindak lanjut yang lebih objektif, terstruktur, dan berbasis data sehingga proses follow up dapat dilakukan secara lebih efisien dan tepat sasaran.
+[501] Hasil Analisis Kebutuhan
+[502] Berdasarkan analisis kebutuhan yang telah dilakukan melalui wawancara dengan Kepala Tim Follow Up Universitas Tazkia, diperoleh gambaran mengenai proses tindak lanjut konfirmasi pendaftaran mahasiswa baru yang selama ini berjalan. Proses bisnis lama tersebut dapat dilihat pada Gambar 4.1 berikut.
+[504] Gambar 4.1 BPMN Proses Bisnis Lama
+[505] Berdasarkan Gambar 4.1 dapat dijelaskan bahwa proses bisnis lama dijalankan oleh dua aktor, yaitu Tim Marketing dan Calon Mahasiswa. Proses dimulai ketika Tim Marketing membuka sistem PMB untuk melihat data seluruh calon mahasiswa yang telah mendaftar. Setelah data tersedia, Tim Marketing langsung memilih dan menghubungi calon mahasiswa secara acak tanpa adanya dasar analisis data yang jelas mengenai potensi konfirmasi masing-masing calon mahasiswa.
+[506] Setelah dihubungi, calon mahasiswa yang berhasil ditemui akan menerima informasi terkait proses penerimaan mahasiswa baru. Calon mahasiswa kemudian memutuskan untuk melakukan konfirmasi pendaftaran atau tidak. Apabila calon mahasiswa berminat maka akan melakukan konfirmasi pendaftaran dan tercatat dengan status MASUK. Sebaliknya apabila calon mahasiswa tidak berminat maka tidak melakukan konfirmasi pendaftaran dan tercatat dengan status TIDAK MASUK.
+[507] Kelemahan utama dari proses bisnis lama ini adalah tidak adanya analisis berbasis data dalam menentukan prioritas follow up. Tim Marketing menghubungi seluruh calon mahasiswa secara merata tanpa mempertimbangkan karakteristik atau potensi konfirmasi masing-masing individu, sehingga proses tindak lanjut menjadi tidak efisien dan kurang terarah.
+[508] Untuk mengatasi permasalahan tersebut, diusulkan sebuah proses bisnis baru yang memanfaatkan algoritma Naive Bayes sebagai dasar analisis dalam menentukan prioritas tindak lanjut konfirmasi pendaftaran. Proses bisnis baru tersebut dapat dilihat pada Gambar 4.2 berikut.
+[510] Gambar 4.2 BPMN Proses Bisnis Baru
+[511] Berdasarkan Gambar 4.2 dapat dijelaskan bahwa proses bisnis baru tetap dijalankan oleh dua aktor yang sama, yaitu Tim Marketing dan Calon Mahasiswa. Perbedaan utama terletak pada sistem yang digunakan, di mana sistem Naive Bayes telah terintegrasi langsung dengan sistem PMB Universitas Tazkia sehingga tidak diperlukan proses input data secara manual oleh Tim Marketing.
+[512] Proses dimulai ketika Tim Marketing membuka dan login ke dalam sistem. Setelah berhasil masuk, sistem secara otomatis menampilkan daftar calon mahasiswa beserta hasil prediksi algoritma Naive Bayes yang telah diklasifikasikan berdasarkan potensi konfirmasi pendaftaran masing-masing calon mahasiswa. Berdasarkan hasil prediksi tersebut, Tim Marketing dapat langsung melihat calon mahasiswa mana yang diprioritaskan untuk dihubungi terlebih dahulu karena memiliki potensi lebih tinggi untuk melakukan konfirmasi pendaftaran.
+[513] Selanjutnya Tim Marketing melakukan follow up secara terarah berdasarkan daftar prioritas yang dihasilkan oleh sistem. Calon mahasiswa yang dihubungi kemudian menerima informasi terkait proses penerimaan mahasiswa baru dan memutuskan untuk melakukan konfirmasi pendaftaran atau tidak. Apabila calon mahasiswa berminat maka akan melakukan konfirmasi pendaftaran dan tercatat dengan status MASUK. Sebaliknya apabila tidak berminat maka tercatat dengan status TIDAK MASUK.
+[514] Dengan adanya sistem baru ini, proses tindak lanjut konfirmasi pendaftaran menjadi lebih efisien dan tepat sasaran karena Tim Marketing tidak lagi melakukan follow up secara acak, melainkan berdasarkan rekomendasi hasil prediksi algoritma Naive Bayes yang telah menganalisis pola historis data pendaftaran Universitas Tazkia.
+[515] Hasil Analisis Metode
+[516] Metode yang diterapkan dalam proses penelitian ini menggunakan algoritma Naive Bayes. Metode ini diharapkan dapat menghasilkan rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru secara efektif dan akurat. Berikut adalah beberapa langkah dengan pendekatan algoritma Naive Bayes:
+[517] 1)  Menyiapkan Dataset
+[518] Pada langkah ini dilakukan pengumpulan data historis pendaftaran mahasiswa baru Universitas Tazkia. Data yang digunakan berjumlah 1.285 record yang selanjutnya dibagi menjadi dua dataset, terdiri dari 80% untuk data training yaitu sebanyak 1028 data, serta 20% untuk data testing yaitu sebanyak 257 data. Berikut adalah sebagian dataset untuk data training dan testing yang dapat dilihat pada Tabel 4.1 dan Tabel 4.2 di bawah ini.
+[519] Tabel 4.1 Dataset Untuk Data Training
+[520] Sumber: Data Internal Pendaftaran Universitas Tazkia
+[522] Tabel 4.2 Dataset Untuk Data Testing
+[523] Sumber: Data Internal Pendaftaran Universitas Tazkia
+[525] 2)  Pre-processing Data
+[526] Pada langkah ini dilakukan pre-processing atau mempersiapkan data sebelum digunakan dalam algoritma Naive Bayes melalui pembersihan data dan seleksi fitur.
+[527] a.  Pembersihan Data
+[528] Dilakukan pemeriksaan terhadap data yang memiliki nilai kosong (missing value) atau tidak relevan (noise). Berdasarkan hasil pemeriksaan, data pada Tabel 4.1 dan Tabel 4.2 tidak ditemukan nilai kosong sehingga seluruh data dapat langsung digunakan.
+[529] b.  Seleksi Fitur
+[530] Seleksi fitur dilakukan untuk memilih atribut yang akan digunakan dalam proses klasifikasi. Hasil seleksi fitur dapat dilihat pada Tabel 4.3 berikut.
+[531] Tabel 4.3 Hasil Seleksi Fitur
+[532] Sumber: Hasil Pengolahan Data (2025)
+[534] 3)  Menentukan Variabel Penelitian
+[535] Berdasarkan hasil seleksi fitur, variabel yang digunakan dalam proses klasifikasi Naive Bayes dapat dilihat pada Tabel 4.4 berikut.
+[536] Tabel 4.4 Variabel Penelitian
+[537] Sumber: Hasil Pengolahan Data (2025)
+[539] 4)  Menghitung Prior Probability
+[540] Pada tahap ini dilakukan perhitungan probabilitas prior atau peluang kemunculan setiap kelas target (Y) yaitu MASUK dan TIDAK MASUK, dihitung berdasarkan data training pada Tabel 4.1 yang berjumlah 1028 data. Rumus prior probability adalah sebagai berikut:
+[542] Sehingga diperoleh nilai prior probability untuk masing-masing kelas sebagai berikut:
+[545] Berdasarkan hasil perhitungan di atas, maka hasil perhitungan prior probability dapat dilihat pada Tabel 4.5.
+[546] Tabel 4.5 Hasil Perhitungan Prior Probability
+[547] Sumber: Hasil Pengolahan Data (2025)
+[549] 5)  Menghitung Likelihood (Conditional Probability)
+[550] Pada tahap ini dilakukan perhitungan likelihood atau conditional probability, yaitu probabilitas kemunculan setiap nilai atribut pada masing-masing kelas berdasarkan data training. Rumus yang digunakan dengan Laplace Smoothing:
+[552] Keterangan: ni = jumlah data bernilai Xi pada kelas H; n = total data kelas H; K = jumlah nilai unik atribut tersebut. Penambahan nilai 1 pada pembilang dan K pada penyebut merupakan teknik Laplace Smoothing untuk menghindari nilai probabilitas nol.
+[553] Tabel 4.6 Hasil Perhitungan Conditional Probability Kategori Jarak Asal
+[554] Sumber: Hasil Pengolahan Data (2025)
+[556] Tabel 4.7 Hasil Perhitungan Conditional Probability Tingkat Follow Up Internal
+[557] Sumber: Hasil Pengolahan Data (2025)
+[559] Tabel 4.8 Hasil Perhitungan Conditional Probability Status Test
+[560] Sumber: Hasil Pengolahan Data (2025)
+[562] Tabel 4.9 Hasil Perhitungan Conditional Probability Kategori Nilai Test
+[563] Sumber: Hasil Pengolahan Data (2025)
+[565] Tabel 4.10 Hasil Perhitungan Conditional Probability Kategori Penghasilan
+[566] Sumber: Hasil Pengolahan Data (2025)
+[568] 6)  Menghitung Posterior Probability
+[569] Pada tahapan ini dilakukan perhitungan posterior probability untuk memprediksi kelas Y (MASUK dan TIDAK MASUK) berdasarkan seluruh data testing pada Tabel 4.2. Rumus yang digunakan:
+[571] Nilai dari prior probability dan conditional probability yang digunakan pada perhitungan ini diambil dari Tabel 4.5 sampai dengan Tabel 4.10. Hasil perhitungan posterior probability untuk 257 data testing dapat dilihat pada Tabel 4.11 berikut (ditampilkan 15 data sebagai sampel).
+[572] Tabel 4.11 Hasil Perhitungan Posterior Probability
+[573] Sumber: Hasil Pengolahan Data (2025)
+[575] 7)  Melakukan Klasifikasi (Prediksi)
+[576] Berdasarkan hasil perhitungan posterior probability pada Tabel 4.11, selanjutnya masing-masing nilai posterior dibandingkan untuk menentukan kelas prediksi, dengan ketentuan sebagai berikut:
+[577] a.  P(MASUK|X)  >  P(TIDAK MASUK|X)  →  Prediksi = MASUK
+[578] b.  P(MASUK|X)  <  P(TIDAK MASUK|X)  →  Prediksi = TIDAK MASUK
+[579] Adapun hasil prediksi untuk seluruh 257 data testing dapat dilihat pada Tabel 4.12 berikut (ditampilkan 30 data sebagai sampel).
+[580] Tabel 4.12 Hasil Prediksi Status Konfirmasi Pendaftaran
+[581] Sumber: Hasil Pengolahan Data (2025)
+[583] 8)  Uji Hasil
+[584] Tahapan ini dilakukan untuk mengevaluasi kinerja model menggunakan Confusion Matrix. Evaluasi dilakukan dengan membandingkan hasil prediksi algoritma Naive Bayes terhadap status aktual pada seluruh 257 data testing. Hasil evaluasi model secara lengkap dibahas pada bagian C. Pembahasan.
+[585] Analisis Kebutuhan Sistem
+[586] Pemodelan objek pada aplikasi yang akan dikembangkan dijelaskan dalam bentuk diagram use case berdasarkan pada proses rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru, untuk memodelkan serta mengorganisasi pada aplikasi sehingga mendapatkan keluaran aplikasi sesuai dengan yang diharapkan dan dibutuhkan oleh pengguna. Berikut diagram use case pada aplikasi yang akan dikembangkan dapat dilihat pada Gambar 4.3.
+[588] Gambar 4.3 Diagram Use Case
+[589] Sumber: Hasil Perancangan (2025)
+[590] Pada Gambar 4.3 dijelaskan bahwa terdapat 1 (satu) aktor dalam aplikasi rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru yaitu Tim Marketing. Tim Marketing diharuskan untuk login terlebih dahulu agar dapat mengakses aplikasi tersebut. Adapun use case yang dapat dilakukan oleh Tim Marketing adalah sebagai berikut:
+[591] a.  Login: Tim Marketing melakukan autentikasi untuk masuk ke dalam sistem.
+[592] b.  Logout: Tim Marketing keluar dari sistem setelah selesai menggunakan aplikasi.
+[593] c.  Kelola Data Pendaftar: Tim Marketing dapat mengelola data calon mahasiswa baru yang terdaftar dalam sistem, termasuk melihat dan memperbarui data.
+[594] d.  Lihat Hasil Klasifikasi Naive Bayes: Tim Marketing dapat melihat hasil klasifikasi algoritma Naive Bayes terhadap seluruh data calon mahasiswa.
+[595] e.  Lihat Rekomendasi Tindak Lanjut: Tim Marketing dapat melihat rekomendasi tindak lanjut yang dihasilkan sistem untuk setiap calon mahasiswa berdasarkan hasil prediksi Naive Bayes.
+[596] f.  Lihat Detail Hasil Prediksi: Tim Marketing dapat melihat detail perhitungan probabilitas prediksi untuk setiap data calon mahasiswa.
+[597] g.  Cetak / Export Laporan: Tim Marketing dapat mencetak atau mengekspor laporan hasil rekomendasi tindak lanjut konfirmasi pendaftaran.
+[598] Design Produk
+[599] Berikut ini desain produk yang dikembangkan dalam sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru menggunakan algoritma Naive Bayes, yaitu sebagai berikut:
+[600] a.  Activity Diagram
+[601] Pada activity diagram ini dijelaskan alur aktivitas yang dilakukan oleh Tim Marketing dan alur yang dihasilkan oleh sistem, mulai dari proses awal membuka aplikasi hingga mendapatkan hasil rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru. Berikut adalah activity diagram yang dibuat dalam sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru:
+[602] 1)  Activity Diagram Login
+[604] Gambar 4.4 Activity Diagram Login
+[605] Sumber: Hasil Perancangan (2025)
+[606] Pada Gambar 4.4 terdapat activity diagram login yang diawali dengan Tim Marketing membuka aplikasi, kemudian sistem menampilkan halaman login. Selanjutnya Tim Marketing memasukkan username dan password lalu mengklik tombol login. Sistem memvalidasi kredensial tersebut. Apabila valid maka sistem menampilkan halaman utama, apabila tidak valid maka sistem menampilkan pesan error dan Tim Marketing diminta memasukkan kembali username dan password.
+[607] 2)  Activity Diagram Logout
+[609] Gambar 4.5 Activity Diagram Logout
+[610] Sumber: Hasil Perancangan (2025)
+[611] Pada Gambar 4.5 terdapat activity diagram logout yang diawali dengan Tim Marketing mengklik tombol logout. Sistem kemudian menghapus sesi pengguna dan menampilkan kembali halaman login. Selanjutnya Tim Marketing diarahkan ke halaman login sebagai tanda bahwa proses logout telah berhasil dilakukan.
+[612] 3)  Activity Diagram Kelola Data Pendaftar
+[614] Gambar 4.6 Activity Diagram Kelola Data Pendaftar
+[615] Sumber: Hasil Perancangan (2025)
+[616] Pada Gambar 4.6 terdapat activity diagram kelola data pendaftar yang diawali dengan Tim Marketing membuka halaman data pendaftar dan sistem menampilkan daftar data yang ada. Tim Marketing mengklik tambah data, sistem menampilkan form, lalu Tim Marketing mengisi dan menyimpan data. Sistem memvalidasi data tersebut; jika valid maka data disimpan dan notifikasi ditampilkan, jika tidak valid maka sistem menampilkan pesan error dan Tim Marketing diminta mengisi ulang form.
+[617] 4)  Activity Diagram Lihat Hasil Klasifikasi Naive Bayes
+[619] Gambar 4.7 Activity Diagram Lihat Hasil Klasifikasi Naive Bayes
+[620] Sumber: Hasil Perancangan (2025)
+[621] Pada Gambar 4.7 terdapat activity diagram lihat hasil klasifikasi Naive Bayes yang diawali dengan Tim Marketing membuka menu hasil klasifikasi. Sistem kemudian memproses klasifikasi menggunakan algoritma Naive Bayes dan menampilkan hasilnya. Selanjutnya Tim Marketing dapat melihat hasil klasifikasi yang telah diproses.
+[622] 5)  Activity Diagram Lihat Rekomendasi Tindak Lanjut
+[624] Gambar 4.8 Activity Diagram Lihat Rekomendasi Tindak Lanjut
+[625] Sumber: Hasil Perancangan (2025)
+[626] Pada Gambar 4.8 terdapat activity diagram lihat rekomendasi tindak lanjut yang diawali dengan Tim Marketing membuka menu rekomendasi. Sistem melakukan proses generate rekomendasi tindak lanjut berdasarkan hasil klasifikasi Naive Bayes dan menampilkan hasilnya. Selanjutnya Tim Marketing dapat melihat rekomendasi tindak lanjut untuk setiap calon mahasiswa.
+[627] 6)  Activity Diagram Lihat Detail Hasil Prediksi
+[629] Gambar 4.9 Activity Diagram Lihat Detail Hasil Prediksi
+[630] Sumber: Hasil Perancangan (2025)
+[631] Pada Gambar 4.9 terdapat activity diagram lihat detail hasil prediksi yang diawali dengan Tim Marketing memilih data pendaftar yang ingin dilihat detailnya. Sistem mengambil detail hasil prediksi dan menampilkannya. Selanjutnya Tim Marketing dapat melihat detail perhitungan probabilitas Naive Bayes untuk calon mahasiswa yang dipilih.
+[632] 7)  Activity Diagram Cetak / Export Laporan
+[634] Gambar 4.10 Activity Diagram Cetak / Export Laporan
+[635] Sumber: Hasil Perancangan (2025)
+[636] Pada Gambar 4.10 terdapat activity diagram cetak atau export laporan yang diawali dengan Tim Marketing membuka menu laporan dan sistem menampilkan halaman laporan. Tim Marketing memilih rentang data lalu mengklik cetak atau export laporan. Sistem melakukan generate file laporan dalam format PDF atau Excel dan menyediakan file tersebut untuk diunduh oleh Tim Marketing.
+[637] b.  Sequence Diagram
+[638] Pada sequence diagram ini dijelaskan alur interaksi antara Tim Marketing dengan komponen sistem secara berurutan sesuai garis waktunya, meliputi Form/Halaman antarmuka, Controller, dan Database. Berikut adalah sequence diagram yang dibuat dalam sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru:
+[639] 1)  Sequence Diagram Login
+[641] Gambar 4.11 Sequence Diagram Login
+[642] Sumber: Hasil Perancangan (2025)
+[643] Pada Gambar 4.11 terdapat sequence diagram login yang menggambarkan interaksi Tim Marketing dengan Form Login, Controller Login, Database, dan Halaman Utama. Tim Marketing membuka form login dan memasukkan username serta password. Form Login meneruskan proses ke Controller Login yang melakukan pengecekan kredensial ke Database. Apabila kredensial tidak valid, sistem menampilkan notifikasi gagal. Apabila valid, sistem menampilkan notifikasi berhasil dan mengarahkan Tim Marketing ke Halaman Utama.
+[644] 2)  Sequence Diagram Logout
+[646] Gambar 4.12 Sequence Diagram Logout
+[647] Sumber: Hasil Perancangan (2025)
+[648] Pada Gambar 4.12 terdapat sequence diagram logout yang menggambarkan interaksi Tim Marketing saat melakukan logout dari sistem. Tim Marketing mengklik tombol logout di Halaman Utama, kemudian Controller Logout memproses penghapusan sesi dan dikonfirmasi oleh Database. Setelah sesi berhasil dihapus, sistem mengarahkan Tim Marketing kembali ke Form Login.
+[649] 3)  Sequence Diagram Kelola Data Pendaftar
+[651] Gambar 4.13 Sequence Diagram Kelola Data Pendaftar
+[652] Sumber: Hasil Perancangan (2025)
+[653] Pada Gambar 4.13 terdapat sequence diagram kelola data pendaftar yang menggambarkan interaksi Tim Marketing dalam mengelola data calon mahasiswa. Tim Marketing membuka halaman data pendaftar dan sistem mengambil data dari Database untuk ditampilkan. Tim Marketing dapat melakukan tambah, edit, atau hapus data yang kemudian diproses oleh Controller dan disimpan ke Database. Sistem menampilkan notifikasi sukses setelah operasi berhasil dilakukan.
+[654] 4)  Sequence Diagram Lihat Hasil Klasifikasi
+[656] Gambar 4.14 Sequence Diagram Lihat Hasil Klasifikasi
+[657] Sumber: Hasil Perancangan (2025)
+[658] Pada Gambar 4.14 terdapat sequence diagram lihat hasil klasifikasi yang menggambarkan proses melihat hasil klasifikasi Naive Bayes. Tim Marketing memilih data pendaftar dan sistem mengambil data tersebut dari Database. Controller kemudian menjalankan proses klasifikasi Naive Bayes secara internal, menyimpan hasilnya ke Database, dan menampilkan hasil klasifikasi kepada Tim Marketing.
+[659] 5)  Sequence Diagram Lihat Rekomendasi
+[661] Gambar 4.15 Sequence Diagram Lihat Rekomendasi
+[662] Sumber: Hasil Perancangan (2025)
+[663] Pada Gambar 4.15 terdapat sequence diagram lihat rekomendasi yang menggambarkan proses melihat rekomendasi tindak lanjut. Tim Marketing membuka halaman rekomendasi dan sistem mengambil data serta hasil klasifikasi dari Database. Controller melakukan proses generate rekomendasi secara internal dan menampilkan hasil rekomendasi tindak lanjut kepada Tim Marketing.
+[664] 6)  Sequence Diagram Lihat Detail Prediksi
+[666] Gambar 4.16 Sequence Diagram Lihat Detail Prediksi
+[667] Sumber: Hasil Perancangan (2025)
+[668] Pada Gambar 4.16 terdapat sequence diagram lihat detail prediksi yang menggambarkan proses melihat detail prediksi untuk setiap pendaftar. Tim Marketing memilih data pendaftar yang ingin dilihat detailnya. Sistem mengambil detail data dan nilai probabilitas dari Database, kemudian menampilkan informasi detail prediksi Naive Bayes kepada Tim Marketing.
+[669] 7)  Sequence Diagram Cetak / Export Laporan
+[671] Gambar 4.17 Sequence Diagram Cetak / Export Laporan
+[672] Sumber: Hasil Perancangan (2025)
+[673] Pada Gambar 4.17 terdapat sequence diagram cetak atau export laporan yang menggambarkan proses cetak atau export laporan. Tim Marketing memilih format laporan yang diinginkan (PDF atau Excel). Controller mengambil data dari Database, melakukan proses generate dokumen laporan secara internal, dan menyediakan file yang dapat diunduh atau dicetak oleh Tim Marketing.
+[674] Perancangan Desain Antarmuka
+[675] Berdasarkan hasil analisis kebutuhan sistem dan design produk yang telah dijelaskan sebelumnya, tahap selanjutnya adalah merancang desain antarmuka (interface) aplikasi sebagai gambaran awal tampilan sistem sebelum masuk ke tahap pengkodean. Rancangan antarmuka ini dibuat agar Tim Marketing sebagai pengguna dapat memahami alur dan tata letak fitur pada sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru. Berikut adalah rancangan desain antarmuka yang dibuat:
+[676] 1)  Rancangan Halaman Login
+[678] Gambar 4.18 Rancangan Antarmuka Halaman Login
+[679] Sumber: Hasil Perancangan (2025)
+[680] Gambar 4.18 menunjukkan rancangan halaman login yang menjadi titik masuk (entry point) aplikasi. Tim Marketing diharuskan memasukkan username dan password yang valid sebelum dapat mengakses fitur-fitur pada sistem.
+[681] 2)  Rancangan Halaman Dashboard
+[683] Gambar 4.19 Rancangan Antarmuka Halaman Dashboard
+[684] Sumber: Hasil Perancangan (2025)
+[685] Gambar 4.19 menunjukkan rancangan halaman dashboard yang tampil setelah Tim Marketing berhasil login. Halaman ini menampilkan ringkasan jumlah pendaftar, hasil prediksi MASUK/TIDAK MASUK, akurasi model, serta daftar prediksi terbaru.
+[686] 3)  Rancangan Halaman Data Pendaftar
+[688] Gambar 4.20 Rancangan Antarmuka Halaman Data Pendaftar
+[689] Sumber: Hasil Perancangan (2025)
+[690] Gambar 4.20 menunjukkan rancangan halaman data pendaftar yang menampilkan daftar seluruh calon mahasiswa beserta atribut yang digunakan dalam perhitungan Naive Bayes. Pada halaman ini Tim Marketing dapat mencari, menambah, mengubah, dan menghapus data pendaftar.
+[691] 4)  Rancangan Halaman Tambah/Ubah Data Pendaftar
+[693] Gambar 4.21 Rancangan Antarmuka Halaman Tambah/Ubah Data Pendaftar
+[694] Sumber: Hasil Perancangan (2025)
+[695] Gambar 4.21 menunjukkan rancangan form input yang digunakan untuk menambah atau mengubah data pendaftar, meliputi kategori jarak asal, tingkat follow up internal, status test, kategori nilai test, dan kategori penghasilan.
+[696] 5)  Rancangan Halaman Hasil Klasifikasi Naive Bayes
+[698] Gambar 4.22 Rancangan Antarmuka Halaman Hasil Klasifikasi Naive Bayes
+[699] Sumber: Hasil Perancangan (2025)
+[700] Gambar 4.22 menunjukkan rancangan halaman hasil klasifikasi yang menampilkan nilai probabilitas P(MASUK|X) dan P(TIDAK MASUK|X) untuk setiap pendaftar beserta status prediksi akhir dan ringkasan metrik evaluasi model.
+[701] 6)  Rancangan Halaman Rekomendasi Tindak Lanjut
+[703] Gambar 4.23 Rancangan Antarmuka Halaman Rekomendasi Tindak Lanjut
+[704] Sumber: Hasil Perancangan (2025)
+[705] Gambar 4.23 menunjukkan rancangan halaman rekomendasi tindak lanjut yang menampilkan prioritas follow up bagi setiap calon mahasiswa berdasarkan hasil klasifikasi, sehingga Tim Marketing dapat menentukan calon mahasiswa mana yang perlu dihubungi terlebih dahulu.
+[706] 7)  Rancangan Halaman Detail Prediksi
+[708] Gambar 4.24 Rancangan Antarmuka Halaman Detail Prediksi
+[709] Sumber: Hasil Perancangan (2025)
+[710] Gambar 4.24 menunjukkan rancangan halaman detail prediksi yang menampilkan rincian perhitungan probabilitas (prior, conditional, dan posterior) untuk satu calon mahasiswa secara lebih rinci beserta hasil prediksi akhirnya.
+[711] 8)  Rancangan Halaman Cetak/Export Laporan
+[713] Gambar 4.25 Rancangan Antarmuka Halaman Cetak/Export Laporan
+[714] Sumber: Hasil Perancangan (2025)
+[715] Gambar 4.25 menunjukkan rancangan halaman laporan yang memungkinkan Tim Marketing memfilter data berdasarkan rentang tanggal dan status prediksi, kemudian mengekspor laporan dalam format PDF atau Excel.
+[716] Pengkodean
+[717] Tahap pengkodean merupakan tahap penerjemahan rancangan sistem dan algoritma Naive Bayes ke dalam bahasa pemrograman PHP dengan framework Laravel. Berikut adalah beberapa bagian kode program yang menjadi inti dari sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru:
+[718] 1)  Kelas NaiveBayesService — Fungsi train()
+[720] Gambar 4.26 Kode Program Perhitungan Prior dan Conditional Probability
+[721] Sumber: Hasil Implementasi (2026)
+[722] Gambar 4.26 menunjukkan kode program fungsi train() yang menghitung prior probability dan conditional probability dengan Laplace Smoothing dari data training.
+[723] 2)  Kelas NaiveBayesService — Fungsi predict()
+[725] Gambar 4.27 Kode Program Perhitungan Posterior Probability dan Klasifikasi
+[726] Sumber: Hasil Implementasi (2026)
+[727] Gambar 4.27 menunjukkan kode program fungsi predict() yang menghitung posterior probability P(Y|X) untuk menentukan kelas prediksi (MASUK atau TIDAK MASUK) pada satu data pendaftar.
+[728] 3)  Kelas NaiveBayesService — Fungsi classifyAll()
+[730] Gambar 4.28 Kode Program Klasifikasi Massal
+[731] Sumber: Hasil Implementasi (2026)
+[732] Gambar 4.28 menunjukkan kode program fungsi classifyAll() yang melatih model dari seluruh data historis berlabel kemudian menerapkan prediksi ke seluruh data pendaftar (historis maupun baru).
+[733] 4)  Kelas NaiveBayesService — Fungsi evaluate() bagian 1
+[735] Gambar 4.29 Kode Program Split Data Training dan Testing
+[736] Sumber: Hasil Implementasi (2026)
+[737] Gambar 4.29 menunjukkan bagian awal fungsi evaluate() yang melakukan split data 80:20 secara stratified dengan seed tetap, kemudian melatih model dari data training.
+[738] 5)  Kelas NaiveBayesService — Fungsi evaluate() bagian 2
+[740] Gambar 4.30 Kode Program Confusion Matrix dan Metrik Evaluasi
+[741] Sumber: Hasil Implementasi (2026)
+[742] Gambar 4.30 menunjukkan bagian akhir fungsi evaluate() yang menguji model ke data testing, menghitung confusion matrix (TP, TN, FP, FN), serta metrik akurasi, presisi, recall, dan F1-Score.
+[743] 6)  Migration Tabel Pendaftars
+[745] Gambar 4.31 Kode Program Struktur Tabel Basis Data Pendaftar
+[746] Sumber: Hasil Implementasi (2026)
+[747] Gambar 4.31 menunjukkan struktur tabel pendaftars pada basis data MySQL yang menyimpan seluruh atribut data calon mahasiswa beserta kolom hasil prediksi (prob_masuk, prob_tidak_masuk, prediksi).
+[748] 7)  Kelas PendaftarController
+[750] Gambar 4.32 Kode Program Pengelolaan Data Pendaftar
+[751] Sumber: Hasil Implementasi (2026)
+[752] Gambar 4.32 menunjukkan kode program controller yang menangani proses tambah dan ubah data pendaftar. Setiap kali data ditambah atau diubah, fungsi reklasifikasi() otomatis dipanggil untuk melatih ulang model dan memperbarui hasil prediksi pendaftar tersebut.
+[753] Prototype Aplikasi
+[754] Berdasarkan rancangan desain antarmuka pada sub bab sebelumnya, prototype aplikasi kemudian dibangun menggunakan bahasa pemrograman PHP dengan framework Laravel dan basis data MySQL. Berikut adalah tampilan hasil implementasi prototype sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru:
+[755] 1)  Halaman Login
+[757] Gambar 4.33 Tampilan Halaman Login
+[758] Sumber: Hasil Implementasi (2026)
+[759] Gambar 4.33 menunjukkan tampilan halaman login pada prototype yang telah dibangun. Tim Marketing memasukkan email dan password untuk dapat mengakses sistem.
+[760] 2)  Halaman Dashboard
+[762] Gambar 4.34 Tampilan Halaman Dashboard
+[763] Sumber: Hasil Implementasi (2026)
+[764] Gambar 4.34 menunjukkan tampilan halaman dashboard yang menampilkan ringkasan total pendaftar, jumlah prediksi MASUK dan TIDAK MASUK, akurasi model, serta daftar prediksi terbaru.
+[765] 3)  Halaman Data Pendaftar
+[767] Gambar 4.35 Tampilan Halaman Data Pendaftar
+[768] Sumber: Hasil Implementasi (2026)
+[769] Gambar 4.35 menunjukkan tampilan halaman data pendaftar yang menampilkan daftar seluruh calon mahasiswa beserta fitur pencarian, tambah, ubah, dan hapus data.
+[770] 4)  Halaman Tambah Data Pendaftar
+[772] Gambar 4.36 Tampilan Halaman Tambah Data Pendaftar
+[773] Sumber: Hasil Implementasi (2026)
+[774] Gambar 4.36 menunjukkan tampilan form input untuk menambah data pendaftar baru sesuai atribut yang digunakan dalam perhitungan Naive Bayes.
+[775] 5)  Halaman Hasil Klasifikasi Naive Bayes
+[777] Gambar 4.37 Tampilan Halaman Hasil Klasifikasi Naive Bayes
+[778] Sumber: Hasil Implementasi (2026)
+[779] Gambar 4.37 menunjukkan tampilan halaman hasil klasifikasi yang menampilkan nilai probabilitas P(MASUK|X) dan P(TIDAK MASUK|X) beserta prediksi akhir dan metrik evaluasi model (akurasi, presisi, recall, F1-Score) yang dihitung secara langsung oleh sistem.
+[780] 6)  Halaman Detail Prediksi
+[782] Gambar 4.38 Tampilan Halaman Detail Prediksi
+[783] Sumber: Hasil Implementasi (2026)
+[784] Gambar 4.38 menunjukkan tampilan halaman detail prediksi yang menampilkan rincian perhitungan prior probability, conditional probability tiap atribut, dan posterior probability untuk satu calon mahasiswa secara transparan.
+[785] 7)  Halaman Rekomendasi Tindak Lanjut
+[787] Gambar 4.39 Tampilan Halaman Rekomendasi Tindak Lanjut
+[788] Sumber: Hasil Implementasi (2026)
+[789] Gambar 4.39 menunjukkan tampilan halaman rekomendasi tindak lanjut yang menyusun prioritas follow up bagi setiap calon mahasiswa berdasarkan hasil klasifikasi.
+[790] 8)  Halaman Cetak / Export Laporan
+[792] Gambar 4.40 Tampilan Halaman Cetak / Export Laporan
+[793] Sumber: Hasil Implementasi (2026)
+[794] Gambar 4.40 menunjukkan tampilan halaman laporan yang memungkinkan Tim Marketing memfilter data berdasarkan rentang tanggal dan status prediksi, kemudian mengekspor laporan dalam format PDF atau Excel.
+[795] Evaluasi Prototype
+[796] C.  Pembahasan
+[797] 1.  Pembahasan Hasil Analisis Metode
+[798] Penerapan algoritma Naive Bayes dalam penelitian ini bertujuan untuk memberikan rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru Universitas Tazkia. Metode ini bekerja dengan memperkirakan kemungkinan status retensi calon mahasiswa berdasarkan pengalaman dari data historis pendaftaran sebelumnya, yaitu dengan cara menghitung nilai probabilitas dari setiap atribut pada masing-masing kelas target, kemudian membandingkan nilai probabilitas akhir untuk menentukan hasil prediksi.
+[799] Proses klasifikasi dilakukan menggunakan 5 atribut yang telah diseleksi, yaitu Kategori Jarak Asal (X1), Tingkat Follow Up Internal (X2), Status Test (X3), Kategori Nilai Test (X4), dan Kategori Penghasilan (X5). Berdasarkan hasil seleksi fitur pada Tabel 4.3, atribut seperti Kategori Asal Sekolah, Waktu Pendaftaran, dan Status Uang Pendaftaran tidak diikutsertakan karena tidak memiliki pengaruh signifikan terhadap penentuan kelas target dalam konteks penelitian ini.
+[800] Berdasarkan hasil perhitungan prior probability pada Tabel 4.5, diketahui bahwa proporsi kelas MASUK adalah 0,2344 (241 dari 1028 data training) dan kelas TIDAK MASUK adalah 0,7656 (787 dari 1028 data training). Komposisi ini menunjukkan bahwa terdapat ketidakseimbangan kelas (class imbalance) dimana kelas TIDAK MASUK lebih dominan, namun teknik Laplace Smoothing yang diterapkan membantu menjaga konsistensi model.
+[801] Teknik Laplace Smoothing diterapkan pada perhitungan conditional probability untuk menghindari nilai probabilitas nol pada nilai atribut yang tidak muncul di data training. Penerapan teknik ini terbukti efektif dalam menjaga konsistensi perhitungan posterior probability pada seluruh 257 data testing, sehingga setiap data testing dapat diklasifikasikan dengan hasil yang valid.
+[802] 2.  Pembahasan Uji Hasil
+[803] Pada tahap ini dilakukan evaluasi kinerja model menggunakan Confusion Matrix. Evaluasi dilakukan dengan membandingkan hasil prediksi algoritma Naive Bayes terhadap status aktual pada 257 data testing. Hasil perbandingan tersebut dapat dilihat pada Tabel 4.13 berikut.
+[804] Tabel 4.13 Confusion Matrix
+[805] Sumber: Hasil Pengolahan Data (2025)
+[807] Berdasarkan Tabel 4.13, maka berikut adalah hasil evaluasi model yang dihitung menggunakan rumus di bawah ini.
+[812] Tabel 4.14 Hasil Evaluasi Model Naive Bayes
+[813] Sumber: Hasil Pengolahan Data (2025)
+[815] Berdasarkan Tabel 4.13 dan Tabel 4.14, dari 257 data testing yang diuji, model Naive Bayes berhasil mengklasifikasikan 241 data dengan benar dan 16 data secara keliru. Rinciannya adalah sebagai berikut: 60 data aktual MASUK diprediksi benar sebagai MASUK (True Positive), 181 data aktual TIDAK MASUK diprediksi benar sebagai TIDAK MASUK (True Negative), 16 data aktual TIDAK MASUK diprediksi keliru sebagai MASUK (False Positive), dan 0 data aktual MASUK diprediksi keliru sebagai TIDAK MASUK (False Negative).
+[816] Nilai recall sebesar 100.0% menunjukkan bahwa model sangat sensitif dalam mendeteksi calon mahasiswa yang berpotensi MASUK. Dalam konteks sistem rekomendasi tindak lanjut ini, nilai recall yang tinggi sangat diutamakan karena konsekuensi melewatkan calon mahasiswa yang berpotensi mendaftar (False Negative) lebih besar dampaknya dibandingkan dengan memfollow up calon mahasiswa yang ternyata tidak mendaftar (False Positive).
+[817] Nilai presisi sebesar 78.95% menunjukkan bahwa dari seluruh prediksi MASUK yang dihasilkan model, sebagian besar benar-benar berstatus MASUK. Terdapat 16 kasus False Positive yaitu calon mahasiswa yang aktualnya TIDAK MASUK namun diprediksi sebagai MASUK. Kasus ini umumnya terjadi pada calon mahasiswa dengan pola atribut yang menyerupai kelas MASUK, namun faktor lain di luar atribut penelitian menjadi penentu akhirnya. Adapun kasus False Positive ini masih dapat ditoleransi karena dampaknya hanya berupa effort follow up tambahan.
+[818] Secara keseluruhan, nilai akurasi model sebesar 93.77% dengan F1-Score 88.24% menunjukkan bahwa algoritma Naive Bayes dapat diterapkan dengan baik dalam memberikan rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru Universitas Tazkia menggunakan dataset sebanyak 1.285 record. Hasil ini juga sejalan dengan karakteristik algoritma Naive Bayes yang efektif dan efisien untuk klasifikasi dengan atribut-atribut bertipe kategoris seperti yang digunakan dalam penelitian ini.
+[819] 3.  Analisis Kontribusi Atribut
+[820] Berdasarkan hasil perhitungan conditional probability pada Tabel 4.6 hingga Tabel 4.10, dapat dianalisis kontribusi masing-masing atribut dalam membedakan kelas MASUK dan TIDAK MASUK sebagai berikut:
+[821] a)  Atribut Status Test (X3) merupakan atribut yang paling diskriminatif. Calon mahasiswa dengan status Sudah Tes memiliki probabilitas MASUK sebesar 0,9959 dibandingkan hanya 0,0976 untuk kelas TIDAK MASUK. Sebaliknya, calon mahasiswa yang Belum Tes memiliki probabilitas TIDAK MASUK sebesar 0,9024 dibandingkan 0,0041 untuk kelas MASUK. Atribut ini menjadi pembeda terkuat karena mengikuti tes merupakan langkah konkret yang mencerminkan keseriusan calon mahasiswa.
+[822] b)  Atribut Kategori Nilai Test (X4) turut memberikan kontribusi signifikan. Nilai Tinggi memberikan probabilitas MASUK sebesar 0,9385 berbanding 0,0861 untuk TIDAK MASUK. Namun atribut ini juga berpotensi menyebabkan False Positive, karena beberapa calon mahasiswa dengan nilai tinggi ternyata tidak melanjutkan pendaftaran karena faktor lain yang tidak tercakup dalam atribut penelitian ini.
+[823] c)  Atribut Tingkat Follow Up Internal (X2) menunjukkan bahwa sebagian besar calon mahasiswa yang masuk kategori MASUK berstatus Belum Dihubungi (P=0,6364), artinya mereka mendaftar secara mandiri tanpa perlu intensitas follow up tinggi. Sedangkan calon mahasiswa dengan status Follow Up Intensif justru lebih banyak berakhir sebagai TIDAK MASUK, yang mengindikasikan bahwa intensitas kontak tinggi belum tentu menjamin konversi pendaftaran.
+[824] d)  Atribut Kategori Jarak Asal (X1) dan Kategori Penghasilan (X5) memberikan kontribusi yang lebih kecil dibandingkan atribut lainnya. Meskipun demikian, kombinasi kedua atribut ini tetap berperan dalam membedakan pola data pada kasus-kasus tertentu, khususnya ketika nilai atribut lain tidak cukup diskriminatif untuk menentukan kelas.
+[825] 4.  Implikasi Praktis
+[826] Hasil penelitian ini memiliki implikasi praktis yang signifikan bagi Universitas Tazkia, khususnya bagi tim marketing yang menangani follow up konfirmasi pendaftaran mahasiswa baru. Dengan menerapkan sistem rekomendasi berbasis Naive Bayes ini, tim marketing dapat memprioritaskan tindak lanjut kepada calon mahasiswa yang memiliki probabilitas tinggi untuk MASUK, sehingga alokasi waktu dan sumber daya menjadi lebih efisien dan tepat sasaran.
+[827] Secara praktis, sistem ini dapat membantu tim marketing dalam mengidentifikasi calon mahasiswa berprioritas tinggi berdasarkan kombinasi atribut seperti Status Test sudah mengikuti ujian, nilai test tinggi, dan jarak domisili yang tidak terlalu jauh. Calon mahasiswa dengan profil tersebut terbukti memiliki probabilitas MASUK yang lebih tinggi berdasarkan data historis yang dianalisis dalam penelitian ini.
+[828] Selain itu, pola yang ditemukan dari kasus False Positive memberikan informasi berharga bahwa calon mahasiswa yang sudah mengikuti tes dengan nilai tinggi namun penghasilannya Tidak Diketahui perlu mendapatkan perhatian khusus, misalnya dengan menggali informasi lebih lanjut terkait faktor penghambat pendaftaran seperti kendala biaya atau pertimbangan lain yang belum terekam dalam data.
+[829] 5.  Keterbatasan dan Saran Pengembangan
+[830] Penelitian ini memiliki beberapa keterbatasan yang perlu diperhatikan dalam pengembangan ke depan. Pertama, meskipun dataset yang digunakan berjumlah 1.285 record dengan pembagian 1028 data training dan 257 data testing, terdapat ketidakseimbangan kelas (class imbalance) dimana kelas TIDAK MASUK (787 data) jauh lebih banyak dibandingkan kelas MASUK (241 data). Kondisi ini dapat memengaruhi kemampuan model dalam memprediksi kelas minoritas secara optimal.
+[831] Kedua, asumsi independensi antar atribut yang merupakan dasar dari algoritma Naive Bayes tidak selalu terpenuhi dalam kondisi nyata. Misalnya, atribut Status Test dan Kategori Nilai Test sangat berkorelasi satu sama lain, sehingga asumsi ini berpotensi memengaruhi akurasi prediksi pada kasus-kasus tertentu.
+[832] Untuk pengembangan selanjutnya, disarankan untuk: (1) menggunakan seluruh dataset yang tersedia dalam proses pelatihan model; (2) membandingkan performa Naive Bayes dengan algoritma lain seperti Decision Tree atau Random Forest untuk mendapatkan model terbaik; dan (3) mempertimbangkan penambahan atribut baru yang lebih representatif seperti riwayat interaksi digital calon mahasiswa atau sumber informasi pendaftaran, guna meningkatkan akurasi dan keandalan sistem rekomendasi.

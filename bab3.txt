@@ -1,0 +1,164 @@
+[298] BAB III
+METODOLOGI PENELITIAN
+[299] Metode Penelitian dan Pengembangan
+[300] 	Penelitian ini menggunakan metode Research and Development (R&D) sebagaimana dijelaskan oleh Sugiyono  bahwa penelitian dan pengembangan merupakan metode penelitian yang digunakan untuk menghasilkan produk tertentu dan menguji keefektifan produk tersebut. R&D digunakan apabila penelitian tidak hanya bertujuan menemukan pengetahuan baru, tetapi juga menghasilkan suatu produk yang dapat dimanfaatkan oleh pengguna secara langsung.
+[301] 	Pada penelitian ini, produk yang dikembangkan terdiri dari model klasifikasi berbasis algoritma Naive Bayes dan prototype sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru. Penggunaan metode R&D dipilih karena penelitian tidak hanya menganalisis data historis, tetapi juga mengembangkan suatu produk sistem yang dapat membantu proses pengambilan keputusan pada unit penerimaan mahasiswa baru.
+[304] Gambar 3.1 Langkah-langkah Penelitian dan Pengembangan
+[305] Sumber: Buku Sugiyono
+[306] 	Menurut Sugiyono  menyatakan bahwa penelitian dan pengembangan terdiri dari sepuluh langkah utama yang mencakup proses identifikasi masalah, pembuatan desain, validasi, uji coba, revisi, hingga menghasilkan produk akhir yang layak digunakan. Adapun langkah-langkah tersebut adalah sebagai berikut:
+[307] Potensi dan masalah yaitu tersedianya data historis pendaftaran mahasiswa baru yang dapat dianalisis untuk melihat pola konfirmasi, namun belum dimanfaatkan secara optimal. Permasalahan utamanya adalah tidak adanya dasar analisis berbasis data untuk memprediksi kecenderungan calon mahasiswa melakukan konfirmasi, sehingga proses follow up masih dilakukan secara merata dan kurang efisien.
+[308] Pengumpulan data yaitu mengambil data historis pendaftaran yang memuat jarak domisili, asal sekolah, waktu pendaftaran, intensitas follow up, dan status akhir. Data ini digunakan sebagai dasar perhitungan Naive Bayes.
+[309] Desain produk yaitu merancang alur perhitungan Naive Bayes, struktur data, dan tampilan sederhana prototype agar sistem dapat memproses data serta menampilkan hasil prediksi.
+[310] Validasi desain yaitu memastikan rancangan model dan prototype sesuai kebutuhan melalui penilaian ahli agar tidak ada kesalahan sebelum diimplementasikan.
+[311] Perbaikan desain yaitu melakukan revisi berdasarkan masukan dari ahli untuk menyempurnakan alur model dan tampilan prototype.
+[312] Pembuatan produk awal yaitu mengimplementasikan algoritma Naive Bayes ke dalam prototype berbasis web yang dapat menerima input dan menghasilkan prediksi.
+[313] Uji coba produk yaitu menguji prototype kepada ahli dan pengguna untuk menilai akurasi, kelayakan fitur, dan kemudahan penggunaan.
+[314] Revisi produk yaitu memperbaiki prototype berdasarkan hasil uji coba agar menjadi lebih akurat dan layak digunakan.
+[315] Uji coba pemakaian yaitu menguji prototype menggunakan data baru untuk memastikan hasil prediksi konsisten dalam penggunaan nyata.
+[316] Produk akhir yaitu prototype yang telah direvisi dan diuji hingga dinyatakan layak sebagai sistem rekomendasi tindak lanjut konfirmasi pendaftaran.
+[317] Model/Metode Yang Diusulkan
+[318] Model Teoritis yang digunakan dalam penelitian ini yaitu Naive Bayes
+[319] 	Model teoritis yang digunakan dalam penelitian ini yaitu algoritma Naive Bayes. Permasalahan dalam penelitian ini adalah belum adanya dasar analisis berbasis data untuk memprediksi kecenderungan calon mahasiswa baru dalam melakukan konfirmasi pendaftaran, sehingga proses tindak lanjut oleh tim PMB belum efisien dan tidak memiliki prioritas yang jelas. Untuk mencapai hasil prediksi yang akurat dan dapat digunakan sebagai dasar rekomendasi tindak lanjut, penelitian ini menggunakan metode klasifikasi Naive Bayes karena mampu mengolah data historis dan menghasilkan probabilitas kecenderungan konfirmasi secara terukur. Pada penelitian ini, Naive Bayes digunakan untuk menghitung peluang masing-masing atribut mahasiswa, seperti jarak domisili, asal sekolah, waktu pendaftaran, dan intensitas follow up, terhadap kelas prediksi “Masuk” atau “Tidak Masuk”. Alur kerja metode Naive Bayes dijelaskan dalam bentuk diagram proses perhitungan. Adapun tahapan utama dalam metode Naive Bayes ditunjukkan pada Gambar 3.2 berikut:
+[321] Gambar 3.2 Tahapan Proses Algoritma Naive Bayes
+[322] Sumber : Diolah dari Han dkk
+[323] 	Gambar 3.2 menunjukkan tahapan proses algoritma Naive Bayes yang digunakan dalam melakukan klasifikasi data calon mahasiswa baru. Adapun tahapan dalam algoritma Naive Bayes dijelaskan sebagai berikut:
+[324] Proses penerapan algoritma Naive Bayes dalam penelitian ini dimulai dari Start, yaitu ketika dataset calon mahasiswa dimasukkan ke dalam sistem. Dataset tersebut berisi informasi jarak domisili, asal sekolah, waktu pendaftaran, intensitas tindak lanjut (follow up), serta status historis konfirmasi pendaftaran.
+[325] Tahap berikutnya adalah Pre-processing, yaitu proses membersihkan dan menyiapkan data agar dapat digunakan dalam perhitungan probabilitas. Pada tahap ini dilakukan pemeriksaan data kosong, penyamaan format, serta penyesuaian nilai atribut agar seluruh variabel dapat dihitung secara konsisten.
+[326] Setelah data siap, sistem masuk ke tahap Perhitungan Probabilitas untuk membangun model Naive Bayes. Pada tahap ini dihitung nilai prior probability dan conditional probability dari masing-masing atribut terhadap kelas “Masuk” dan “Tidak Masuk”, sehingga terbentuk model klasifikasi berdasarkan pola historis data.
+[327] Tahap selanjutnya adalah Proses Klasifikasi, yaitu ketika data baru calon mahasiswa dimasukkan untuk dihitung nilai probabilitas dari setiap kelas. Sistem kemudian menentukan kelas prediksi dengan melihat nilai probabilitas tertinggi sebagai hasil keputusan.
+[328] Bagian terakhir adalah Evaluasi Model, yaitu proses mengukur kualitas hasil klasifikasi menggunakan Confusion Matrix. Evaluasi ini bertujuan memastikan bahwa model bekerja dengan baik, akurat, dan siap digunakan pada prototype sistem rekomendasi tindak lanjut konfirmasi pendaftaran.
+[329] Model/Metode Konseptual Sistem Pendukung Keputusan (SPK)
+[330] 	Susunan komponen yang membentuk sistem pendukung keputusan (SPK) pada prototype penelitian dan pengembangan ini dijabarkan sebagai berikut:
+[332] Gambar 3.3 Konsep Sistem Pendukung Keputusan
+[333] 	Gambar 3.3 menunjukkan tiga komponen utama pada sistem pendukung keputusan yang tersusun dalam menentukan rekomendasi tindak lanjut konfirmasi pendaftaran calon mahasiswa baru, antara lain:
+[334] Subsistem data (data subsystem), komponen ini merupakan pengelolaan data yang digunakan dalam proses analisis pada penelitian ini yaitu data pendaftaran calon mahasiswa baru yang diperoleh dari sistem penerimaan mahasiswa baru. Data yang digunakan berupa dataset yang disimpan dalam format file CSV yang berisi informasi terkait calon mahasiswa seperti data pendaftaran, pilihan asal sekolah, wilayah domisili, serta atribut lain yang berkaitan dengan proses konfirmasi pendaftaran.
+[335] Subsistem model (model subsystem), komponen ini merupakan model yang digunakan untuk melakukan proses analisis dan klasifikasi data calon mahasiswa baru. Model ini merepresentasikan permasalahan dalam menentukan rekomendasi tindak lanjut konfirmasi pendaftaran calon mahasiswa ke dalam bentuk perhitungan probabilitas. Pada penelitian ini model yang digunakan adalah algoritma Naive Bayes, yang berfungsi untuk melakukan proses klasifikasi berdasarkan data historis sehingga dapat menghasilkan rekomendasi apakah calon mahasiswa berpotensi melakukan konfirmasi pendaftaran atau tidak.
+[336] Subsistem dialog (user interface subsystem), komponen ini merupakan bagian yang menghubungkan sistem dengan pengguna. Subsistem dialog berfungsi untuk menampilkan antarmuka sistem yang memungkinkan pengguna untuk melakukan interaksi dengan sistem pendukung keputusan. Pada penelitian ini subsistem dialog dirancang dalam bentuk prototype aplikasi berbasis web yang menyediakan fitur untuk mengelola data pendaftaran, menjalankan proses analisis menggunakan metode Naive Bayes, serta menampilkan hasil rekomendasi tindak lanjut konfirmasi pendaftaran calon mahasiswa baru.
+[337] Model Prosedural yang digunakan dalam penelitian ini yaitu Prototype
+[339] Gambar 3.4 Model Pengembangan Prototype
+[340] Sumber : Buku Pressman 
+[341] 	Gambar 3.4 menggambarkan tahapan model pengembangan Prototype yang digunakan dalam penelitian ini. Model Prototype bekerja secara iteratif, di mana sistem dibangun secara cepat dalam bentuk rancangan awal (prototype), kemudian diuji oleh pengguna, dan diperbaiki kembali berdasarkan masukan yang diberikan. Proses ini berlangsung berulang hingga sistem memenuhi kebutuhan pengguna. Adapun tahapan dalam model Prototype adalah sebagai berikut:
+[342] Komunikasi
+[343] Tahap awal untuk menggali kebutuhan dari pengguna (tim PMB), termasuk alur kerja tindak lanjut calon mahasiswa, data yang dibutuhkan, dan fitur yang harus tersedia dalam sistem.
+[344] Perencanaan Cepat (Quick Plan)
+[345] Pada tahap ini dilakukan penyusunan rencana awal sistem, meliputi ruang lingkup fitur, kebutuhan data, struktur proses, serta fungsi utama yang akan dikembangkan.
+[346] Perancangan Cepat (Quick Design)
+[347] Tahap ini membuat rancangan antarmuka sederhana dan alur sistem agar pengguna dapat memahami gambaran awal fungsionalitas. Rancangan ini menjadi dasar pembangunan prototype.
+[348] Pembangunan Prototype (Construction of Prototype)
+[349] Pada tahap ini prototype dibangun, termasuk integrasi model klasifikasi Naive Bayes ke dalam sistem sehingga dapat menghasilkan prediksi secara langsung.
+[350] Evaluasi Pengguna (Customer Evaluation)
+[351] Prototype diuji oleh pengguna untuk menilai kelayakan fitur, kesesuaian proses, kemudahan penggunaan, dan akurasi prediksi. Masukan dari tahap ini digunakan untuk memperbaiki prototype pada iterasi berikutnya.
+[352] Siklus prototype ini terus berulang sampai sistem dinyatakan sesuai kebutuhan pengguna dan siap dijadikan produk akhir.
+[353] Prosedur Pengembangan
+[354] 	Prosedur pengembangan pada penelitian ini disesuaikan dengan model penelitian dan pengembangan (R&D) menurut Sugiyono , yang terdiri atas sepuluh tahapan utama. Setiap tahapan dilakukan secara sistematis untuk memastikan proses pengembangan produk berjalan terarah dan menghasilkan sistem rekomendasi yang sesuai kebutuhan. Penjelasan setiap tahap adalah sebagai berikut:
+[355] Tahap pertama, mengidentifikasi potensi dan permasalahan pada proses tindak lanjut calon mahasiswa baru. Permasalahan utama yang ditemukan adalah belum adanya analisis berbasis data untuk memprediksi kecenderungan calon mahasiswa melakukan konfirmasi pendaftaran.
+[356] Tahap kedua, mengumpulkan data historis pendaftaran mahasiswa baru yang meliputi jarak domisili, asal sekolah, waktu pendaftaran, intensitas follow-up, dan status akhir. Data ini digunakan sebagai dasar perhitungan dan analisis menggunakan metode Naive Bayes.
+[357] Tahap ketiga, merancang model klasifikasi dan alur sistem yang akan dikembangkan. Perancangan dilakukan untuk menentukan kebutuhan data, struktur model Naive Bayes, serta rancangan fitur utama pada sistem.
+[358] Tahap keempat, melakukan validasi desain kepada ahli untuk menilai kelayakan rancangan, baik dari sisi model klasifikasi maupun rancangan sistem. Validasi bertujuan memastikan tidak ada kesalahan konsep sebelum implementasi dilakukan.
+[359] Tahap kelima, melakukan perbaikan desain berdasarkan masukan hasil validasi. Perbaikan ini mencakup penyempurnaan alur model, antarmuka sistem, maupun kebutuhan data.
+[360] Tahap keenam, membangun prototype awal sistem berbasis web yang telah terintegrasi dengan algoritma Naive Bayes. Prototype ini menjadi representasi awal solusi yang dapat diuji dan dievaluasi.
+[361] Tahap ketujuh, melakukan uji coba produk kepada pengguna (tim PMB) dan ahli untuk menilai akurasi model, kelayakan fitur, serta kemudahan penggunaan sistem. Uji coba dilakukan untuk memastikan prototype berfungsi sebagaimana mestinya.
+[362] Tahap kedelapan, memperbaiki prototype berdasarkan hasil uji coba. Revisi dilakukan untuk meningkatkan keakuratan prediksi, kenyamanan penggunaan, serta stabilitas sistem.
+[363] Tahap kesembilan, melakukan uji coba pemakaian dalam konteks operasional atau menggunakan data baru guna memastikan sistem mampu memberikan hasil prediksi yang konsisten dan dapat digunakan pada kondisi nyata.
+[364] Tahap terakhir, menetapkan prototype yang telah melewati proses revisi dan pengujian sebagai produk akhir. Produk akhir ini menjadi sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru yang siap digunakan dalam proses operasional.
+[365] Uji Coba Produk/Pengujian
+[366] 	Uji coba produk bertujuan untuk memastikan bahwa prototype sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru yang dikembangkan menggunakan algoritma Naive Bayes telah memenuhi kebutuhan pengguna dan berjalan sesuai rancangan. Tahap uji coba mencakup desain uji, subjek uji, jenis data yang digunakan, serta instrumen untuk mengumpulkan data evaluasi.
+[367] Desain Uji Coba
+[368] Pada penelitian ini, uji coba produk dibagi menjadi dua jenis, yaitu uji coba oleh ahli dan uji coba oleh pengguna.
+[369] Uji Coba Ahli
+[370] 	Uji coba ahli dilakukan oleh dosen atau praktisi yang memiliki kompetensi di bidang sistem informasi dan data mining. Tujuannya adalah untuk menilai kelayakan teknis sistem dari aspek fungsionalitas fitur, ketepatan alur input–proses–output, keakuratan perhitungan probabilitas Naive Bayes, stabilitas dan logika sistem.
+[371] Uji Coba Pengguna
+[372] 	Uji coba pengguna dilakukan kepada pihak yang terlibat dalam proses penerimaan mahasiswa baru, seperti staf marketing atau bagian administrasi PMB. Tujuan uji coba ini adalah untuk menilai:
+[373] kemudahan penggunaan sistem
+[374] kejelasan informasi prediksi
+[375] kegunaan rekomendasi tindak lanjut
+[376] kelancaran alur kerja sistem
+[377] Subjek Uji Coba
+[378] 	Subjek yang terlibat dalam uji coba pada penelitian ini terdiri dari dua kelompok, yaitu ahli sistem dan pengguna. Subjek ahli sistem berjumlah dua orang yang merupakan dosen atau praktisi di bidang sistem informasi. Kedua ahli tersebut memiliki kompetensi pada aspek logika algoritma, data mining, serta pengembangan perangkat lunak, sehingga dinilai mampu memberikan penilaian yang objektif terhadap ketepatan proses perhitungan Naive Bayes maupun kelayakan teknis sistem yang dikembangkan.
+[379] 	Selain itu, uji coba juga melibatkan tiga orang pengguna yang berasal dari tim marketing, staf penerimaan mahasiswa baru, dan bagian administrasi pendaftaran. Ketiga pengguna tersebut merupakan pihak yang berinteraksi langsung dengan proses konfirmasi pendaftaran mahasiswa baru, sehingga pemahaman mereka terhadap kebutuhan operasional sangat penting dalam menilai kemudahan penggunaan sistem, kejelasan informasi prediksi, serta relevansi rekomendasi tindak lanjut yang diberikan oleh sistem.
+[380] Jenis Data
+[381] Sumber Data
+[382] Data yang digunakan dalam uji coba merupakan kombinasi dari:
+[383] data sekunder, berupa riwayat pendaftaran mahasiswa baru pada tahun-tahun sebelumnya dan data yang dimasukkan pengguna saat melakukan prediksi pada sistem.
+[384] Variabel Penelitian
+[385] Variabel penelitian yang digunakan dalam model Naive Bayes merupakan variabel-variabel yang dianggap berpengaruh terhadap kecenderungan calon mahasiswa dalam melakukan konfirmasi pendaftaran. Variabel ini meliputi informasi mengenai jarak domisili, asal sekolah, waktu pendaftaran, serta tingkat tindak lanjut yang diberikan oleh pihak kampus. Selain itu, variabel target yang digunakan adalah status akhir calon mahasiswa, yaitu masuk atau tidak masuk. Seluruh variabel tersebut menjadi dasar dalam proses perhitungan probabilitas pada algoritma Naive Bayes untuk menghasilkan prediksi yang akurat.
+[386] 			Table 3.1 Variable Penelitian
+[388] Instrumen Pengumpulan Data
+[389] 	Instrumen pengumpulan data merupakan alat yang digunakan untuk memperoleh informasi yang diperlukan dalam proses penelitian, baik pada tahap analisis kebutuhan maupun tahap uji coba produk. Pada penelitian ini, beberapa instrumen digunakan untuk mendukung proses pengembangan sistem rekomendasi tindak lanjut konfirmasi pendaftaran mahasiswa baru berbasis algoritma Naive Bayes. Instrumen yang digunakan meliputi wawancara, observasi, dokumentasi, serta kuesioner untuk ahli sistem dan pengguna. Seluruh instrumen ini disusun agar data yang diperoleh akurat, relevan, dan dapat mendukung perumusan masalah serta evaluasi sistem.
+[390] Instrumen Kuesioner Ahli Sistem
+[391] 	Pengujian kualitas perangkat lunak dalam penelitian ini dilakukan untuk mengevaluasi kelayakan teknis dari prototype sistem yang telah dibangun. Instrumen pengujian disusun berdasarkan standar internasional ISO 9126. Menurut Pressman, ISO 9126 merupakan standar kualitas yang mengidentifikasi atribut kunci untuk perangkat lunak komputer guna memastikan sistem memenuhi kebutuhan fungsionalitas dan kualitas yang diharapkan oleh pengguna.
+[392] 	Evaluasi ini dilakukan oleh ahli sistem (Expert Judgment) dengan menilai enam karakteristik kualitas utama sebagai berikut:
+[393] Fungsionalitas (Functionality): Menilai kemampuan sistem dalam menyediakan fungsi yang tepat untuk melakukan klasifikasi potensi daftar ulang menggunakan algoritma Naive Bayes.
+[394] Keandalan (Reliability): Menilai kemampuan sistem dalam mempertahankan tingkat kinerja dan konsistensi hasil prediksi saat dioperasikan dalam kondisi tertentu.
+[395] Kebergunaan (Usability): Menilai kemudahan antarmuka sistem untuk dipahami, dipelajari, dan dioperasikan oleh pengguna.
+[396] Efisiensi (Efficiency): Menilai hubungan antara tingkat kinerja sistem dengan jumlah sumber daya yang digunakan, terutama kecepatan waktu respon saat proses perhitungan data.
+[397] Pemeliharaan (Maintainability): Menilai kemudahan struktur kode program (Laravel) untuk dilakukan modifikasi, perbaikan, atau pengembangan lebih lanjut.
+[398] Portabilitas (Portability): Menilai kemampuan perangkat lunak untuk dipindahkan atau diakses dari satu lingkungan ke lingkungan operasional lainnya, seperti pengujian pada berbagai jenis web browser.
+[399] 	Berikut adalah tabel - tabel pengujian pada sub karakteristik dari ISO 9126 yang akan di gunakan pada penelitian ini:
+[400] Table 3.2 Pengujian ISO 9126
+[401] Sumber : Diolah dari Pressman 
+[402] 	Tabel 3.2 adalah instrumen pengujian yang digunakan untuk mengevaluasi kualitas perangkat lunak berdasarkan standar ISO 9126. Melalui instrumen ini, peneliti dapat mengidentifikasi seberapa baik sistem memenuhi setiap karakteristik kualitas, seperti fungsionalitas, keandalan, dan efisiensi. Hasil dari pertanyaan terbuka juga akan dikumpulkan sebagai masukan kualitatif untuk memperkuat evaluasi dan perbaikan produk.
+[403] Instrumen Kuesioner Pengguna
+[404] 	Instrumen kuesioner yang digunakan dalam penelitian ini adalah System Usability Scale (SUS). Menurut Brooke , SUS merupakan metode evaluasi usability yang sederhana namun sangat efektif untuk menilai tingkat kemudahan penggunaan suatu sistem secara cepat. Instrumen ini mudah dipahami oleh responden serta mampu memberikan gambaran menyeluruh mengenai pengalaman pengguna terhadap sistem.
+[405] 	Selain itu, Sauro dan Lewis  menjelaskan bahwa SUS telah menjadi standar industri yang memiliki tingkat keandalan (reliability) yang tinggi dalam mengukur persepsi kegunaan (perceived usability) suatu perangkat lunak.
+[406] 	Instrumen SUS terdiri dari 10 pernyataan yang mencerminkan pengalaman pengguna, meliputi aspek kemudahan belajar, keterpahaman sistem, tingkat kerumitan, integrasi fungsi, serta kepercayaan diri pengguna saat menggunakan sistem. Setiap pernyataan dinilai menggunakan skala Likert 1 sampai 5. Kombinasi pernyataan positif (nomor ganjil) dan negatif (nomor genap) bertujuan untuk menghasilkan skor usability yang lebih seimbang dan representatif.
+[407] Table 3.3 Kuesioner Pengguna
+[408] Sumber : Diolah dari Sauro & Lewis 
+[409] Perhitungan nilai SUS dilakukan dengan mengonversi setiap jawaban responden menjadi skor kontribusi dengan ketentuan sebagai berikut:
+[410] Untuk pertanyaan bernomor ganjil (1, 3, 5, 7, 9), skor kontribusi diperoleh dengan cara skor jawaban – 1.
+[411] Untuk pertanyaan bernomor genap (2, 4, 6, 8, 10), skor kontribusi diperoleh dengan cara 5 – skor jawaban.
+[412] Skor total SUS diperoleh dengan menjumlahkan seluruh skor kontribusi, kemudian dikalikan dengan 2,5 sehingga menghasilkan nilai akhir dalam rentang 0–100.
+[413] Secara matematis, perhitungan SUS dapat dirumuskan sebagai berikut:
+[415] Nilai SUS yang diperoleh digunakan untuk menentukan tingkat kelayakan sistem. Berdasarkan riset empiris Sauro dan Lewis (2012) terhadap ribuan data pengujian, nilai rata-rata (mean) skor SUS adalah 68.
+[416] Berikut adalah kategori penilaian berdasarkan peringkat huruf (grade) dan kategori sifat (adjective rating):
+[417] Table 3.4 Penilaian System Usability Scale (SUS)
+[418] Sumber : Diolah dari Sauro & Lewis
+[419] Apabila hasil pengujian memperoleh skor 67,5, maka nilai tersebut berada sedikit di bawah rata-rata industri (68) dan termasuk dalam peringkat D. Secara kategoris, skor ini diklasifikasikan sebagai Marginal High, yang menunjukkan bahwa sistem berada pada ambang batas menuju kategori layak (acceptable), namun masih memerlukan perbaikan untuk meningkatkan pengalaman dan kepuasan pengguna.
+[420] Skala Likert
+[421] 	Menurut Sugiyono , skala Likert digunakan untuk mengukur sikap, pendapat, dan persepsi seseorang atau kelompok terhadap suatu fenomena sosial. Skala ini terdiri dari sejumlah pernyataan di mana responden diminta untuk menunjukkan tingkat persetujuannya. Setiap pilihan jawaban diberikan skor sehingga data yang diperoleh dapat dianalisis secara kuantitatif.
+[422] Dalam penelitian ini, skala Likert yang digunakan terdiri dari lima kategori penilaian, yaitu:
+[423] STS (Sangat Tidak Setuju)
+[424] Responden sangat tidak setuju atau menolak pernyataan yang diberikan.
+[425] TS (Tidak Setuju)
+[426] Responden merasa pernyataan tidak sesuai dengan kondisi yang dirasakan.
+[427] N (Netral)
+[428] Responden tidak condong setuju atau tidak setuju terhadap pernyataan.
+[429] S (Setuju)
+[430] Responden menilai bahwa pernyataan sesuai dengan pengalaman atau kondisi yang dirasakan.
+[431] SS (Sangat Setuju)
+[432] Responden sepenuhnya setuju dan merasa bahwa pernyataan sangat sesuai.
+[433] 	Penggunaan skala Likert memungkinkan peneliti untuk mengonversi jawaban menjadi skor numerik sebagai dasar analisis kuantitatif. Skor tersebut dapat digunakan untuk menghitung nilai rata-rata, persentase, dan tingkat kelayakan sistem sehingga menghasilkan evaluasi yang lebih objektif dan terukur.
+[434] 	Dengan demikian, skala penelitian ini berperan penting dalam menilai tingkat kepuasan, kemudahan penggunaan, dan kelayakan teknis sistem rekomendasi tindak lanjut calon mahasiswa baru yang dikembangkan menggunakan algoritma Naive Bayes.
+[435] Teknik Analisis Data
+[436] Uji Produk
+[437] 	Pada uji produk, analisis data dilakukan menggunakan persentase kelayakan. Teknik ini digunakan untuk mengetahui tingkat kelayakan sistem berdasarkan hasil penilaian ahli sistem dan pengguna melalui kuesioner.
+[438] Rumus persentase kelayakan adalah sebagai berikut:
+[440] Hasil persentase digunakan untuk menentukan kategori kelayakan produk. Penilaian kelayakan mengacu pada kualifikasi yang dikemukakan oleh Arikunto  yang ditampilkan pada tabel berikut:
+[441] Table 3.5 Kategori Kelayakan
+[442] 	Sumber : Suharsimi Arikunto 
+[443] Kategori tersebut digunakan sebagai acuan untuk menilai kelayakan produk berdasarkan hasil validasi ahli dan pengguna.
+[445] Uji Hasil
+[446] 	Pada penelitian ini, evaluasi kinerja model dilakukan menggunakan Confusion Matrix, yaitu metode penilaian yang digunakan untuk membandingkan hasil prediksi sistem dengan kondisi aktual pada data uji. Menurut Han dkk. , Confusion Matrix merupakan alat evaluasi yang dapat menampilkan jumlah prediksi benar dan salah dari suatu model klasifikasi melalui empat komponen utama, yaitu True Positive (TP), True Negative (TN), False Positive (FP), dan False Negative (FN).
+[447] Bentuk model Confusion Matrix dapat dilihat pada tabel berikut:
+[448] Table 3.5 Model Confusion Matrix
+[449] Sumber : Data Mining Concepts and Techniques 
+[450] Rumus untuk menghitung akurasi adalah sebagai berikut:
+[452] Adapun istilah dalam Confusion Matrix adalah:
+[454] TP (True Positives)
+[455] Jumlah data positif yang terdeteksi dengan benar.
+[456] TN (True Negatives)
+[457] Jumlah data negatif yang terdeteksi dengan benar.
+[458] FP (False Positives)
+[459] Jumlah data negatif namun terdeteksi sebagai data positif.
+[460] FN (False Negatives)
+[461] Jumlah data positif namun terdeteksi sebagai data negatif.
+[462] Hasil perhitungan akurasi ini digunakan untuk menilai seberapa tepat sistem dalam melakukan prediksi dan menentukan kelayakan algoritma Naive Bayes digunakan pada penelitian ini.
+[465] Penjadwalan	
+[466] 		Penjadwalan penelitian merupakan rencana kegiatan yang dilakukan selama proses penelitian berlangsung. Penjadwalan ini bertujuan untuk mengatur tahapan kegiatan penelitian agar dapat dilaksanakan secara sistematis dan terarah mulai dari tahap pengumpulan data hingga penyusunan laporan penelitian.
+[467] Berikut merupakan jadwal kegiatan penelitian yang direncanakan dalam penelitian ini.
+[468] Table 10 Table Penjadwalan
+[470] Sistematika Penulisan
+[471] 	Sistematika penulisan dalam penelitian ini disusun untuk memberikan gambaran secara umum mengenai isi dari setiap bab dalam laporan skripsi. Adapun sistematika penulisan penelitian ini adalah sebagai berikut:
+[472] BAB I PENDAHULUAN : Bab ini berisi latar belakang penelitian, permasalahan yang terjadi, rumusan masalah, maksud dan tujuan penelitian, spesifikasi produk yang diharapkan, signifikansi penelitian, asumsi dan keterbatasan penelitian, serta definisi istilah dan definisi operasional.
+[473] BAB II KERANGKA TEORITIS : Bab ini berisi landasan teori yang berkaitan dengan penelitian, tinjauan studi atau penelitian terdahulu yang relevan, kerangka berpikir penelitian, serta hipotesis penelitian.
+[474] BAB III METODOLOGI PENELITIAN DAN PENGEMBANGAN : Bab ini menjelaskan metode penelitian yang digunakan, model atau metode yang diusulkan, prosedur pengembangan sistem, uji coba produk, teknik pengumpulan data, teknik analisis data, penjadwalan penelitian, serta sistematika penulisan

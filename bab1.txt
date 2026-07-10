@@ -1,0 +1,98 @@
+[69] BAB I
+PENDAHULUAN
+[70] Latar Belakang
+[71] Perkembangan teknologi informasi telah membawa perubahan signifikan dalam berbagai sektor, termasuk dalam bidang pendidikan tinggi. Kemajuan sistem informasi memungkinkan institusi untuk menyimpan, mengelola, dan menganalisis data dalam jumlah besar secara lebih efisien. Data yang sebelumnya hanya berfungsi sebagai arsip administratif kini dapat dimanfaatkan sebagai sumber informasi strategis dalam mendukung pengambilan keputusan yang lebih akurat dan berbasis bukti.
+[72] Dalam konteks pendidikan tinggi, proses penerimaan mahasiswa baru merupakan salah satu aktivitas strategis yang menentukan keberlangsungan institusi. Jumlah mahasiswa baru yang berhasil direkrut setiap tahun akan memengaruhi perencanaan akademik, pengelolaan sumber daya, serta strategi pemasaran perguruan tinggi. Kuantitas mahasiswa yang diterima tidak hanya berdampak pada jumlah kelas yang dibuka, distribusi dosen pengampu, serta penggunaan fasilitas kampus, tetapi juga berpengaruh terhadap aspek keuangan dan keberlanjutan operasional institusi.
+[73] Selain itu, keberhasilan penerimaan mahasiswa baru juga menjadi indikator daya saing suatu perguruan tinggi di tengah persaingan yang semakin ketat. Perguruan tinggi dituntut untuk mampu menarik minat calon mahasiswa sekaligus memastikan bahwa calon mahasiswa yang telah mendaftar benar-benar melanjutkan hingga tahap konfirmasi pendaftaran. Dengan demikian, proses penerimaan mahasiswa baru tidak hanya berorientasi pada jumlah pendaftar, tetapi juga pada efektivitas pengelolaan konfirmasi pendaftaran sebagai tahap akhir sebelum mahasiswa resmi terdaftar.
+[74] Secara nasional, aktivitas penerimaan mahasiswa baru di Indonesia berlangsung dalam skala yang sangat besar. Berdasarkan data Pangkalan Data Pendidikan Tinggi (PDDikti) tahun 2020–2024, jumlah mahasiswa baru nasional berada pada kisaran dua juta orang setiap tahun.
+[75] Pada tahun 2022 jumlah mahasiswa baru mencapai 2.426.631 orang, kemudian menurun menjadi 1.862.631 orang pada tahun 2023, dan kembali meningkat menjadi 2.142.153 orang pada tahun 2024. Dinamika ini menunjukkan bahwa proses penerimaan mahasiswa baru bersifat fluktuatif dan dipengaruhi oleh berbagai faktor, seperti kondisi ekonomi, perubahan minat calon mahasiswa, perkembangan teknologi pendidikan, serta persaingan antar perguruan tinggi. Perubahan jumlah mahasiswa baru tersebut juga menunjukkan bahwa perguruan tinggi perlu memiliki strategi yang tepat dalam mengelola proses penerimaan mahasiswa baru agar mampu mempertahankan dan meningkatkan jumlah mahasiswa yang melakukan konfirmasi pendaftaran setiap tahunnya.
+[76] Grafik pada Gambar 1.1 memperlihatkan adanya perubahan signifikan dari tahun ke tahun. Penurunan pada tahun 2023 dan kenaikan kembali pada tahun 2024 menunjukkan bahwa aktivitas penerimaan mahasiswa baru bersifat dinamis dan kompetitif.
+[79] Gambar 1.1 Tren Jumlah Mahasiswa Baru Nasional (2020-2024)
+[80] Sumber: PDDikti, 2020–2024.
+[81] Di sisi lain, jumlah lembaga pendidikan tinggi nasional dalam periode yang sama cenderung mengalami penurunan secara bertahap, yang menunjukkan adanya perubahan dalam dinamika penyelenggaraan pendidikan tinggi di Indonesia. Kondisi ini juga mengindikasikan adanya penyesuaian dalam pengelolaan dan kualitas institusi pendidikan tinggi.
+[84] Gambar 1.2 Tren Jumlah Lembaga Pendidikan Tinggin Nasiona 2020-2024
+[85] Sumber: PDDikti, 2020–2024.
+[87] Grafik pada Gambar 1.2 menunjukkan bahwa meskipun jumlah lembaga menurun, jumlah mahasiswa baru tetap berada pada angka jutaan setiap tahun. Kondisi ini mengindikasikan bahwa persaingan antar perguruan tinggi dalam menarik dan mempertahankan calon mahasiswa tetap tinggi.
+[88] Dalam proses penerimaan mahasiswa baru, tahap konfirmasi pendaftaran atau daftar ulang menjadi indikator penting yang menentukan jumlah mahasiswa aktif. Tidak seluruh calon mahasiswa yang mendaftar akan melanjutkan hingga tahap konfirmasi, sehingga proses ini memerlukan pengelolaan yang efektif dan terarah.
+[89] Namun demikian, proses analisis konfirmasi pendaftaran pada umumnya masih dilakukan secara deskriptif, yaitu hanya dengan membandingkan jumlah pendaftar dan jumlah daftar ulang pada periode sebelumnya. Pendekatan tersebut belum sepenuhnya memanfaatkan pola historis data untuk mengidentifikasi kemungkinan konfirmasi pendaftaran secara sistematis dan memberikan dasar rekomendasi tindak lanjut yang objektif.
+[90] Ketiadaan pendekatan analitis berbasis data berpotensi menyebabkan tindak lanjut terhadap calon mahasiswa dilakukan tanpa prioritas yang jelas. Padahal, setiap calon mahasiswa memiliki karakteristik yang berbeda, seperti kategori jarak asal, tingkat follow up internal, status test, kategori nilai test, serta kategori penghasilan orang tua, yang dapat memengaruhi keputusan dalam melakukan konfirmasi pendaftaran.
+[91] Salah satu pendekatan yang dapat digunakan untuk menganalisis pola tersebut adalah data mining. Menurut Tuban  data mining merupakan proses yang memanfaatkan teknik statistik, matematika, kecerdasan buatan, dan pembelajaran mesin untuk mengekstraksi informasi atau pola yang bermanfaat dari kumpulan data berukuran besar. Melalui pendekatan ini, pola historis dalam data dapat digunakan untuk mendukung pengambilan keputusan yang lebih objektif.
+[92] Dalam data mining, teknik klasifikasi digunakan untuk membangun model yang mampu mengelompokkan data ke dalam kategori tertentu berdasarkan pola historis. Algoritma Naive Bayes merupakan salah satu metode klasifikasi yang didasarkan pada Teorema Bayes dan digunakan untuk menghitung probabilitas suatu kelas berdasarkan data yang tersedia. Metode ini menggunakan pendekatan probabilistik untuk memproyeksikan kemungkinan kejadian di masa mendatang berdasarkan data sebelumnya.
+[93] Naive Bayes dipilih dalam penelitian ini karena memiliki struktur yang sederhana, efisien dalam proses komputasi, serta mampu menghasilkan nilai probabilitas yang jelas sebagai dasar pengambilan keputusan. Dalam konteks konfirmasi pendaftaran, hasil klasifikasi dapat digunakan untuk mengidentifikasi calon mahasiswa yang berpotensi tidak melakukan konfirmasi dan menjadi dasar dalam menentukan rekomendasi tindak lanjut yang sesuai dengan karakteristik masing-masing calon mahasiswa.
+[94] Dengan demikian, penelitian ini bertujuan untuk menerapkan algoritma Naive Bayes dalam menganalisis data historis pendaftaran guna mengidentifikasi pola yang berhubungan dengan keputusan konfirmasi pendaftaran mahasiswa baru. Hasil penelitian ini diharapkan dapat memberikan informasi yang lebih terstruktur dan berbasis data mengenai kecenderungan calon mahasiswa dalam melakukan atau tidak melakukan konfirmasi pendaftaran. Oleh karena itu, penelitian ini dilakukan dengan judul “PENERAPAN ALGORITMA NAIVE BAYES UNTUK REKOMENDASI TINDAK LANJUT KONFIRMASI PENDAFTARAN MAHASISWA BARU”
+[95] Permasalahan
+[96] Proses konfirmasi pendaftaran atau daftar ulang merupakan tahap penting dalam menentukan jumlah mahasiswa baru yang benar-benar melanjutkan studi di perguruan tinggi. Meskipun jumlah pendaftar dapat dicatat setiap tahun, jumlah mahasiswa yang melakukan daftar ulang tidak selalu sebanding dengan jumlah pendaftar. Ketidaksesuaian ini menyebabkan ketidakpastian dalam perencanaan akademik, kapasitas kelas, dan kebutuhan sumber daya pada tahun akademik berikutnya.
+[97] Kondisi tersebut terlihat dari data historis pendaftaran mahasiswa baru dalam lima tahun terakhir yang menunjukkan adanya fluktuasi signifikan antara jumlah pendaftar dan jumlah mahasiswa yang melakukan daftar ulang. Pola perubahan ini tidak konsisten dari tahun ke tahun dan sulit diprediksi apabila hanya menggunakan analisis deskriptif sederhana.
+[98] Table 1.1 Data Pendaftaran Empat Tahun Terakhir
+[99] Sumber: Data Internal Pendaftaran Universitas X
+[100] Data pada Tabel 1.1 menunjukkan bahwa rasio daftar ulang tidak pernah mencapai angka 50% dalam lima tahun terakhir. Artinya, jumlah mahasiswa yang akhirnya melakukan konfirmasi pendaftaran selalu lebih sedikit dibanding jumlah total pendaftar. Hal ini menandakan bahwa tingkat konversi pendaftar-ke-daftar-ulang masih rendah dan tidak stabil, sehingga dibutuhkan analisis yang lebih mendalam untuk memahami faktor-faktor yang memengaruhi keputusan calon mahasiswa.
+[101] Selain data agregat tahunan, terdapat pula data individual calon mahasiswa yang memuat atribut-atribut penting yang berpotensi memengaruhi keputusan konfirmasi. Atribut tersebut dapat berupa jarak tempat tinggal, asal sekolah, waktu pendaftaran, serta tingkat tindak lanjut awal yang diterima calon mahasiswa. Informasi ini menjadi penting karena keputusan konfirmasi pendaftaran tidak hanya dipengaruhi oleh satu faktor tunggal, melainkan kombinasi berbagai karakteristik individu.
+[102] Table 1.2 Data Histori Mahasiswa Baru
+[103] Sumber: Data Internal Pendaftaran Universitas X
+[104] Tabel 1.2 menunjukkan bahwa variabel-variabel yang digunakan, seperti kategori jarak asal, tingkat follow up internal, status test, kategori nilai test, serta kategori penghasilan orang tua, memiliki potensi dalam memengaruhi keputusan calon mahasiswa untuk melakukan konfirmasi pendaftaran.
+[105] Kategori jarak asal dapat mencerminkan faktor aksesibilitas dan biaya hidup, kategori penghasilan berkaitan dengan kemampuan finansial, sementara status test dan nilai test menggambarkan tingkat kesiapan serta kualitas akademik calon mahasiswa. Di sisi lain, tingkat follow up internal merepresentasikan intensitas pendekatan yang dilakukan oleh pihak kampus kepada calon mahasiswa.
+[106] Berdasarkan sampel data yang dianalisis, ditemukan adanya kondisi yang menarik, di mana terdapat calon mahasiswa yang berstatus masuk meskipun hanya menerima kontak awal, serta terdapat calon mahasiswa yang telah mendapatkan follow up intensif namun tetap berstatus tidak masuk.
+[107] Hal ini menunjukkan bahwa hubungan antar variabel tidak bersifat sederhana atau linear, melainkan dipengaruhi oleh kombinasi beberapa faktor sekaligus. Dengan kata lain, satu variabel saja tidak cukup untuk menentukan keputusan akhir calon mahasiswa.
+[108] Meskipun data historis yang tersedia telah mencakup berbagai aspek penting, data tersebut belum dimanfaatkan secara optimal untuk mengidentifikasi pola keterkaitan antar variabel terhadap status akhir calon mahasiswa.
+[109] Oleh karena itu, diperlukan suatu metode analisis yang mampu mengolah data tersebut secara sistematis dan menghasilkan model klasifikasi, sehingga dapat membantu dalam memprediksi kemungkinan calon mahasiswa melakukan konfirmasi pendaftaran berdasarkan karakteristik yang dimilikinya.
+[110] Identifikasi Masalah
+[111] Berdasarkan uraian permasalahan di atas, dapat diidentifikasi beberapa masalah sebagai berikut:
+[112] Kesulitan dalam mengidentifikasi calon mahasiswa yang memiliki kecenderungan untuk melakukan atau tidak melakukan konfirmasi pendaftaran.
+[113] Belum efisien dari segi waktu karena volume data yang besar belum didukung oleh metode analisis berbasis data.
+[114] Problem Statement
+[115] Proses penentuan prioritas tindak lanjut terhadap calon mahasiswa masih menghadapi kesulitan karena belum adanya dasar analisis yang mampu menunjukkan kecenderungan konfirmasi pendaftaran. Selain itu, volume data yang besar membuat proses penelaahan menjadi kurang efisien apabila tidak didukung oleh metode analisis berbasis data yang terstruktur. Kondisi ini menimbulkan kebutuhan untuk menerapkan dan menguji suatu metode klasifikasi yang mampu mengolah data historis pendaftaran secara lebih sistematis.
+[116] Research Questions
+[117] Berdasarkan problem statement di atas, pertanyaan penelitian yang dirumuskan adalah sebagai berikut:
+[118] Apa saja kesulitan dalam mengidentifikasi kecenderungan calon mahasiswa untuk melakukan atau tidak melakukan konfirmasi pendaftaran berdasarkan data historis pendaftaran?
+[119] Sejauh mana pengaruh waktu pendaftaran terhadap kecenderungan calon mahasiswa dalam melakukan atau tidak melakukan konfirmasi pendaftaran?
+[120] Maksud dan Tujuan Penelitian
+[121] Maksud
+[122] Maksud dari penelitian ini adalah untuk menganalisis data historis pendaftaran mahasiswa baru guna memahami kecenderungan calon mahasiswa dalam melakukan atau tidak melakukan konfirmasi pendaftaran, serta menguji penerapan metode klasifikasi berbasis data dalam proses tersebut.
+[123] Tujuan
+[124] Adapun tujuan dari penelitian ini yaitu sebagai berikut:
+[125] Memudahkan proses identifikasi karakteristik calon mahasiswa yang berkaitan dengan keputusan konfirmasi pendaftaran berdasarkan data historis yang tersedia.
+[126] Menganalisis pengaruh waktu pendaftaran terhadap kemungkinan calon mahasiswa melakukan atau tidak melakukan konfirmasi pendaftaran menggunakan metode Naive Bayes.
+[127] Mengembangkan prototype sistem rekomendasi tindak lanjut konfirmasi pendaftaran yang dapat membantu proses pengambilan keputusan secara lebih cepat dan terarah.
+[128] Spesifikasi Produk yang diharapkan
+[129] Melalui penelitian ini diharapkan tersusunnya prototype yang dapat membantu proses pemetaan kecenderungan konfirmasi pendaftaran mahasiswa baru dengan spesifikasi sebagai berikut:
+[130] Prototype yang mampu menampilkan hasil prediksi kecenderungan calon mahasiswa untuk melakukan atau tidak melakukan konfirmasi pendaftaran berdasarkan model klasifikasi Naive Bayes.
+[131] Prototype dirancang berbasis web sehingga dapat diakses dengan mudah melalui berbagai perangkat dan lokasi tanpa memerlukan instalasi khusus.
+[132] Prototype dapat berjalan pada berbagai sistem operasi, seperti Windows, Linux, atau lainnya, selama tersedia browser yang kompatibel.
+[133] Prototype mampu menerima input data calon mahasiswa, memprosesnya menggunakan model Naive Bayes, serta menampilkan keluaran berupa kelas prediksi (masuk atau tidak masuk) beserta nilai probabilitasnya.
+[134] Signifikansi Penelitian
+[135] Penelitian ini dilakukan untuk mengembangkan penerapan metode klasifikasi berbasis algoritma Naive Bayes dalam memetakan kecenderungan calon mahasiswa untuk melakukan atau tidak melakukan konfirmasi pendaftaran. Adapun manfaat yang diharapkan dari penelitian ini adalah sebagai berikut:
+[136] Dalam Segi Teoritis : Memberikan sumbangan pengetahuan mengenai penerapan dan evaluasi metode Naive Bayes dalam analisis data pendaftaran mahasiswa baru, khususnya pada konteks prediksi kecenderungan konfirmasi pendaftaran.
+[137] Dalam Segi Praktis : Memberikan gambaran yang lebih terstruktur mengenai kecenderungan calon mahasiswa berdasarkan karakteristik datanya sehingga proses tindak lanjut dapat dilakukan secara lebih terarah dan efisien.
+[138] Dalam Segi Kebijakan : Dapat menjadi bahan pertimbangan bagi pihak terkait dalam merumuskan kebijakan atau strategi tindak lanjut berdasarkan pola dan kecenderungan yang ditemukan melalui hasil analisis data.
+[139] Asumsi dan Keterbatasan Pengembangan
+[140] Asumsi
+[141] Dalam penelitian ini terdapat beberapa asumsi yang menjadi dasar keberhasilan penerapan algoritma Naive Bayes dalam memprediksi kecenderungan konfirmasi pendaftaran mahasiswa baru. Adapun asumsi-asumsi tersebut adalah sebagai berikut:
+[142] Data historis pendaftaran dianggap memiliki pola yang cukup stabil, sehingga dapat digunakan untuk mempelajari kecenderungan calon mahasiswa dalam melakukan atau tidak melakukan konfirmasi pendaftaran.
+[143] Setiap atribut yang digunakan dalam penelitian (jarak domisili, asal sekolah, waktu pendaftaran, dan tindak lanjut) diasumsikan memberikan pengaruh terhadap keputusan akhir calon mahasiswa.
+[144] Atribut-atribut dalam dataset dianggap independen secara kondisional, sesuai dengan prinsip dasar algoritma Naive Bayes. Asumsi ini digunakan agar proses perhitungan probabilitas dapat dilakukan secara sederhana namun tetap menghasilkan prediksi yang logis.
+[145] Dataset yang digunakan dianggap representatif untuk menggambarkan karakteristik calon mahasiswa baru pada periode penelitian, sehingga hasil prediksi dapat digunakan sebagai dasar rekomendasi tindak lanjut.
+[146] Proses input data oleh pengguna dianggap dilakukan dengan benar, sehingga model dapat menghitung probabilitas secara akurat tanpa adanya kesalahan akibat data yang tidak sesuai.
+[147] Keterbatasan Pengembangan
+[148] Dalam penelitian ini, prototype yang dikembangkan memiliki beberapa keterbatasan sebagai berikut:
+[149] Penelitian ini hanya menggunakan algoritma Naive Bayes sehingga tidak dilakukan perbandingan dengan algoritma klasifikasi lain yang mungkin memberikan performa lebih baik.
+[150] Variabel yang digunakan terbatas pada data historis pendaftaran, sehingga faktor eksternal seperti kondisi ekonomi, preferensi pribadi, atau pengaruh keluarga belum dapat diakomodasi.
+[151] Prototype sistem masih bersifat sederhana dan hanya menampilkan hasil prediksi tanpa fitur lanjutan seperti manajemen data, riwayat prediksi, dashboard analitik, atau integrasi dengan sistem PMB.
+[152] Dataset yang digunakan hanya mencakup periode tertentu sehingga pola perilaku calon mahasiswa mungkin tidak sepenuhnya mewakili kondisi tahun berikutnya.
+[153] Akurasi model sangat bergantung pada kualitas dan konsistensi data historis; ketidakseimbangan kelas atau ketidakseragaman data dapat memengaruhi hasil prediksi.
+[154] Definisi Istilah dan Definisi Operasional
+[155] Definisi Istilah
+[156] Berikut beberapa definisi istilah dalam penelitian ini, yaitu:
+[157] Konfirmasi Pendaftaran adalah status akhir calon mahasiswa yang menunjukkan apakah mereka melanjutkan proses daftar ulang (Masuk) atau tidak (Tidak Masuk).
+[158] Follow Up adalah bentuk tindak lanjut awal yang diberikan kepada calon mahasiswa, mulai dari kontak awal hingga komunikasi lanjutan untuk memastikan informasi pendaftaran.
+[159] Probabilitas Prior adalah peluang awal dari setiap kelas sebelum mempertimbangkan nilai atribut pada data baru. Nilai ini dihitung berdasarkan proporsi kemunculan setiap kelas pada data historis.
+[160] Probabilitas Kondisional adalah peluang kemunculan suatu atribut tertentu jika diketahui kelasnya. Nilai ini digunakan dalam menghitung probabilitas akhir pada metode Naive Bayes.
+[161] Akurasi adalah ukuran persentase prediksi model yang benar dibandingkan dengan keseluruhan data uji yang digunakan.
+[162] Atribut adalah variabel atau karakteristik dalam data calon mahasiswa yang digunakan sebagai dasar perhitungan algoritma, seperti jarak domisili, asal sekolah, waktu daftar, dan tingkat follow up.
+[163] Definisi Operasional
+[164] Berikut beberapa definisi operasional dalam penelitian ini, yaitu:
+[165] Kategori Jarak adalah menggambarkan jarak domisili calon mahasiswa dengan kampus yang dikategorikan menjadi tiga kelompok: Dekat, Sedang, dan Jauh.
+[166] Status Test adalah kondisi apakah calon mahasiswa telah mengikuti proses seleksi atau belum, yang dikategorikan menjadi: Sudah Test dan Belum Test.
+[167] Kategori Nilai Test adalah hasil evaluasi dari nilai tes yang diperoleh calon mahasiswa, yang diklasifikasikan menjadi : Nilai Tinggi (≥ 80), Nilai Sedang (60–79), Nilai Rendah (< 60), Tidak Ada Nilai (belum mengikuti tes).
+[168] Kategori Penghasilan adalah tingkat penghasilan orang tua calon mahasiswa yang dikelompokkan menjadi: Rendah (≤ Rp2.000.000), Sedang (Rp2.000.001 – Rp4.000.000), Tinggi (> Rp4.000.000).
+[169] Tindak Lanjut Follow Up adalah Intensitas tindak lanjut yang diterima calon mahasiswa, seperti Belum Dihubungi, Follow Up, atau Follow Up Intensif.
+[170] Status Akhir adalah variabel target dalam penelitian ini yang menunjukkan apakah calon mahasiswa Masuk (melakukan konfirmasi) atau Tidak Masuk.
