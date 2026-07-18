@@ -9,6 +9,12 @@ class NaiveBayesService
 {
     public const KELAS = ['MASUK', 'TIDAK MASUK'];
 
+    /**
+     * Syarat minimal data training agar estimasi probabilitas Naive Bayes
+     * layak dihitung: jumlah data berlabel dan keterwakilan kedua kelas.
+     */
+    public const MIN_DATA_TRAINING = 10;
+
     public const NILAI_ATRIBUT = [
         'kategori_jarak_asal' => ['Dekat', 'Sedang', 'Jauh'],
         'tingkat_follow_up_internal' => ['Belum Dihubungi', 'Kontak Awal', 'Follow Up', 'Follow Up Intensif'],
@@ -19,6 +25,50 @@ class NaiveBayesService
             'Rp.2.000.001 - Rp.4.000.000', 'Rp.4.000.001 - Rp.6.000.000', 'Diatas Rp.6.000.000',
         ],
     ];
+
+    /**
+     * Periksa apakah data berlabel sudah memenuhi karakteristik yang
+     * dibutuhkan algoritma Naive Bayes: jumlah minimal terpenuhi dan
+     * kedua kelas terwakili. Jika belum, probabilitas tidak dihitung.
+     */
+    public function statusKesiapan(): array
+    {
+        $labeled = Pendaftar::whereNotNull('status_retensi_final_target');
+        $nMasuk = (clone $labeled)->where('status_retensi_final_target', 'MASUK')->count();
+        $nTidakMasuk = (clone $labeled)->where('status_retensi_final_target', 'TIDAK MASUK')->count();
+        $n = $nMasuk + $nTidakMasuk;
+
+        $alasan = null;
+        if ($n < self::MIN_DATA_TRAINING) {
+            $alasan = 'Jumlah data training berlabel baru '.$n.' dari minimal '.self::MIN_DATA_TRAINING.' data.';
+        } elseif ($nMasuk === 0 || $nTidakMasuk === 0) {
+            $alasan = 'Data training hanya memuat satu kelas ('.($nMasuk === 0 ? 'TIDAK MASUK' : 'MASUK').' saja), padahal Naive Bayes membutuhkan contoh dari kedua kelas.';
+        }
+
+        return [
+            'siap' => $alasan === null,
+            'alasan' => $alasan,
+            'n_berlabel' => $n,
+            'n_masuk' => $nMasuk,
+            'n_tidak_masuk' => $nTidakMasuk,
+            'minimal' => self::MIN_DATA_TRAINING,
+        ];
+    }
+
+    /**
+     * Pastikan seluruh atribut fitur terisi dengan nilai kategori yang
+     * dikenal model sebelum baris data ikut diprediksi.
+     */
+    public function fiturLengkap(Pendaftar $row): bool
+    {
+        foreach (Pendaftar::FITUR as $f) {
+            if (! in_array($row->{$f}, self::NILAI_ATRIBUT[$f], true)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /**
      * Hitung prior probability & conditional probability (Laplace smoothing)
@@ -90,11 +140,34 @@ class NaiveBayesService
      */
     public function classifyAll(): array
     {
+        $kesiapan = $this->statusKesiapan();
+
+        if (! $kesiapan['siap']) {
+            Pendaftar::query()->update([
+                'prob_masuk' => null,
+                'prob_tidak_masuk' => null,
+                'prediksi' => null,
+                'predicted_at' => null,
+            ]);
+
+            return ['siap' => false, 'alasan' => $kesiapan['alasan'], 'n_model' => $kesiapan['n_berlabel'], 'n_classified' => 0];
+        }
+
         $labeled = Pendaftar::whereNotNull('status_retensi_final_target')->get();
         $model = $this->train($labeled);
 
-        $all = Pendaftar::all();
-        foreach ($all as $row) {
+        $terklasifikasi = 0;
+        foreach (Pendaftar::all() as $row) {
+            if (! $this->fiturLengkap($row)) {
+                $row->update([
+                    'prob_masuk' => null,
+                    'prob_tidak_masuk' => null,
+                    'prediksi' => null,
+                    'predicted_at' => null,
+                ]);
+                continue;
+            }
+
             $result = $this->predict($model, $row);
             $row->update([
                 'prob_masuk' => $result['prob_masuk'],
@@ -102,9 +175,10 @@ class NaiveBayesService
                 'prediksi' => $result['prediksi'],
                 'predicted_at' => now(),
             ]);
+            $terklasifikasi++;
         }
 
-        return ['n_model' => $model['n_train'], 'n_classified' => $all->count()];
+        return ['siap' => true, 'alasan' => null, 'n_model' => $model['n_train'], 'n_classified' => $terklasifikasi];
     }
 
     /**

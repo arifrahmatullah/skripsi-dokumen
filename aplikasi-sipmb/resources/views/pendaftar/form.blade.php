@@ -40,6 +40,13 @@
                               :value="old('asal_kota', $pendaftar->asal_kota)" />
             </div>
 
+            <div>
+                <x-input-label for="no_hp" value="No. HP / WhatsApp" />
+                <x-text-input id="no_hp" name="no_hp" class="block mt-1.5 w-full" placeholder="08xxxxxxxxxx"
+                              :value="old('no_hp', $pendaftar->no_hp)" />
+                <x-input-error :messages="$errors->get('no_hp')" class="mt-1" />
+            </div>
+
             @foreach ([
                 'kategori_jarak_asal' => 'Kategori Jarak Asal',
                 'tingkat_follow_up_internal' => 'Tingkat Follow Up Internal',

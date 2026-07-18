@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TemplateImportPendaftarExport;
+use App\Imports\PendaftarImport;
 use App\Models\Pendaftar;
 use App\Services\NaiveBayesService;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendaftarController extends Controller
 {
@@ -12,6 +15,7 @@ class PendaftarController extends Controller
         'nama_pendaftar' => ['required', 'string', 'max:255'],
         'prodi' => ['nullable', 'string', 'max:255'],
         'asal_kota' => ['nullable', 'string', 'max:255'],
+        'no_hp' => ['nullable', 'string', 'max:20'],
         'kategori_jarak_asal' => ['required', 'in:Dekat,Sedang,Jauh'],
         'kategori_asal_sekolah' => ['nullable', 'in:Sekolah Negeri,Sekolah Swasta,Sekolah Madrasah,Pondok Pesantren'],
         'waktu_pendaftaran' => ['nullable', 'in:Awal Gelombang,Tengah Gelombang,Akhir Gelombang'],
@@ -62,6 +66,34 @@ class PendaftarController extends Controller
         return redirect()->route('pendaftar.index')->with('status', 'Data pendaftar berhasil diperbarui.');
     }
 
+    public function import(Request $request, NaiveBayesService $nb)
+    {
+        $request->validate([
+            'file' => ['required', 'file', 'mimes:xlsx,xls,csv,txt', 'max:5120'],
+        ], [], ['file' => 'file import']);
+
+        $import = new PendaftarImport();
+        Excel::import($import, $request->file('file'));
+
+        if ($import->jumlahBerhasil > 0) {
+            $nb->classifyAll();
+        }
+
+        $pesan = $import->jumlahBerhasil.' data pendaftar berhasil diimpor dan diklasifikasi.';
+        if ($import->barisGagal !== []) {
+            $pesan .= ' '.count($import->barisGagal).' baris dilewati.';
+        }
+
+        return redirect()->route('pendaftar.index')
+            ->with('status', $pesan)
+            ->with('import_gagal', array_slice($import->barisGagal, 0, 10));
+    }
+
+    public function template()
+    {
+        return Excel::download(new TemplateImportPendaftarExport(), 'template-import-pendaftar.xlsx');
+    }
+
     public function destroy(Pendaftar $pendaftar)
     {
         $pendaftar->delete();
@@ -71,6 +103,17 @@ class PendaftarController extends Controller
 
     private function reklasifikasi(NaiveBayesService $nb, Pendaftar $pendaftar): void
     {
+        if (! $nb->statusKesiapan()['siap'] || ! $nb->fiturLengkap($pendaftar)) {
+            $pendaftar->update([
+                'prob_masuk' => null,
+                'prob_tidak_masuk' => null,
+                'prediksi' => null,
+                'predicted_at' => null,
+            ]);
+
+            return;
+        }
+
         $labeled = Pendaftar::whereNotNull('status_retensi_final_target')->get();
         $model = $nb->train($labeled);
         $result = $nb->predict($model, $pendaftar);

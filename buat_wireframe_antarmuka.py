@@ -49,9 +49,9 @@ def app_header(ax, y_top):
     ax.text(0.35, y_top - 0.3, 'SI-PMB  |  Rekomendasi Tindak Lanjut',
             ha='left', va='center', fontsize=10, fontweight='bold',
             color=C_TEXT, zorder=3)
-    ax.add_patch(Circle((W - 0.85, y_top - 0.3), 0.16, facecolor='white',
+    ax.add_patch(Circle((W - 1.75, y_top - 0.3), 0.16, facecolor='white',
                          edgecolor=C_ACCENT, lw=1.2, zorder=3))
-    ax.text(W - 0.55, y_top - 0.3, 'Tim Marketing', ha='left', va='center',
+    ax.text(W - 1.45, y_top - 0.3, 'Tim Marketing', ha='left', va='center',
             fontsize=7.5, color=C_TEXT, zorder=3)
     return y_top - 0.6
 

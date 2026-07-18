@@ -13,7 +13,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased bg-gray-50 text-gray-800">
-        <div class="min-h-screen flex">
+        <div class="h-screen flex overflow-hidden">
             {{-- Sidebar --}}
             <aside class="w-60 shrink-0 bg-brand-950 text-white flex flex-col">
                 <div class="h-16 flex items-center gap-2.5 px-6 border-b border-white/10">
@@ -24,13 +24,15 @@
                 @php
                     $menu = [
                         ['route' => 'dashboard', 'label' => 'Dashboard'],
+                        ['route' => 'crispdm.index', 'label' => 'Proses CRISP-DM'],
                         ['route' => 'pendaftar.index', 'label' => 'Data Pendaftar'],
+                        ['route' => 'prediksi.index', 'label' => 'Prediksi Data Baru'],
                         ['route' => 'klasifikasi.index', 'label' => 'Hasil Klasifikasi'],
                         ['route' => 'rekomendasi.index', 'label' => 'Rekomendasi'],
                         ['route' => 'laporan.index', 'label' => 'Laporan'],
                     ];
                 @endphp
-                <nav class="flex-1 py-4 space-y-0.5 px-3">
+                <nav class="flex-1 py-4 space-y-0.5 px-3 overflow-y-auto">
                     @foreach ($menu as $item)
                         @php $active = request()->routeIs($item['route'].'*'); @endphp
                         <a href="{{ route($item['route']) }}"
@@ -86,7 +88,7 @@
                 </header>
 
                 {{-- Main content --}}
-                <main class="flex-1 min-w-0 p-8">
+                <main class="flex-1 min-w-0 p-8 overflow-y-auto">
                     @if (session('status'))
                         <div class="mb-5 px-4 py-3 rounded-lg bg-brand-50 border border-brand-200 text-brand-800 text-sm font-medium">
                             {{ session('status') }}
