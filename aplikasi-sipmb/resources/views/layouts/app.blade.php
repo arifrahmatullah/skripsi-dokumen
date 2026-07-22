@@ -24,11 +24,10 @@
                 @php
                     $menu = [
                         ['route' => 'dashboard', 'label' => 'Dashboard'],
-                        ['route' => 'crispdm.index', 'label' => 'Proses CRISP-DM'],
                         ['route' => 'pendaftar.index', 'label' => 'Data Pendaftar'],
-                        ['route' => 'prediksi.index', 'label' => 'Prediksi Data Baru'],
                         ['route' => 'klasifikasi.index', 'label' => 'Hasil Klasifikasi'],
                         ['route' => 'rekomendasi.index', 'label' => 'Rekomendasi'],
+                        ['route' => 'prediksi.index', 'label' => 'Prediksi Data Baru'],
                         ['route' => 'laporan.index', 'label' => 'Laporan'],
                     ];
                 @endphp
